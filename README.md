@@ -46,3 +46,9 @@ Puzzle Ideas
    own - and now that you have hacked into a government agent's email, he
    blackmails you into completing further missions for him (lest you be
    reported to the authorities for hacking).
+
+Running
+-------
+
+You will need Flask and Gunicorn. Start the project with `python main.py` and
+then navigate to http://localhost:8000.
