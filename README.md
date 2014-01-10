@@ -44,5 +44,5 @@ Puzzle Ideas
    are confused/upset he gave you a malicious task. He replies saying that you
    passed the "test", which was to see if you could decrypt the code on your
    own - and now that you have hacked into a government agent's email, he
-   blackmails you into completing further missions for him (less you be
-   reported) to the authorities for hacking.
+   blackmails you into completing further missions for him (lest you be
+   reported to the authorities for hacking).
