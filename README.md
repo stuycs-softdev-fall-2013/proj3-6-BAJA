@@ -4,7 +4,7 @@ proj3-6-BAJA
 Background
 ----------
 
-You are a programmer. This morning you signed up for an email accoutn and soon
+You are a programmer. This morning you signed up for an email account and soon
 after received a job offer; you're excited to get started. But be careful,
 because you're about to get sucked into a deadly world of trickery and
 espionage.
@@ -12,11 +12,11 @@ espionage.
 Plot
 ----
 
-* You recieve a simple job offer that you quickly complete
-* You do a couple of follow up jobs
-* You discover that you hav hacked the government! You want out
-* They black mail you; you have no choice. You have to keep working for them
-* You hack them, and escape the world of danger
+* You recieve a simple job offer that you quickly complete.
+* You do a couple of follow up jobs.
+* You discover that you hav hacked the government! You want out.
+* They black mail you; you have no choice. You have to keep working for them.
+* Eventually you hack them, and escape the world of danger.
 
 So every mission you have will fit into the plot above, but will also be a
 coding and hacking puzzle. This is a game of danger, deceit, and learning.
