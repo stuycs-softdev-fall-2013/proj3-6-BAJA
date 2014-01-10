@@ -24,12 +24,12 @@ coding and hacking puzzle. This is a game of danger, deceit, and learning.
 Puzzle Ideas
 ------------
 
-1. Someone emails you saying that he saw your LinkedIn profile, which lists you
-   as having good CS skills, and he wants to hire you for a job. You are to
-   hack into his son's school's grade server so he can pass a failing class
-   needed to graduate. The login password is hidden in the HTML source (it's
-   pretty easy). You update the grade, email him back, the server checks the
-   update happened, and then replies with thanks and a new offer.
+1. Someone emails you saying that he's friends with Mike Zamansky; Z referred
+   you to him as a capable programmer, and he wants to hire you for a job. You
+   are to hack into his son's school's grade server so he can pass a failing
+   class needed to graduate. The login password is hidden in the HTML source
+   (it's pretty easy). You update the grade, email him back, the server checks
+   the update happened, and then replies with thanks and a new offer.
 
 2. "I think my wife is cheating on me. Can you crack her email and get me some
    information?" You hack into her email, which is another account on the same
