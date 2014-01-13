@@ -1602,13 +1602,11 @@ meta.foundation-mq-topbar {
     .top-bar-section ul li > a.button.alert:hover {
       background: #d32a0e; }
   .top-bar-section ul li:hover > a {
-    background: #272727;
+    background: #008cba;
     color: white; }
   .top-bar-section ul li.active > a {
     background: #333333;
     color: white; }
-  .top-bar-section ul li.active > a:hover {
-    background: #008cba; }
   .top-bar-section .has-form {
     padding: 15px; }
   .top-bar-section .has-dropdown {
