@@ -1,0 +1,12 @@
+<subject>
+    Job Offer
+</subject>
+<message>
+Dear {%name},
+
+    Hey. My good friend Mike Zamansky endorsed you as a good programmer. I would be interested in hiring you. My son is in danger of failing out his school and I can't have that happen. The school website is {%link}. If you could change his math grade from a 60 to an 85 you would be compensated generously.
+
+Thanks,
+
+John Black
+</message>
