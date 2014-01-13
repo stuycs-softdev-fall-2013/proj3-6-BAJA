@@ -34,3 +34,6 @@ class Database(object):
             except sqlite3.OperationalError:
                 self._create(conn)
             return conn.execute(query, args).fetchall()
+
+    def register(self):
+        pass
