@@ -3899,6 +3899,7 @@ section.left-small, section.right-small {
   overflow: hidden; }
 
 .inner-wrap {
+  background:#efefef;
   *zoom: 1;
   -webkit-transition: -webkit-transform 500ms ease;
   -moz-transition: -moz-transform 500ms ease;
