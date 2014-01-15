@@ -1605,8 +1605,10 @@ meta.foundation-mq-topbar {
     background: #008cba;
     color: white; }
   .top-bar-section ul li.active > a {
-    background: #333333;
+    background: #008cba;
     color: white; }
+  .top-bar-section ul li.active > a:hover {
+    background: #47d1ff; }
   .top-bar-section .has-form {
     padding: 15px; }
   .top-bar-section .has-dropdown {
@@ -1659,9 +1661,11 @@ meta.foundation-mq-topbar {
 .js-generated {
   display: block; }
 
+
+
 @media only screen and (min-width: 40.063em) {
   .top-bar {
-    background: #333333;
+    background: #008cba;
     *zoom: 1;
     overflow: visible; }
     .top-bar:before, .top-bar:after {
@@ -1697,19 +1701,19 @@ meta.foundation-mq-topbar {
       width: auto;
       height: auto !important;
       display: inline; }
-      .top-bar-section ul li {
-        float: left; }
-        .top-bar-section ul li .js-generated {
-          display: none; }
+    .top-bar-section ul li {
+      float: left; }
+    .top-bar-section ul li .js-generated {
+      display: none; }
     .top-bar-section li.hover > a:not(.button) {
       background: #272727;
       color: white; }
     .top-bar-section li a:not(.button) {
       padding: 0 15px;
       line-height: 45px;
-      background: #333333; }
-      .top-bar-section li a:not(.button):hover {
-        background: #272727; }
+      background: #008cba; }
+    .top-bar-section li a:not(.button):hover {
+      background: #47d1ff; }
     .top-bar-section .has-dropdown > a {
       padding-right: 35px !important; }
       .top-bar-section .has-dropdown > a:after {
