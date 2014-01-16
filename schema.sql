@@ -7,6 +7,13 @@ CREATE TABLE version (
 );
 INSERT INTO version VALUES (%(version)s);
 
+DROP TABLE IF EXISTS game_data;
+CREATE TABLE game_data (
+    gd_user INTEGER,
+    gd_mission INTEGER,
+    gd_status INTEGER
+);
+
 DROP TABLE IF EXISTS qmail_users;
 CREATE TABLE qmail_users (
     qmu_id INTEGER PRIMARY KEY,

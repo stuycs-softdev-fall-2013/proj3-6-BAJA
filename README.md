@@ -15,7 +15,7 @@ Plot
 * You recieve a simple job offer that you quickly complete.
 * You do a couple of follow up jobs.
 * You discover that you hav hacked the government! You want out.
-* They black mail you; you have no choice. You have to keep working for them.
+* They blackmail you; you have no choice. You have to keep working for them.
 * Eventually you hack them, and escape the world of danger.
 
 So every mission you have will fit into the plot above, but will also be a
@@ -46,6 +46,34 @@ Puzzle Ideas
    own - and now that you have hacked into a government agent's email, he
    blackmails you into completing further missions for him (lest you be
    reported to the authorities for hacking).
+
+4. He needs some money to buy new hardware, so he asks you to hack into an
+   online banking site and transfer $5,000 to him (he gives you the bank
+   routing number and his account but not enough to log in). He doesn't have
+   another account to steal the money from, so you are responsible for finding
+   one yourself. When browsing the site, you find a news story similar to the
+   urban legend (http://www.snopes.com/katrina/photos/debitcard.asp) which
+   gives you an account number to steal from. You log in and transfer the funds
+   over. Your agent warns you that the FBI might be tracing suspicious
+   transfers, and you should delete the transaction logs. He gives you the
+   email account of a random employee (jsmith@randombank.com) and tells you
+   about XSS and how you can do this to get into his account, find the email of
+   someone who can audit transaction history, and then repeat it to get his
+   bank login info. You log in to the auditor's dashboard, delete the
+   transaction logs, and complete the mission.
+
+Other Elements
+--------------
+
+It is possible to lose the game. "Overhacking" -- doing things you are not
+supposed to -- or failing to cover your tracks in later missions, will lead to
+the FBI following your trail and arresting you. When you lose the game all
+pages on the server while you are logged in will redirect to a page that gives
+you a game over message (with an explanation of what happened, and your
+progress) and an option to log out. You cannot "save" or "revert" your progress
+at any point to avoid this; you must start over. The same "game over" message
+is displayed upon winning the game, but it is more congratulatory than "lol you
+failed".
 
 Running
 -------
