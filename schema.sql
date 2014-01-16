@@ -30,13 +30,12 @@ CREATE TABLE qmail_mailboxes (
     qmm_user INTEGER
 );
 
-DROP TABLE IF EXISTS qmail_messages;
+DROP TABLE IF EXISTS qmail_emails;
 CREATE TABLE qmail_emails (
     qme_id INTEGER PRIMARY KEY,
     qme_sender INTEGER,
-    qme_mailbox INTEGER,
     qme_subject TEXT,
-    qme_body TEXT
+    qme_body TEXT,
     qme_has_attachments BOOLEAN
 );
 
@@ -46,6 +45,9 @@ CREATE TABLE qmail_recipients (
     qmr_message INTEGER,
     qmr_recipient INTEGER,
     qmr_type INTEGER
+    qmr_address TEXT,
+    qmr_name TEXT,
+    qmr_mailbox INTEGER
 );
 
 DROP TABLE IF EXISTS qmail_attachments;

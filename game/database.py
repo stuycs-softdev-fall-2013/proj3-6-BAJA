@@ -35,5 +35,14 @@ class Database(object):
                 self._create(conn)
             return conn.execute(query, args).fetchall()
 
-    def register(self):
+    def register(self, address, first, last, password):
+        pass
+
+    def send_email(self, sender, subject, body, recipients, attachments=None):
+        pass
+
+    def get_missions(self, user, status):
+        pass
+
+    def update_mission(self, user, mission_id, status):
         pass

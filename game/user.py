@@ -1,5 +1,7 @@
+__all__ = ["User"]
+
 class User(object):
-    def __init__(self, uid, address, first, last, pwhash, pwsalt):
+    def __init__(self, uid, address, first, last, pwhash=None, pwsalt=None):
         self.uid = uid
         self.address = address
         self.first = first
