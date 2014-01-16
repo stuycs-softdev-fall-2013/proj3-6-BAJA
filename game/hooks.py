@@ -14,7 +14,7 @@ def post_create(db):
         and needs to have UID of AGENT_ID
     """
     db.register("jblack", "John", "Black", "password") 
-    
+
 def post_register(db, user):
     """ 
         Called by database after a user registers
@@ -27,16 +27,36 @@ def post_register(db, user):
         subject = "" #load from template
         body = ""
         db.send_email(user, db.get_user(AGENT_ID), subject, body)
-    
+
     Timer(5, send_email).start()
-    
+
 def post_send(db, email):
     """
-           
+
     """
     in_progress = db.get_missions(email.sender, MISSION_IN_PROGRESS)
-    if( messages.mission_number(email.subject) in in_progress ):
+    mission_id = messages.mission_number(email.subject)
+    if( mission_id in in_progress ):
         #success
-        
+        db.update_mission(email.sender, mission_id, MISSION_SUCCESS)
+        def send_email():
+            """
+                Sends a successful email response
+            """
+
+            reply_success = messages.load_response(messages.next_mission(mission_id), False) 
+            db.send_email(email.recipients[0], email.sender, reply_success['subject'], reply_success['body'])
+
+        Timer(5, send_email).start()
     else:
         #failure
+     def send_email():
+         """
+            Sends a failed email response
+        """
+
+        reply_failed = messages.load_response(mission_id, False) 
+        db.send_email(email.recipients[0], email.sender, reply_failed['subject'], reply_failed['body'])
+
+    Timer(5, send_email).start()
+

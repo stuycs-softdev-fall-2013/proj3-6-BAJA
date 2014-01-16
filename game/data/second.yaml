@@ -1,11 +1,22 @@
 id: 2
-subject: Nice Job
+next_id:3
 subreply: Re: wife's email
-body: |
-Dear {%name},
+brief:
+    subject: Nice Job
+    body: |
+    Dear {%name},
 
-    Nice job, I appreciate the help. If you're still looking for work, I could use you help with another issue I'm having. I think my wife is cheating on me. If you could break into her email - {%email} - I would be very thankful. You should be looking for a message from someone named "Bill Donovan." Don't worry about the message, she's very paranoid and encrypts her emails. I don't need you to crack the code though. I think I know her well enough to be able to solve it. Forward the email to me.
+        Nice job, I appreciate the help. If you're still looking for work, I could use you help with another issue I'm having. I think my wife is cheating on me. If you could break into her email - {%email} - I would be very thankful. You should be looking for a message from someone named "Bill Donovan." Don't worry about the message, she's very paranoid and encrypts her emails. I don't need you to crack the code though. I think I know her well enough to be able to solve it. Forward the email to me.
 
-Thanks,
+    Thanks,
 
-John Black
+    John Black
+
+reply_failed:
+    subject: Re: Nice Job
+    body: |
+    Dear {%name},
+
+        Are you sure that's my wifes email and not someone else's? Because that's not what I'm looking for. Get back to me when you have what I'm looking for.
+
+    John Black
