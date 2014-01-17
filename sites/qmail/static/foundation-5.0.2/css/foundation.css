@@ -2059,7 +2059,7 @@ button, .button {
     clear: both; }
   .button-group > * {
     margin: 0;
-    float: left; }
+    text-align: center; }
     .button-group > * > button, .button-group > * .button {
       border-right: 1px solid;
       border-color: rgba(255, 255, 255, 0.5); }
