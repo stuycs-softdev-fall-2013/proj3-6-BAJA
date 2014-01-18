@@ -1,5 +1,3 @@
-  /* Global 
- ====================================================================== */
 html{
 	overflow-y: auto;
 } 
@@ -43,7 +41,7 @@ a:hover,a:focus{
 	 opacity:1;
 }
 
-a,.features-box,.btn-grey,.our-team img{
+a,.features-box,.btn-grey,{
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-ms-transition: all 0.5s ease-in-out;
@@ -66,8 +64,6 @@ a,.features-box,.btn-grey,.our-team img{
 	text-align: center;
 }
 
-  /* Navigation 
- ====================================================================== */
 .nav-custom{
 	background: #1d9ecc;
 	border-color: #1d9ecc;
@@ -99,12 +95,14 @@ a,.features-box,.btn-grey,.our-team img{
 .footer{
 	margin-top: 30px;
 }
+
  .logo{
 	font-style: italic;
 	color: #fff;
 	font-size: 20px;
 	font-weight: bold;
 }
+
 [data-magellan-expedition] {
 background: transparent;
 z-index: auto;
@@ -115,14 +113,11 @@ padding: 0;
 .custom-menu li:hover{
 	background: #F8704F;
 }
+
 .custom-menu li a:hover{
 	color: #fff !important;
 }
 
-
-
-  /* reveal Banner 
- ====================================================================== */
 .reveal{
 	font-size: 1.6em;
 	height:350px;
@@ -133,12 +128,15 @@ padding: 0;
 	text-transform: uppercase;
 	text-shadow: 0 1px 0 #CCC, 0 2px 0 #C9C9C9, 0 3px 0 #BBB, 0 4px 0 #B9B9B9, 0 5px 0 #AAA, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
+
 .reveal h2 {
 	line-height: 1.5em;
 }
+
 .reveal h2 span.line-through{
 	text-decoration: line-through;
 } 
+
 .reveal h2 span.big-text{
 	font-size: 1.1em;
 	font-weight: bold;
@@ -155,21 +153,25 @@ padding: 0;
 	 0 20px 25px rgba(0, 0, 0, 0.15);
 
 }
+
 .reveal .reveal-images img{
 	margin-top: 20px;
 }
+
 .delay1{
 	-webkit-animation-delay: .8s;
 	-moz-animation-delay: .8s;
 	-o-animation-delay: .8s;
 	animation-delay: .8s;
 }
+
 .delay2{
 	-webkit-animation-delay: 1s;
 	-moz-animation-delay: 1s;
 	-o-animation-delay: 1s;
 	animation-delay: 1s; 
 }
+
 .delay3{
 	-webkit-animation-delay: 1.0s;
 	-moz-animation-delay: 1.0s;
@@ -207,37 +209,20 @@ padding: 0;
 	color: #1d9ecc;
 	display: inline-block;
 }
+
 .icon-circled{
 	margin: 10px 10px 10px 0;
 }
+
 .features-details {
 	margin-top: 25px;
 }
-.controller a{
-	position: absolute;
-	top: 250px;
-	width: 15%;
-	font-size: 2.5em;
-	color: #0F0F0F;
-	text-align: center;
-	opacity: 0.4;
-	z-index: 9999;
-}
-.controller a:hover{
-	opacity: 1;
-}
-.controller .controller-left{
-	left: 0;
-}
-.controller .controller-right{
-	right: 0;
-}
-/* About Us
-====================================================================== */
+
 .progress {
 	height: 20px;
 	margin-bottom: 15px;
 }
+
 .section-title{
 	font-size: 3em;
 	font-style: italic;
@@ -255,28 +240,8 @@ padding: 0;
 	0 5px 10px rgba(0, 0, 0, 0.25), 
 	0 20px 20px rgba(0, 0, 0, 0.15);
 }
+
 .section-content{
 	margin-top: 45px;
 }
  
-.our-team {
-	text-align: center;
-	padding-top: 15px;
-}
-.our-team img{
-	width:140px;
-	height: 140px; 
-	border-radius: 50%;	
-	margin: 0 auto 10px;
-	border: 5px solid #383838;
-}
-.our-team img:hover{
-	-webkit-transform: scale(1.15)  rotate(5deg);
-	-moz-transform: scale(1.15) rotate(5deg);
-	-ms-transform: scale(1.15) rotate(5deg);
-	-o-transform: scale(1.15) rotate(5deg);
-	transform: scale(1.15)  rotate(5deg); 	
-}
-.caption h6{
-	font-weight: bold;
-}
