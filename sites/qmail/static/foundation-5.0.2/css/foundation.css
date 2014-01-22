@@ -100,7 +100,9 @@ img {
 
 img {
   display: inline-block;
-  vertical-align: middle; }
+  vertical-align: middle; 
+  position:relative;
+  float:left; }
 
 textarea {
   height: auto;
@@ -893,7 +895,8 @@ select {
 
   .large-10 {
     position: relative;
-    width: 83.33333%; }
+    width: 83.33333%; 
+    float:left; }
 
   .large-11 {
     position: relative;
@@ -4429,7 +4432,7 @@ textarea {
   font-size: 0.875rem;
   margin: 0 0 1rem 0;
   padding: 0.5rem;
-  height: 2.3125rem;
+  height: 7.3125rem;
   width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
