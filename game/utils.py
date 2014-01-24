@@ -11,5 +11,5 @@ PW_ALPHANUM = PW_ALPHA + PW_NUMBERS
 PW_SYMBOLS = "!@#$%^&*()-=_+[]{}\\|;':\",./<>?`~"
 
 def gen_password(length, chars):
-    """Generate a random password of a given length."""
+    """Generate a random password of a given length using a certain charset."""
     return "".join([random.choice(chars) for i in xrange(length)])

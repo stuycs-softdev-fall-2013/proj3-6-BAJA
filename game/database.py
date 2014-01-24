@@ -2,6 +2,8 @@ import hashlib
 from logging import getLogger
 import sqlite3
 
+from . import utils
+
 __all__ = ["Database"]
 
 SCHEMA_FILE = "schema.sql"
@@ -13,7 +15,6 @@ class Database(object):
     def __init__(self, filename):
         self.filename = filename
         self._logger = getLogger("gunicorn.error")
-        self._clear_locks()
 
     def _create(self, conn):
         """Creates a fresh database, assuming one doesn't exist."""
@@ -21,18 +22,26 @@ class Database(object):
             script = fp.read()
         conn.executescript(script % {"version": SCHEMA_VERSION})
 
+    def _connect(self):
+        """Create a connection with the database and update it if necessary."""
+        conn = sqlite3.connect(self.filename)
+        try:
+            result = conn.execute("SELECT version FROM version")
+            current = result.fetchone()[0]
+            if current < SCHEMA_VERSION:
+                logmsg = "Upgrading old schema ({0} < {1})!"
+                self._logger.info(logmsg.format(current, SCHEMA_VERSION))
+                self._create(conn)
+        except sqlite3.OperationalError:
+            self._create(conn)
+        except Exception:
+            conn.close()
+            raise
+        return conn
+
     def _execute(self, query, *args):
         """Execute a query, creating/updating the database if necessary."""
-        with sqlite3.connect(self.filename) as conn:
-            try:
-                result = conn.execute("SELECT version FROM version")
-                current = result.fetchone()[0]
-                if current < SCHEMA_VERSION:
-                    logmsg = "Upgrading old schema ({0} < {1})!"
-                    self._logger.info(logmsg.format(current, SCHEMA_VERSION))
-                    self._create(conn)
-            except sqlite3.OperationalError:
-                self._create(conn)
+        with self._connect() as conn:
             return conn.execute(query, args).fetchall()
 
     def register(self, address, first, last, password):
@@ -40,7 +49,16 @@ class Database(object):
 
         Return None on success or an error string on failure.
         """
-        pass
+        with self._connect() as conn:
+            conn.execute("BEGIN EXCLUSIVE TRANSACTION")
+            res = conn.execute("SELECT MAX(qmu_id) FROM qmail_users" + 1)
+            maxid = res.fetchone()[0]
+            uid = maxid + 1 if maxid else 1
+            pwsalt = utils.gen_password(64, utils.PW_ALPHANUM)
+            pwhash = hashlib.sha256(password + pwsalt).hexdigest()
+            query = "INSERT INTO qmail_users VALUES (?, ?, ?, ?, ?)"
+            conn.execute(query, (uid, address, first, last, pwhash, pwsalt))
+            conn.execute("END TRANSACTION")
 
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):
