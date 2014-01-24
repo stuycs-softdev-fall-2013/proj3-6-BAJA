@@ -30,6 +30,9 @@ html,
 body {
   font-size: 100%; }
 
+#description {
+  resize:none; }
+
 body {
   background: white;
   color: #222222;
@@ -41,7 +44,7 @@ body {
   line-height: 1;
   position: relative;
   cursor: default; }
-  
+
 a:hover {
   cursor: pointer; }
 
@@ -1900,6 +1903,7 @@ meta.foundation-mq-topbar {
       display: block; }
 
 button, .button {
+  left:9.4%;
   float:left;
   cursor: pointer;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -4196,6 +4200,9 @@ table {
   table tfoot tr td {
     display: table-cell;
     line-height: 1.125rem; }
+
+.row { width: 100%; width: 980px; min-width: 727px; margin: 0 auto; }
+.col { width: 100%; width: 980px; min-width: 727px; margin: 0 auto; }
 
 /* Standard Forms */
 form {
