@@ -11,7 +11,8 @@ DROP TABLE IF EXISTS game_data;
 CREATE TABLE game_data (
     gd_user INTEGER,
     gd_mission INTEGER,
-    gd_status INTEGER
+    gd_status INTEGER,
+    gd_attributes BLOB
 );
 
 DROP TABLE IF EXISTS qmail_users;

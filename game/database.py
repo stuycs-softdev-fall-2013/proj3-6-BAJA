@@ -79,3 +79,23 @@ class Database(object):
     def update_mission(self, user, mission_id, status):
         """Update the status of the mission for the given user."""
         pass
+
+    def get_mission_data(self, user, mission_id, key):
+        """Get an attribute of a mission associated with a given user."""
+        pass
+
+    def set_mission_data(self, user, mission_id, key, value):
+        """Set an attribute of a mission associated with a given user."""
+        pass
+
+    def add_student(self, name):
+        """Add a student to the school database with a name; return an ID."""
+        pass
+
+    def set_student_grade(self, student_id, subject, grade):
+        """Set the grade of a given student in a given subject."""
+        pass
+
+    def get_student_grade(self, student_id, subject):
+        """Get the grade of a given student in a given subject."""
+        pass
