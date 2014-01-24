@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+   <TITLE>Stuyvesant High School Student Login</TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+
+</HEAD>
+<BODY>
+<script>
+function clearform(which){
+if (which.value=="enter username")
+which.value=''
+}
+function clearformpw(which){
+if (which.value==" ")
+which.value=''
+}
+</script>
+<P ALIGN=center><FONT SIZE="+2">Stuyvesant High School<BR>
+</FONT><FONT SIZE="+1">Jie Zhang, Principal</FONT>
+
+<HR>
+
+
+<CENTER><FONT SIZE="+3" COLOR="#0066FF">Stuyvesant High School</FONT></CENTER>
+
+<P><FORM ACTION="https://students-stuyhs.theschoolsystem.net/login.rb" METHOD=POST  AUTOCOMPLETE = OFF>
+<BR>    
+<font color = red>IMPORTANT! <BR><i>IF YOU ARE USING A PUBLIC COMPUTER:</i><BR><BR>
+To Protect Your Confidentiality
+<ul>
+<LI>
+DO NOT allow the computer to 'remember' your username and password for this site 
+</LI>
+<LI>
+Log Out and Quit the Browser when you are done
+</LI></font>
+<BR><BR>
+
+<br>Note: You no longer need to enter the '@stuyhs.net part of your username.<br><br>
+
+    </FONT></P>
+   <BR>Enter your Username: <input type="text" name="username" size="80" maxlength="200" onFocus="clearform(this)" value="enter username"  autocomplete="off">
+  <BR> <BR>Enter your Password: <input type="password" name="password" size="30" maxlength="100" onFocus="clearformpw(this)" value=" " autocomplete="off">
+   
+   <BR><BR>
+   Click 'login'.<BR>
+   <INPUT TYPE=submit NAME=button VALUE="login">
+     
+ </FORM>
+<br><br>Forgot your password? <a href="reset_password.rb">Click Here</a>
+</BODY>
+</HTML>
+
