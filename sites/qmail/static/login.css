@@ -94,9 +94,6 @@ a {
     color: rgb(17, 85, 204);
     text-decoration: none;
 }
-a#forgot_password {
-    display:block;
-}
 .login-box input[type="submit"] {
     margin: 0px 1.5em 1.2em 0px;
     height: 36px;
@@ -196,40 +193,6 @@ a#forgot_password {
     background-image: -ms-linear-gradient(top,#4d90fe,#357ae8);
     background-image: -o-linear-gradient(top,#4d90fe,#357ae8);
     background-image: linear-gradient(top,#4d90fe,#357ae8);
-    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-}
-.button-red {
-    border: 1px solid transparent;
-    color: #0000FF;
-    text-shadow: 0 1px rgba(0,0,0,0.1);
-    background-color: #d14836;
-    background-image: -webkit-linear-gradient(top,#dd4b39,#d14836);
-    background-image: -moz-linear-gradient(top,#dd4b39,#d14836);
-    background-image: -ms-linear-gradient(top,#dd4b39,#d14836);
-    background-image: -o-linear-gradient(top,#dd4b39,#d14836);
-    background-image: linear-gradient(top,#dd4b39,#d14836);
-}
-.button-red:hover {
-    border: 1px solid #b0281a;
-    color: #fff;
-    text-shadow: 0 1px rgba(0,0,0,0.3);
-    background-color: #c53727;
-    background-image: -webkit-linear-gradient(top,#dd4b39,#c53727);
-    background-image: -moz-linear-gradient(top,#dd4b39,#c53727);
-    background-image: -ms-linear-gradient(top,#dd4b39,#c53727);
-    background-image: -o-linear-gradient(top,#dd4b39,#c53727);
-    background-image: linear-gradient(top,#dd4b39,#c53727);
-}
-.button-red:active {
-    border: 1px solid #992a1b;
-    background-color: #b0281a;
-    background-image: -webkit-linear-gradient(top,#dd4b39,#b0281a);
-    background-image: -moz-linear-gradient(top,#dd4b39,#b0281a);
-    background-image: -ms-linear-gradient(top,#dd4b39,#b0281a);
-    background-image: -o-linear-gradient(top,#dd4b39,#b0281a);
-    background-image: linear-gradient(top,#dd4b39,#b0281a);
     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
