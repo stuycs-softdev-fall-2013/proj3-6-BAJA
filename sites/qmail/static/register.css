@@ -1,10 +1,10 @@
-html, body {
-    font-family: Arial;
+ html, body {
+     font-family: Arial;
 }
-.top {
-    text-align: left;
+.banner {
+    text-align: center;
 }
-.top h1 {
+.banner h1 {
     font-family: 'Open Sans', arial;
     -webkit-font-smoothing: antialiased;
     color: #555;
@@ -13,14 +13,36 @@ html, body {
     margin-top: 0;
     margin-bottom: 20px;
 }
-.top h2 {
-    font-family: 'Open Sans', arial;
-    -webkit-font-smoothing: antialiased;
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
-    margin-bottom: 20px;
+.side-content {
+    padding-top: 18px;
+    float: left;
 }
+.side-content h2 {
+    text-align: center;
+    font-family: 'Open Sans', arial;
+    color: #737373;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+.side-content p {
+    text-align: center;
+    font-family: 'Open Sans', arial;
+    color: #737373;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+.side-content img {
+    margin: 0 auto 80px;
+    display: block;
+}
+.profile-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 10px;
+    display: block;
+ }
+
 .register-box {
     margin: 0 auto;
     padding: 10px 30px 25px 25px;
@@ -40,13 +62,21 @@ html, body {
 .register-box label {
     display: block;
 }
-.register-box .email-label, .login-box .passwd-label {
+.register-box .email-label, .register-box .passwd-label {
     font-weight: bold;
     margin: 0px 0px 0.5em;
     display: block;
    -moz-user-select: none;
 }
-.login-box input[type="email"], .login-box input[type="password"] {
+.register-box label.remember {
+    display: inline-block;
+    vertical-align: top;
+    margin: 9px 0px 0px;
+}
+strong {
+    color: rgb(34, 34, 34);
+}
+.register-box input[type="email"], .register-box input[type="password"] {
     width: 100%;
     height: 32px;
     font-size: 18px;
@@ -182,6 +212,14 @@ a {
     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+.remember-label {
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    line-height: 0;
+    padding: 0px 0px 0px 0.4em;
+    -moz-user-select: none;
 }
 .register-box h2 strong {
     display: inline-block;
