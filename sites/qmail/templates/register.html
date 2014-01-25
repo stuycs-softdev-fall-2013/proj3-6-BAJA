@@ -4,19 +4,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register form</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../static/register.css"/>
   </head>
 
-   <body>
-    <div class="top">
+  <body>    
+
+    <div class="banner">
       <h1>Create your Qmail Account</h1>
-      <h2>One Account is all you need</h2>
     </div>
+
+    <div class="side-content">
+      <h2>One account is all you need</h2>
+      <p>A single username and password gets you into everything Qoogle.</p>
+      <img src="../img/logostrip.jpeg" height="30px" width="250px">
+      <h2>Make Qoogle yours</h2>
+      <p>Set up your profile and preferences just the way you like.</p>
+      <img src="../img/profiles.png" height="124px" width="300px">
+      <h2>Take it all with you</h2>
+      <p>Switch between devices, and pick up wherever you left off.</p>
+      <img src="../img/device.png" height="172px" width="300px">
+    </div>
+
     <div class="register-box">  
+    <img id="profile-img" class="profile-img" src="../img/logo.jpg" alt="">
     <form action="" method="post">
       <div class="email-div">
-        <label for="Email"><strong class="email-label">Choose your username</strong></label>
+        <label for="Email"><strong class="email-label">Choose your Email</strong></label>
         <input spellcheck="false" name="Email" id="Email" value="" type="email">
       </div>
       <div class="passwd-div">
@@ -24,8 +38,12 @@
         <input name="Passwd" id="Passwd" type="password">
       </div>
       <input class="button button-submit" name="signIn" id="signIn" value="Register" type="submit">
+      <label class="remember">
+        <input  value="yes" checked="checked" type="checkbox">
+        <strong class="remember-label">I agree to the Qmail Terms of Service and Privacy Policy</strong> </label>
     </form>
     </div>
-    </body>
+
+  </body>
 
 </html>
