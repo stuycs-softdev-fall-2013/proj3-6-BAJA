@@ -1,0 +1,151 @@
+body {
+  background-image: url("http://bigtimemarketing.co.uk/wp-content/uploads/2013/03/Windows_7_business_wallpaper_by_Cosmoware_Design.png");
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:bottom;
+}
+h1 {
+  color: #787878;
+  text-shadow: 1px 1px 1px #050505;
+  filter: dropshadow(color=#050505, offx=1, offy=1);
+  font-family: "helvetica";
+  font-size: 22px;
+  float:left;
+}
+h2 {
+  color: #050505;
+  text-shadow: 1px 1px 1px #383838;
+  filter: dropshadow(color=#383838, offx=1, offy=1);
+  font-family: "helvetica";
+  font-size: 17px;
+  margin: 0px;
+  text-align: center;
+  
+}
+small {
+ color: #050505;
+  text-shadow: 1px 1px 1px #383838;
+  filter: dropshadow(color=#383838, offx=1, offy=1);
+  font-family: "helvetica";
+  font-size: 22px;
+  text-align: center; 
+}
+table {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.loadlogin {
+  float:left;
+  margin-top: 20px;
+  margin-left: 10%;
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
+						inset 0px 10px 95px rgba(0,0,0,0.4),
+						0px 1px 2px rgba(5,203,247,0.2),
+						0px 5px 15px rgba(0,0,0,0.5);
+  width: 350px;
+  height: 100px;
+  background-image: url(https://dl.dropbox.com/u/70717047/noise/blacknoise.png);
+ border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+::selection  {
+	background: cyan; /* Safari */
+}
+::-moz-selection {
+	background: cyan; /* Firefox */
+  opacity: 0.4;
+}
+input {
+  font-weight:bold;
+  color: grey;
+  width: 200px;
+  height: 30px;
+  margin: 0 auto;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  background: none;
+  border: none;
+-webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
+                    inset -5px -5px 10px 0px rgba(0, 0, 0, 0.4),
+                    inset 0px 5px 1px rgba(0,0,0,0.5);
+                
+}
+.cube {
+  opacity: 0.4;
+  border-radius: 0px;
+	box-shadow: 0 0 20px #2187e7;
+  border-radius: 100% / 5px;
+	width: 5px;
+	height:5px;
+  animation:move 2s infinite ease;
+  -webkit-animation:move 2s infinite ease;
+}
+@keyframes move
+{
+0%   {background:rgba(0,183,229,0.9); margin-left:0px; opacity:0; linear}
+25%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 10px; height:10px; linear}
+50%  {background:rgba(0,183,229,0.9); margin-left:540px; opacity:0;  linear}
+75%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 10px; height:10px; linear}
+100% {background:rgba(0,183,229,0.9); margin-left:0px;opacity:0;  linear}
+}
+@-webkit-keyframes move /* Safari and Chrome */
+{
+0%   {background:rgba(0,183,229,0.9); margin-left:0px; opacity:0; box-shadow: 0 0 10px #2187e7; linear}
+25%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 7px; height:7px; box-shadow: 0 0 20px #2187e7; linear}
+50%  {background:rgba(0,183,229,0.9); margin-left:540px; opacity:0; box-shadow: 0 0 10px #2187e7; linear}
+75%  {background:rgba(255, 0, 0, 0.9); opacity:0.7; width: 7px; height:7px; box-shadow: 0 0 20px #FF3B3B; linear}
+100% {background:rgba(255, 0, 0, 0.9); margin-left:0px;opacity:0; box-shadow: 0 0 10px #2187e7; linear}
+}
+.loadbar {
+  width: 550px;
+  height: 12px;
+  margin: 0 auto;
+-webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
+                    inset -5px -5px 5px 0px rgba(0, 0, 0, 0.4),
+                    inset 0px 5px 1px rgba(0,0,0,0.5);
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 );
+}
+.button {
+  margin-left: 9px;
+  width:98px;
+  height:28px;
+  background-image: url(https://dl.dropbox.com/u/70717047/noise/blacknoise.png);
+	cursor: pointer;
+  border-radius: 5px;
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
+						inset 0px 10px 95px rgba(0,0,0,0.4),
+						0px 1px 2px rgba(5,203,247,0.2),
+						0px 5px 15px rgba(0,0,0,0.5);
+}
+.button:active {
+box-shadow: 0 -1px 0 0 rgba(255, 255, 255, .2) inset, 0 1px 10px 0 rgba(0, 0, 0, .4) inset;
+}
+.loginframe {
+  float: left;
+  margin-top: 20px;
+  margin-left: 25%;
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
+						inset 0px 10px 95px rgba(0,0,0,0.4),
+						0px 1px 2px rgba(5,203,247,0.2),
+						0px 5px 15px rgba(0,0,0,0.5);
+  width: 550px;
+  height: 66px;
+  background-image: url(https://dl.dropbox.com/u/70717047/noise/blacknoise.png);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
