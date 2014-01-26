@@ -1,0 +1,132 @@
+body {
+	background-color: #FFFFFF;
+}
+
+td {
+	font: normal 11px Tahoma, Arial;
+	color: #8a8a8a;
+}
+
+h1, h2, h3, h4, h5 {
+
+    color: #ffffff;
+    margin: 0px;
+}
+
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+
+a {
+font: normal 11px Tahoma, Arial;
+color: #797979;
+text-decoration: underline;
+}
+
+a:hover {
+
+font: normal 11px Tahoma, Arial;
+color: #797979;
+text-decoration: none;
+
+}
+
+a.white-link-underline {	
+	text-decoration: underline;
+	color: #FFFFFF;
+}
+
+.white-text{
+color: #ffffff;
+text-decoration: none;
+
+}
+
+
+.blye-text-underline {
+color: #007ca2;
+text-decoration: underline;
+}
+
+.blye-text-regular {
+color: #007ca2;
+text-decoration: none;
+}
+
+.yellow-text-regular {
+color: #db9a00;
+text-decoration: none;
+}
+
+.yellow-text-underline {
+color: #db9a00;
+text-decoration: underline;
+}
+
+.orange-text-regular {
+color: #f17e22;
+text-decoration: none;
+}
+
+.orange-text-underline {
+color: #f17e22;
+text-decoration: underline;
+}
+.broun-text-regular {
+color: #de4e06;
+text-decoration: none;
+}
+
+.broun-text-underline {
+color: #de4e06;
+text-decoration: underline;
+}
+
+.red-text-regular {
+color: #8a3c53;
+text-decoration: none;
+}
+
+.red-text-underline {
+color: #8a3c53;
+text-decoration: underline;
+}
+.black-text-regular {
+color: #000000;
+text-decoration: none;
+}
+
+.black-text-underline {
+color: #000000;
+text-decoration: underline;
+}
+
+
+.gray-text-underline{
+color: #7c7c7c;
+text-decoration: underline;
+}
+.gray-text-regular{
+color: #7c7c7c;
+text-decoration: none;
+}
+
+.green-text{
+color: #00617b;
+text-decoration: none;
+}
+
+.green-text-underline{
+color: #00617b;
+text-decoration: underline;
+}
