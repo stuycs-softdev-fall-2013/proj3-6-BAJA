@@ -37,6 +37,10 @@
       <div class="passwd-div">
         <label for="Passwd"><strong class="passwd-label">Create a Password</strong></label>
         <input name="Passwd" id="Passwd" type="password">
+    </div>
+      <div class="passwd-div">
+          <label for="Passwd"><strong class="passwd-label">Confirm Password</strong></label>
+          <input name="Passwd" id="Passwd" type="password">
       </div>
 
       <script type="text/javascript">
@@ -45,11 +49,11 @@
           custom_theme_widget: 'recaptcha_widget'
         };
       </script>    
-      <div id="recaptcha_widget" style="display:none">
+      <div id="recaptcha_widget" style="">
           <div class="control-group">
              <label class="control-label">Prove that you're not a robot</label>
                             <div class="controls">
-                                <a id="recaptcha_image" href="#" class="thumbnail"></a>
+                                <a id="recaptcha_image" href="#" class="thumbnail" style=""></a>
                                 <div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
                             </div>
                         </div>

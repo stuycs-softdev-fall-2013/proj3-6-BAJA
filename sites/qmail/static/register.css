@@ -1,4 +1,4 @@
- html, body {
+html, body {
     font-family: Arial;
     position: absolute;
     height: 100%;
@@ -9,6 +9,13 @@
 .banner {
     text-align: center;
 }
+
+#recaptcha_image {
+    color:black;
+    width:258px;
+    height:57px;
+}
+
 .banner h1 {
     font-family: 'Open Sans', arial;
     -webkit-font-smoothing: antialiased;
@@ -19,8 +26,10 @@
     margin-bottom: 20px;
 }
 .side-content {
-    padding-top: 18px;
-    margin: 0 420px 0 0;
+    margin: 18px 0 0 0;
+    position:relative;
+    float:left;
+    left:15%;
 }
 .side-content h2 {
     text-align: center;
@@ -49,11 +58,10 @@
  }
 
 .register-box {
-    position: fixed;
-    top: 20%;
-    left: 60%;
-    margin-top: -50px;
-    margin-left: -100px;
+    position:relative;
+    float:right;
+    top:7%;
+    right:20%;
     text-align: center;
     padding: 25px;
     background: #fff;
