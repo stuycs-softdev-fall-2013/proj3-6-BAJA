@@ -20,7 +20,6 @@ h2 {
   font-size: 17px;
   margin: 0px;
   text-align: center;
-  
 }
 small {
  color: #050505;
@@ -44,8 +43,7 @@ table {
 						0px 5px 15px rgba(0,0,0,0.5);
   width: 350px;
   height: 100px;
-  background-image: url(https://dl.dropbox.com/u/70717047/noise/blacknoise.png);
- border-radius: 5px;
+  border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -60,7 +58,7 @@ table {
 }
 input {
   font-weight:bold;
-  color: grey;
+  color: white;
   width: 200px;
   height: 30px;
   margin: 0 auto;
@@ -71,10 +69,9 @@ input {
   -o-border-radius: 5px;
   background: none;
   border: none;
--webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
                     inset -5px -5px 10px 0px rgba(0, 0, 0, 0.4),
-                    inset 0px 5px 1px rgba(0,0,0,0.5);
-                
+                    inset 0px 5px 1px rgba(0,0,0,0.5);               
 }
 .cube {
   opacity: 0.4;
@@ -86,42 +83,39 @@ input {
   animation:move 2s infinite ease;
   -webkit-animation:move 2s infinite ease;
 }
-@keyframes move
-{
-0%   {background:rgba(0,183,229,0.9); margin-left:0px; opacity:0; linear}
-25%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 10px; height:10px; linear}
-50%  {background:rgba(0,183,229,0.9); margin-left:540px; opacity:0;  linear}
-75%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 10px; height:10px; linear}
-100% {background:rgba(0,183,229,0.9); margin-left:0px;opacity:0;  linear}
+@keyframes move {
+  0%   {background:rgba(0,183,229,0.9); margin-left:0px; opacity:0; linear}
+  25%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 10px; height:10px; linear}
+  50%  {background:rgba(0,183,229,0.9); margin-left:540px; opacity:0;  linear}
+  75%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 10px; height:10px; linear}
+  100% {background:rgba(0,183,229,0.9); margin-left:0px;opacity:0;  linear}
 }
-@-webkit-keyframes move /* Safari and Chrome */
-{
-0%   {background:rgba(0,183,229,0.9); margin-left:0px; opacity:0; box-shadow: 0 0 10px #2187e7; linear}
-25%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 7px; height:7px; box-shadow: 0 0 20px #2187e7; linear}
-50%  {background:rgba(0,183,229,0.9); margin-left:540px; opacity:0; box-shadow: 0 0 10px #2187e7; linear}
-75%  {background:rgba(255, 0, 0, 0.9); opacity:0.7; width: 7px; height:7px; box-shadow: 0 0 20px #FF3B3B; linear}
-100% {background:rgba(255, 0, 0, 0.9); margin-left:0px;opacity:0; box-shadow: 0 0 10px #2187e7; linear}
+@-webkit-keyframes move {
+  0%   {background:rgba(0,183,229,0.9); margin-left:0px; opacity:0; box-shadow: 0 0 10px #2187e7; linear}
+  25%  {background:rgba(0,183,229,0.9); opacity:0.7; width: 7px; height:7px; box-shadow: 0 0 20px #2187e7; linear}
+  50%  {background:rgba(0,183,229,0.9); margin-left:540px; opacity:0; box-shadow: 0 0 10px #2187e7; linear}
+  75%  {background:rgba(255, 0, 0, 0.9); opacity:0.7; width: 7px; height:7px; box-shadow: 0 0 20px #FF3B3B; linear}
+  100% {background:rgba(255, 0, 0, 0.9); margin-left:0px;opacity:0; box-shadow: 0 0 10px #2187e7; linear}
 }
 .loadbar {
   width: 550px;
   height: 12px;
   margin: 0 auto;
--webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
                     inset -5px -5px 5px 0px rgba(0, 0, 0, 0.4),
                     inset 0px 5px 1px rgba(0,0,0,0.5);
   background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
-background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 );
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 );
 }
 .button {
   margin-left: 9px;
   width:98px;
   height:28px;
-  background-image: url(https://dl.dropbox.com/u/70717047/noise/blacknoise.png);
 	cursor: pointer;
   border-radius: 5px;
   box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3),
@@ -130,7 +124,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 						0px 5px 15px rgba(0,0,0,0.5);
 }
 .button:active {
-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, .2) inset, 0 1px 10px 0 rgba(0, 0, 0, .4) inset;
+  box-shadow: 0 -1px 0 0 rgba(255, 255, 255, .2) inset, 0 1px 10px 0 rgba(0, 0, 0, .4) inset;
 }
 .loginframe {
   float: left;
@@ -142,7 +136,6 @@ box-shadow: 0 -1px 0 0 rgba(255, 255, 255, .2) inset, 0 1px 10px 0 rgba(0, 0, 0,
 						0px 5px 15px rgba(0,0,0,0.5);
   width: 550px;
   height: 66px;
-  background-image: url(https://dl.dropbox.com/u/70717047/noise/blacknoise.png);
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
