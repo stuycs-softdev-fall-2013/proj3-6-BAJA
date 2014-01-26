@@ -1,10 +1,9 @@
-html, body {
+body {
 	background-color: #FFFFFF;
-	font: sans-serif;
 }
 
 td {
-	font: normal 11px Arial;
+	font: normal 11px Tahoma, Arial;
 	color: #8a8a8a;
 }
 
@@ -27,8 +26,8 @@ h3 {
     font-size: 14px;
 }
 
-a {
 
+a {
 font: normal 11px Tahoma, Arial;
 color: #797979;
 text-decoration: underline;
