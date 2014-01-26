@@ -1903,8 +1903,6 @@ meta.foundation-mq-topbar {
       display: block; }
 
 button, .button {
-  left:9.4%;
-  float:left;
   cursor: pointer;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: normal;
@@ -2938,6 +2936,8 @@ p,
 blockquote,
 th,
 td {
+  font-weight:normal;
+  list-style-type:none;
   margin: 0;
   padding: 0;
   direction: ltr; }
@@ -3034,7 +3034,6 @@ ol,
 dl {
   font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 1.25rem;
   list-style-position: outside;
   font-family: inherit; }
 
@@ -3070,11 +3069,8 @@ ul.no-bullet {
   list-style: none; }
 
 /* Ordered Lists */
-ol {
-  margin-left: 1.4rem; }
   ol li ul,
   ol li ol {
-    margin-left: 1.25rem;
     margin-bottom: 0; }
 
 /* Definition Lists */
@@ -4206,7 +4202,7 @@ table {
 
 /* Standard Forms */
 form {
-  margin: 0 0 1rem; }
+  margin: 0; }
 
 /* Using forms within rows, we need to set some defaults */
 form .row .row {
