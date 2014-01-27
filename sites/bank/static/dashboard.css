@@ -1,0 +1,122 @@
+@font-face{
+	font-family: Electrotome;
+	src: url('https://dl.dropbox.com/u/29176679/SF%20Electrotome.ttf')
+}
+
+@-webkit-keyframes pulse {
+	0%{
+		border:1px solid rgb(0,250,250);
+	}
+	50%{
+		border:1px solid rgb(50,50,150);
+	}
+	100%{
+		border:1px solid rgb(0,250,250);
+	}
+}
+
+@-webkit-keyframes pulse_text {
+	0%{
+		color:rgb(0,250,250);
+	}
+	50%{
+		color:rgb(50,50,150);
+	}
+	100%{
+		color:rgb(0,250,250);
+	}
+}
+
+.selected .row, .pulse{
+	-webkit-animation: pulse 2s infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.selected > div:first-child, .selected > span{
+	-webkit-animation: pulse_text 2s infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+header{
+	font-family: Electrotome;
+	color:white;
+}
+
+footer{
+	font-family: Electrotome;
+	color:rgb(100,100,100);
+	text-align: center;
+
+}
+
+section{
+	border:1px solid rgba(0,100,75,1);
+	min-height: 50px;
+	min-width: 50px;
+	margin-right: 60px;	
+}
+
+span,div{
+}
+
+body{
+	background: #808080;
+	padding: 0;
+	margin: 0;
+}
+
+.flex{
+	display: -moz-box;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -o-box;
+	display: box;
+}
+
+#content{
+	width: 100%;
+}
+
+#content article, .content aside{
+	min-height: 20px;
+	min-width: 20px;
+}
+
+#content article{
+	-moz-box-flex:8.0;
+	-webkit-box-flex:8.0;
+	-ms-flexbox-flex:8.0;
+	-o-box-flex:8.0;
+	box-flex:8.0;
+}
+
+#content aside{ 
+	-moz-box-flex:1.0;
+	-webkit-box-flex:1.0;
+	-ms-flexbox-flex:1.0;
+	-o-box-flex:1.0;
+	box-flex:1.0;
+}
+
+aside > div.flex{
+	box-orient: vertical;
+	-o-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-webkit-box-orient: vertical;
+	-ms-flexbox-orient: vertical;
+}
+aside > div.flex > div{ padding:20px 40px 20px 40px;	min-width: 40px; -webkit-box-orient: horizontal; color: white; -webkit-transition: color 0.3s;}
+
+aside > div.flex > div > span, aside > div.flex > div > div:first-child{ height: 10px;	min-width: 40px; font-family: Electrotome; font-size: 22px; display: inline; }
+
+.row{
+	-moz-box-flex:5.0;
+	-webkit-box-flex:5.0;
+	-ms-flexbox-flex:5.0;
+	-o-box-flex:5.0;
+	box-flex:5.0;
+	border: 1px  white;
+	height: 15px;
+	margin:0 0 0 8px;
+	border-style: none none solid none;
+}
