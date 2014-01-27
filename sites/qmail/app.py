@@ -1,3 +1,5 @@
+from json import dumps
+
 from flask import Flask, redirect, render_template, request, session
 
 from game.database import Database
@@ -7,6 +9,8 @@ app.secret_key = "X7jfId6Jb8T3sxVJ6xMQeEfGkqm3Qwft"
 db = Database("database.db")
 
 PORT = 6680
+
+# End-user routes
 
 @app.route("/")
 def index():
@@ -45,15 +49,16 @@ def register():
         return redirect("/")
     return render_template("register.html", error=data)
 
-@app.route("/message/{mid}")
-def message(mid):
+# API routes
+
+@app.route("/email/{eid}.json")
+def email(eid):
     if not session.get("user"):
         return redirect("/login")
-    email = db.getMessage(mid)
-    return render_template("message.html", recipient=email['To'], sender=email['From'],
-                            sub=email['Subject'], msg=email['Message'])
+    email = db.get_email(eid, session["user"])
+    return dumps(email.serialize())
 
-@app.route("/send", methods=["GET", "POST"])
+@app.route("/send", methods=["POST"])
 def send():
     if not session.get("user"):
         return redirect("/login")

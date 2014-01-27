@@ -5,3 +5,11 @@ class Attachment(object):
         self.id = aid
         self.filename = filename
         self.content = content
+
+    def serialize(self):
+        """Convert the attachment into a dictionary for serialization."""
+        return {
+            "id": self.id,
+            "filename": self.filename,
+            "content": self.content
+        }

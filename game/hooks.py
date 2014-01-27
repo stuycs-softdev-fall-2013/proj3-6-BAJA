@@ -30,7 +30,7 @@ def post_send(db, email):
         """
             Responds to email with either a "Try again" message or
             a "Success" message and the next job offer.
-            Confirms that we are proposing a solution to the mission 
+            Confirms that we are proposing a solution to the mission
             we attempted to solve and that we actually solved the problem
             and then sends out a response.
         """
@@ -45,7 +45,7 @@ def post_send(db, email):
                 reply = messages.load_response(mission_id, False)
         else:
             reply = messages.load_response(mission_id, False)
-        db.send_email(email.recipients[0], reply['subject'], reply['body'], [email.sender])
+        db.send_email(email.to[0], reply['subject'], reply['body'], [email.sender])
     #Wait five seconds before responding to email
     Timer(5, send_email).start()
 
@@ -57,6 +57,6 @@ def mission_successful(email, mission_id):
         other times its reading through the content of the email.
     """
     if mission_id == 1:
-        
+
     elif: mission_id == 2:
 

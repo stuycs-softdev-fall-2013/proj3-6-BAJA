@@ -29,6 +29,9 @@
 
     <div class="register-box">
     <img id="profile-img" class="profile-img" src="/static/img/logo.jpg" alt="">
+    {% if error %}
+      <div class="error-div"><p>{{error}}</p></div>
+    {% endif %}
     <form action="" method="post">
       <div class="email-div">
         <label for="Email"><strong class="email-label">Choose your Email</strong></label>

@@ -8,3 +8,12 @@ class User(object):
         self.last = last
         self.pwhash = pwhash
         self.pwsalt = pwsalt
+
+    def serialize(self):
+        """Convert the user into a dictionary for serialization."""
+        return {
+            "id": self.id,
+            "address": self.address,
+            "first": self.first,
+            "last": self.last
+        }

@@ -79,6 +79,10 @@ class Database(object):
             conn.execute("END TRANSACTION")
             return (True, uid)
 
+    def get_email(self, email_id, user):
+        """Get an email from an ID if the user has permission to view it."""
+        pass
+
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):
         """Send an email from a given user with a given subject and body.
