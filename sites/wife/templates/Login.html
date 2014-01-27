@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login form</title>
+    <link rel="stylesheet" href="/static/login.css"/>
+  </head>
+
+  <body>
+    <div class="banner">
+      <h1>One password. Encrypt Every Account Info!</h1>
+      <h2>Sign in to continue to PasswordEncryptionSafe</h2>
+    </div>
+    <div class="login-box">
+    <img id="profile-img" class="profile-img" src="/static/img/PES_Logo.jpg" alt="">
+    {% if error %}
+      <div class="error-div"><p>{{error}}</p></div>
+    {% endif %}
+    <form action="" method="post">
+      <div class="email-div">
+        <label for="address"><strong class="email-label">Email</strong></label>
+        <input spellcheck="false" name="address" id="address" value="" type="email">
+      </div>
+      <div class="passwd-div">
+        <label for="password"><strong class="passwd-label">Password</strong></label>
+        <input name="password" id="password" type="password">
+      </div>
+      <input class="button button-submit" name="signIn" id="signIn" value="Sign in" type="submit">
+      <label class="remember">
+        <input  value="yes" checked="checked" type="checkbox">
+        <strong class="remember-label"> Stay signed in </strong> </label>
+    </form>
+    <p>Don't have an account? <a href="/register.html">Sign Up!</a></p>
+    </div>
+    <br><br>
+  </body>
+
+</html>
