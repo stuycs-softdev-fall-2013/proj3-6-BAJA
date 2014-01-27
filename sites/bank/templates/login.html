@@ -8,20 +8,27 @@
   	</head>
 
   <body>
-
-	<div class="loginframe">
   
-	<table border="0">
-    <tr>
-      <th><input type="Username" name="fname" value="Yourmail@here.com"></th>
-      <th><input type="password" class="pass" id="text" value="Password"></th>
-      <th><div class="button" style="margin-top:-5px;"><h2 style="padding-top: 6px;"><h2>Login!</h2></div></th>
-    </tr>
-	</table>
-
-	<div class="loadbar">
-    	<div class="cube"></div>
-	</div>
+  <div class="loginpanel">
+  <div class="txt">
+    <input id="user" type="text" placeholder="Username" />
+    <label for="user" class="entypo-user"></label>
+  </div>
+  <div class="txt">
+    <input id="pwd" type="password" placeholder="Password" />
+    <label for="pwd" class="entypo-lock"></label>
+  </div>
+  <div class="txt">
+    <input id="number" type="text" placeholder="Routing number" />
+    <label for="number" class="entypo-credit-card"></label>
+  </div>
+  <div class="buttons">
+    <input type="button" value="Login" />
+    <span>
+      <a href="javascript:void(0)" class="entypo-user-add register">Register</a>
+    </span>
+  </div>
+  </div>
 
 	</body>
 
