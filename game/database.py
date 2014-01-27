@@ -64,7 +64,11 @@ class Database(object):
         """
         with self._connect() as conn:
             conn.execute("BEGIN EXCLUSIVE TRANSACTION")
-            res = conn.execute("SELECT MAX(qmu_id) FROM qmail_users" + 1)
+            query = "SELECT 1 FROM qmail_users WHERE qmu_address = ?"
+            res = conn.execute(query)
+            if res.fetchall():
+                return "Address taken."
+            res = conn.execute("SELECT MAX(qmu_id) FROM qmail_users")
             maxid = res.fetchone()[0]
             uid = maxid + 1 if maxid else 1
             pwsalt = utils.gen_password(64, utils.PW_ALPHANUM)

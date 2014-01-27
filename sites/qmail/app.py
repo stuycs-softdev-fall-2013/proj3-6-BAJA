@@ -49,11 +49,10 @@ def register():
     last = request.form.get("last")
     password = request.form.get("password")
     error = db.register(address, first, last, password)
-    if not error:
-        session['user'] = address
-        return url_for("index")
-    else:
+    if error:
         return render_template("register.html", error=error)
+    session["user"] = db.verify(address, password)  # Temporary hack so I don't need another function
+    return redirect("/")
 
 @app.route("/message/{mid}")
 def message(mid):
