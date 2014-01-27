@@ -57,7 +57,7 @@ def register():
 
 # API routes
 
-@app.route("/email/{eid}.json")
+@app.route("/get/{eid}.json")
 def email(eid):
     if not session.get("user"):
         return redirect("/login")
@@ -70,8 +70,8 @@ def email(eid):
 @app.route("/send.json", methods=["POST"])
 def send():
     def build_user(address):
-        if address.endswith(DOMAIN):
-            return db.get_user(address)         # This is the wrong library call and it is prone to errors. Fix. -Ben
+        if address.endswith(DOMAIN):                                                # Actually verify the address.
+            return db.get_user(address)                                             # This is the wrong library call and it is prone to errors. Fix.
         return User(-1, address, None, None)
 
     if not session.get("user"):

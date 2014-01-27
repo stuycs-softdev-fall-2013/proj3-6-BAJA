@@ -79,6 +79,7 @@ class Database(object):
         """
         with self._connect() as conn:
             conn.execute("BEGIN EXCLUSIVE TRANSACTION")
+                                                                                    # First, do an address validity check.
             query = "SELECT 1 FROM qmail_users WHERE qmu_address = ?"
             res = conn.execute(query)
             if res.fetchall():
