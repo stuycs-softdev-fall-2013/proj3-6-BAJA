@@ -3,6 +3,12 @@ body {
   color: #fff;
   font-family: sans-serif;
 }
+
+h1 {
+  text-align:center;
+  margin-bottom:0;
+}
+
 h2 {
   color: #fff;
   font-size: 15px;
@@ -14,29 +20,76 @@ a {
   color: #fff;
   text-decoration: none;
 }
+
+*::-webkit-input-placeholder {
+    color: #FFFFFF;
+    font-size:12px;
+    transition: all 0.05s linear;
+    transform: translate(10px, 0);
+    opacity: 0.5;
+}    
+
+*::-webkit-input-value {
+    color: #FFFFFF;
+    font-size:12px;
+    transition: all 0.05s linear;
+    transform: translate(10px, 0);
+    opacity: 0.5;
+}    
+
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: #FFFFFF;
+    font-size:12px;
+    transition: all 0.05s linear;
+    transform: translate(10px, 0);
+    opacity: 0.5;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: #FFFFFF;
+    font-size:12px;
+    transition: all 0.05s linear;
+    transform: translate(10px, 0);
+    opacity: 0.5;
+}    
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #FFFFFF;
+    font-size:12px;
+    transition: all 0.05s linear;
+    transform: translate(10px, 0);
+    opacity: 0.5;
+}
+
 .login {
   width: 250px;
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  margin: -184px 0px 0px -155px;
+  position: relative;
+  margin-left:auto;
+  margin-right:auto;
   background: rgba(0,0,0,0.2);
   padding: 20px 30px;
   border-radius: 5px;
   box-shadow: 0px 1px 0px rgba(0,0,0,0.3),inset 0px 1px 0px rgba(255,255,255,0.07)
 }
+
 input[type="text"], input[type="password"] {
+  font-size:14px;
+  height:50px;
   width: 250px;
   padding: 25px 0px;
   background: transparent;
   border: 0;
   border-bottom: 1px solid rgba(255,255,255,0.04);
   outline: none;
-  color: #fff;
+  color: #FFFFFF;
+  font-size:14px;
 }
+
 input[type=checkbox] {
   display: none;
 }
+
 label {
   display: block;
   position: absolute;
@@ -51,11 +104,13 @@ label {
   border: 3px solid #252730;
   box-shadow: 0px 0px 0px 2px #46485c;
 }
+
 #remember:checked ~ label[for=remember] {
   background: #1d9ecc;
   border: 3px solid #252730;
   box-shadow: 0px 0px 0px 2px #b5cd60;
 }
+
 input[type="submit"] {
   background: #1d9ecc;
   border: 0;
@@ -65,17 +120,20 @@ input[type="submit"] {
   color: white;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
+  font-size:14px;
 }
+
 input[type="submit"]:hover {
   background: #16aa56;
 }
 .forgot {
   margin-top: 30px;
   display: block;
-  font-size: 11px;
+  font-size: 14px;
   text-align: center;
   font-weight: bold;
 }
+
 .forgot:hover {
   margin-top: 30px;
   display: block;
@@ -84,17 +142,13 @@ input[type="submit"]:hover {
   font-weight: bold;
   color: #fff;
 }
+
 .remember {
   padding: 30px 0px;
   font-size: 12px;
   text-indent: 25px;
   line-height: 15px;
+  font-size:14px;
+  font-family:sans-serif;
 }
-::-webkit-input-placeholder {
-  color: #fff;
-}
-[placeholder]:focus::-webkit-input-placeholder {
-  transition: all 0.2s linear;
-  transform: translate(10px, 0);
-  opacity: 0;
-}
+
