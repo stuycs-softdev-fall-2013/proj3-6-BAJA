@@ -44,6 +44,19 @@ class Database(object):
         with self._connect() as conn:
             return conn.execute(query, args).fetchall()
 
+    def verify(self, address, password):
+        """Verify that the given address's password is correct.
+
+        Returns either None (incorrect) or a user ID.
+        """
+        query = """SELECT qmu_id, qmu_password_hash, qmu_password_salt
+                   FROM qmail_users WHERE qmu_address = ?"""
+        result = self._execute(query, address)
+        if result:
+            uid, pwsalt, pwhash = result[0]
+            if hashlib.sha256(password + pwsalt).hexdigest() == pwhash:
+                return uid
+
     def register(self, address, first, last, password):
         """Register an account on the qmail server.
 

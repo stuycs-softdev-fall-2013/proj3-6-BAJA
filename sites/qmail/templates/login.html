@@ -15,14 +15,17 @@
     </div>
     <div class="login-box">
     <img id="profile-img" class="profile-img" src="/static/img/logo.jpg" alt="">
+    {% if error %}
+      <div class="error-div"><p>{{error}}</p></div>
+    {% endif %}
     <form action="" method="post">
       <div class="email-div">
-        <label for="Email"><strong class="email-label">Email</strong></label>
-        <input spellcheck="false" name="Email" id="Email" value="" type="email">
+        <label for="address"><strong class="email-label">Email</strong></label>
+        <input spellcheck="false" name="address" id="address" value="" type="email">
       </div>
       <div class="passwd-div">
-        <label for="Passwd"><strong class="passwd-label">Password</strong></label>
-        <input name="Passwd" id="Passwd" type="password">
+        <label for="password"><strong class="passwd-label">Password</strong></label>
+        <input name="password" id="password" type="password">
       </div>
       <input class="button button-submit" name="signIn" id="signIn" value="Sign in" type="submit">
       <label class="remember">

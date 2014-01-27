@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, redirect, render_template, request, session
 
 from game.database import Database
 
@@ -10,10 +10,14 @@ PORT = 6680
 
 @app.route("/")
 def index():
+    if not session.get("user"):
+        return redirect("/login")
     return render_template("index.html")
 
 @app.route("/send", methods=["GET", "POST"])
 def send():
+    if not session.get("user"):
+        return redirect("/login")
     if request.method == "GET":
         return render_template("send.html", invalid=False)
     else:
@@ -26,23 +30,25 @@ def send():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        return render_template("login.html", error="")
+        return render_template("login.html")
+    address = request.form.get("address")
+    password = request.form.get("password")
+    user = db.verify(address, password)
+    if user:
+        session["user"] = user
+        return redirect("/")
     else:
-        user = request.form['user']
-        password = request.form['password']
-        if(db.valid(user, password)):
-            session['user'] = user
-        else:
-            return render_template("login.html", error="Invalid Password")
+        return render_template("login.html", error="Invalid login info.")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
-        return render_template("register.html", error="")
-    else:
-        first, last, password, address = request.form['first'], request.form['last'], request.form['passwd'], request.form['addr']
-
-    error = db.register(first, last, password, address)
+        return render_template("register.html")
+    address = request.form.get("address")
+    first = request.form.get("first")
+    last = request.form.get("last")
+    password = request.form.get("password")
+    error = db.register(address, first, last, password)
     if not error:
         session['user'] = address
         return url_for("index")
@@ -51,6 +57,8 @@ def register():
 
 @app.route("/message/{mid}")
 def message(mid):
+    if not session.get("user"):
+        return redirect("/login")
     email = db.getMessage(mid)
     return render_template("message.html", recipient=email['To'], sender=email['From'],
                             sub=email['Subject'], msg=email['Message'])
