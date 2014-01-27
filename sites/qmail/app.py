@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, request, session
 
 from game.database import Database
 
@@ -35,10 +35,10 @@ def login():
         else:
             return render_template("login.html", error="Invalid Password")
 
-@app.route("/create", methods=["GET", "POST"])
-def createAccount():
+@app.route("/register", methods=["GET", "POST"])
+def register():
     if request.method == "GET":
-        return render_template("create_account.html", error="")
+        return render_template("register.html", error="")
     else:
         first, last, password, address = request.form['first'], request.form['last'], request.form['passwd'], request.form['addr']
 
@@ -47,7 +47,7 @@ def createAccount():
         session['user'] = address
         return url_for("index")
     else:
-        return render_template("create_account.html", error=error)
+        return render_template("register.html", error=error)
 
 @app.route("/message/{mid}")
 def message(mid):
