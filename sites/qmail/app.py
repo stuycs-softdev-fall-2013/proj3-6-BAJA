@@ -14,25 +14,14 @@ def index():
         return redirect("/login")
     return render_template("index.html")
 
-@app.route("/send", methods=["GET", "POST"])
-def send():
-    if not session.get("user"):
-        return redirect("/login")
-    if request.method == "GET":
-        return render_template("send.html", invalid=False)
-    else:
-        to = request.form['to']
-        if not db.valid_address(to):
-            return render_template("send.html", invalid=True)
-
-        d.add_email(to, session['user'], request.form['subject'], request.form['message'], request.form['attaches'])
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
         return render_template("login.html")
     address = request.form.get("address")
     password = request.form.get("password")
+    if not address or not password:
+        return render_template("login.html", error="All fields are required.")
     user = db.verify(address, password)
     if user:
         session["user"] = user
@@ -48,11 +37,13 @@ def register():
     first = request.form.get("first")
     last = request.form.get("last")
     password = request.form.get("password")
-    error = db.register(address, first, last, password)
-    if error:
-        return render_template("register.html", error=error)
-    session["user"] = db.verify(address, password)  # Temporary hack so I don't need another function
-    return redirect("/")
+    if not address or not first or not last or not password:
+        return render_template("register.html", error="All fields are required.")
+    result, data = db.register(address, first, last, password)
+    if result:
+        session["user"] = data
+        return redirect("/")
+    return render_template("register.html", error=data)
 
 @app.route("/message/{mid}")
 def message(mid):
@@ -61,6 +52,19 @@ def message(mid):
     email = db.getMessage(mid)
     return render_template("message.html", recipient=email['To'], sender=email['From'],
                             sub=email['Subject'], msg=email['Message'])
+
+@app.route("/send", methods=["GET", "POST"])
+def send():
+    if not session.get("user"):
+        return redirect("/login")
+    if request.method == "GET":
+        return render_template("send.html", invalid=False)
+    else:
+        to = request.form['to']
+        if not db.valid_address(to):
+            return render_template("send.html", invalid=True)
+
+        d.add_email(to, session['user'], request.form['subject'], request.form['message'], request.form['attaches'])
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=True)

@@ -60,14 +60,15 @@ class Database(object):
     def register(self, address, first, last, password):
         """Register an account on the qmail server.
 
-        Return None on success or an error string on failure.
+        Returns a 2-tuple: a boolean indicating success or failure, and either
+        the created user's ID upon success or an error string on failure.
         """
         with self._connect() as conn:
             conn.execute("BEGIN EXCLUSIVE TRANSACTION")
             query = "SELECT 1 FROM qmail_users WHERE qmu_address = ?"
             res = conn.execute(query)
             if res.fetchall():
-                return "Address taken."
+                return (False, "Address taken.")
             res = conn.execute("SELECT MAX(qmu_id) FROM qmail_users")
             maxid = res.fetchone()[0]
             uid = maxid + 1 if maxid else 1
@@ -76,6 +77,7 @@ class Database(object):
             query = "INSERT INTO qmail_users VALUES (?, ?, ?, ?, ?)"
             conn.execute(query, (uid, address, first, last, pwhash, pwsalt))
             conn.execute("END TRANSACTION")
+            return (True, uid)
 
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):
