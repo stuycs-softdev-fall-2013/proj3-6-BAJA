@@ -16,6 +16,8 @@ class Database(object):
         self.filename = filename
         self._logger = getLogger("gunicorn.error")
 
+    # Private helper methods
+
     def _create(self, conn):
         """Creates a fresh database, assuming one doesn't exist."""
         with open(SCHEMA_FILE) as fp:
@@ -43,6 +45,18 @@ class Database(object):
         """Execute a query, creating/updating the database if necessary."""
         with self._connect() as conn:
             return conn.execute(query, args).fetchall()
+
+    # Generic object builders
+
+    def get_user(self, user_id):
+        """Return the User object associated with the given user ID."""
+        pass
+
+    def get_email(self, email_id, user):
+        """Get an email from an ID if the user has permission to view it."""
+        pass
+
+    # Qmail
 
     def verify(self, address, password):
         """Verify that the given address's password is correct.
@@ -79,10 +93,6 @@ class Database(object):
             conn.execute("END TRANSACTION")
             return (True, uid)
 
-    def get_email(self, email_id, user):
-        """Get an email from an ID if the user has permission to view it."""
-        pass
-
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):
         """Send an email from a given user with a given subject and body.
@@ -94,6 +104,8 @@ class Database(object):
         Return an Email object on success or raise an exception on failure.
         """
         pass
+
+    # Missions
 
     def get_missions(self, user, status):
         """Get a list of all mission IDs associated with a user and status."""
@@ -110,6 +122,8 @@ class Database(object):
     def set_mission_data(self, user, mission_id, key, value):
         """Set an attribute of a mission associated with a given user."""
         pass
+
+    # School
 
     def add_student(self, name):
         """Add a student to the school database with a name; return an ID."""
