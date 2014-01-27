@@ -3,6 +3,7 @@ from logging import getLogger
 import sqlite3
 
 from . import utils
+from .user import User
 
 __all__ = ["Database"]
 
@@ -50,11 +51,13 @@ class Database(object):
 
     def get_user(self, user_id):
         """Return the User object associated with the given user ID."""
-        pass
+        query = "SELECT * FROM qmail_users WHERE qmu_id = ?"
+        result = self._execute(query, user_id)
+        return User(*result[0])
 
-    def get_email(self, email_id, user):
+    def get_email(self, email_id, user_id):
         """Get an email from an ID if the user has permission to view it."""
-        pass
+        if
 
     # Qmail
 

@@ -45,10 +45,9 @@ CREATE TABLE qmail_recipients (
     qmr_id INTEGER PRIMARY KEY,
     qmr_message INTEGER,
     qmr_recipient INTEGER,
-    qmr_type INTEGER
+    qmr_type INTEGER,
     qmr_address TEXT,
-    qmr_name TEXT,
-    qmr_mailbox INTEGER
+    qmr_name TEXT
 );
 
 DROP TABLE IF EXISTS qmail_attachments;
