@@ -7,6 +7,14 @@ CREATE TABLE version (
 );
 INSERT INTO version VALUES (%(version)s);
 
+DROP TABLE IF EXISTS game_data;
+CREATE TABLE game_data (
+    gd_user INTEGER,
+    gd_mission INTEGER,
+    gd_status INTEGER,
+    gd_attributes BLOB
+);
+
 DROP TABLE IF EXISTS qmail_users;
 CREATE TABLE qmail_users (
     qmu_id INTEGER PRIMARY KEY,
@@ -23,13 +31,12 @@ CREATE TABLE qmail_mailboxes (
     qmm_user INTEGER
 );
 
-DROP TABLE IF EXISTS qmail_messages;
+DROP TABLE IF EXISTS qmail_emails;
 CREATE TABLE qmail_emails (
     qme_id INTEGER PRIMARY KEY,
     qme_sender INTEGER,
-    qme_mailbox INTEGER,
     qme_subject TEXT,
-    qme_body TEXT
+    qme_body TEXT,
     qme_has_attachments BOOLEAN
 );
 
@@ -39,6 +46,9 @@ CREATE TABLE qmail_recipients (
     qmr_message INTEGER,
     qmr_recipient INTEGER,
     qmr_type INTEGER
+    qmr_address TEXT,
+    qmr_name TEXT,
+    qmr_mailbox INTEGER
 );
 
 DROP TABLE IF EXISTS qmail_attachments;

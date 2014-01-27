@@ -1,16 +1,16 @@
-from flask import Flask
-from flask import redirect, render_template, request, session
+from sites import qmail, school, wife, bank
 
-PORT = 6004
+SITES = {
+    (qmail, 6680),
+    (school, 6673),
+    (wife, 6691),
+    (bank, 6603)
+}
 
-app = Flask(__name__)
-app.secret_key = "cy9wuDOTpKKl8waurlOhbuwbKyvsRAQJ"
+def main(debug=False):
+    for package, port in SITES:
+        app = getattr(getattr(package, "app"), "app")
+        app.run(host="0.0.0.0", port=port, debug=debug)
 
-@app.route("/")
-def home():
-    if session.get("username"):
-        return redirect("/index.html")
-    error = session.pop("error", None)
-    focus_login = session.pop("focus_login", False)
-    return render_template("login.html", error=error, focus_login=focus_login)
-
+if __name__ == "__main__":
+    main(debug=True)

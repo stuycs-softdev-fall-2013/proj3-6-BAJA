@@ -1,0 +1,27 @@
+id: 1
+next_id:2
+subreply: Re: Job Offer
+brief:
+    subject: Job Offer
+    body: | 
+        Dear {%name},
+
+            Hey. My good friend Mike Zamansky endorsed you as a good programmer. I would be interested in hiring you. My son is in danger of failing out his school and I can't have that happen. The school website is {%link}. If you could change his math grade from a 60 to an 85 you would be compensated generously.
+
+        Thanks,
+
+        John Black
+
+reply_failed:
+    subject: Re: Job Offer
+    body:
+        Dear {%name},
+        
+            I didn't see my son's grades change. Maybe you can try again?
+
+        Thanks,
+
+        John Black
+
+
+
