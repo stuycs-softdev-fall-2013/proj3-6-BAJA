@@ -44,7 +44,7 @@ body {
   height: 100%;
   padding: 0px;
   margin: 0px;
-  background: url(http://www.wallsave.com/wallpapers/1920x1200/simple-blue/49001/simple-blue-opera-background-light-49001.jpg);
+  background: #282828;
   -webkit-transition: all 0s;
   -moz-transition: all 0s;
   -ms-transition: all 0s;

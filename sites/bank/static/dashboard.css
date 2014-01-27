@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(220,220,220);
+  background: #282828;
   padding: 0;
   margin: 0;
   font-size: 16px;
@@ -20,12 +20,12 @@ body {
   width: 20%;
   min-height: 690px;
   float: left;
-  border-right: 1px solid rgb(235,235,235);
-  background-color: rgb(247,247,247);
+  border-right: 1px solid rgb(0,0,0);
+  background-color: #000000;
 }
 .slidebar .logo {
   height: 145px;
-  border-bottom: 1px solid rgb(235,235,235);
+  border-bottom: 1px solid rgb(0,0,0);
 }
 .slidebar ul {
   padding: 0;
@@ -50,23 +50,11 @@ body {
   right: 20px;
   -webkit-font-smoothing: antialiased;
 }
-.slidebar li:nth-child(1):before {content: "\63";}
-.slidebar li:nth-child(2):before {content: "\64";}
-.slidebar li:nth-child(3):before {content: "\62";}
-.slidebar li:nth-child(4):before {content: "\65";}
-.slidebar li:nth-child(5):before {content: "\74";}
-.slidebar li:nth-child(6):before {content: "\66";}
-.slidebar li:nth-child(7):before {content: "\67";}
-.slidebar li:nth-child(8):before {content: "\68";}
-.slidebar li:nth-child(9):before {content: "\69";}
-.slidebar li:nth-child(10):before {content: "\6a";}
-.slidebar li:nth-child(11):before {content: "\75";}
-
 .slidebar ul a {
-  color: rgb(140,140,140);
+  color: #fff;
   text-decoration: none;
   font:16px/40px helvetica,verdana,sans-serif;
-  box-sizing:border-box;
+  box-sizing: border-box;
   border-bottom: 1px solid rgb(235,235,235);
   display: block;
   box-shadow:inset 0 1px 0 rgb(255,255,255);
@@ -74,7 +62,7 @@ body {
   text-transform: capitalize;
 }
 .slidebar li:hover a {
-  background-color: rgb(255,255,255);
+  background-color: #000000;
   box-shadow: 1px 0 0 rgb(255,255,255),inset 5px 0 0 -1px rgb(234,83,63);
 }
 .main {
@@ -144,18 +132,6 @@ body {
   margin-right: 10px;
   -webkit-font-smoothing: antialiased;
 }
-.mainContent div:nth-child(1) h2:before {content: "\63";}
-.mainContent div:nth-child(2) h2:before {content: "\64";}
-.mainContent div:nth-child(3) h2:before {content: "\62";}
-.mainContent div:nth-child(4) h2:before {content: "\65";}
-.mainContent div:nth-child(5) h2:before {content: "\74";}
-.mainContent div:nth-child(6) h2:before {content: "\66";}
-.mainContent div:nth-child(7) h2:before {content: "\67";}
-.mainContent div:nth-child(8) h2:before {content: "\68";}
-.mainContent div:nth-child(9) h2:before {content: "\69";}
-.mainContent div:nth-child(10) h2:before {content: "\6a";}
-.mainContent div:nth-child(11) h2:before {content: "\75";}
- 
 #dashboard>div {
   border: 1px solid rgb(235,235,235);
   margin-left: 30px;
@@ -207,76 +183,6 @@ body {
   text-decoration: none;
   color:rgb(27,106,173);
 }
-.quick-press form {
-  margin:0 20px 0 13px;
-}
-.quick-press input[type="text"] {
-  display: block;
-  width: 100%;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
-  height: 35px;
-  line-height: 15px;
-  padding: 10px 0;
-  margin:0 0 7px 0;
-  background-color: rgb(246,246,246);
-  outline: none;
-  border: none;
-  text-indent: 10px;
-}
-.quick-press input[type="text"]::-webkit-input-placeholder {font-size: 14px;}
-.quick-press input[type="text"]:-moz-input-placeholder {font-size: 14px;}
-.quick-press input[type="text"]::-moz-input-placeholder {font-size: 14px;}
-.quick-press input[type="text"]:-ms-input-placeholder {font-size: 14px;}
- 
-.quick-press button {
-  margin-top: 13px;
-  border-radius: 5px;
-  text-align: center;
-  line-height: 30px;
-  padding: 0;
-}
-.quick-press .save, .quick-press .delet {
-  font-family: 'icomoon';
-  width: 37px;
-  background: -webkit-linear-gradient(top,rgb(246,246,240),rgb(232,232,232));
-  background: -moz-linear-gradient(top,rgb(246,246,240),rgb(232,232,232));
-  background: -ms-linear-gradient(top,rgb(246,246,240),rgb(232,232,232));
-  background: linear-gradient(top,rgb(246,246,240),rgb(232,232,232));
-  border: 1px solid rgb(229,229,229); 
-  color: rgb(102,102,102); 
-  float: left;
-  margin-right: 5px;
-}
-.quick-press .save:hover, .quick-press .delet:hover {
-  background: -webkit-linear-gradient(top,rgb(232,232,232),rgb(246,246,240));
-  background: -moz-linear-gradient(top,rgb(232,232,232),rgb(246,246,240));
-  background: -ms-linear-gradient(top,rgb(232,232,232),rgb(246,246,240));
-  background: linear-gradient(top,rgb(232,232,232),rgb(246,246,240));
-}
-.quick-press .save:active, .quick-press .delet:active {
-  background: -webkit-linear-gradient(top,rgb(228,228,228),rgb(210,210,210));
-  background: -moz-linear-gradient(top,rgb(228,228,228),rgb(210,210,210));
-  background: -ms-linear-gradient(top,rgb(228,228,228),rgb(210,210,210));
-  background: linear-gradient(top,rgb(228,228,228),rgb(210,210,210));
-}
-.quick-press .submit {
-  float: right;
-  width: 70px;
-  border: 1px solid rgb(238,85,64);
-  color: #fff;
-  font-size: 16px;
-  background: -webkit-linear-gradient(top,rgb(245,101,82),rgb(234,83,63));
-  background: -moz-linear-gradient(top,rgb(245,101,82),rgb(234,83,63));
-  background: -ms-linear-gradient(top,rgb(245,101,82),rgb(234,83,63));
-  background: linear-gradient(top,rgb(245,101,82),rgb(234,83,63));
-}
-.quick-press .submit:hover {
-  background: -webkit-linear-gradient(top,rgb(220,85,70),rgb(210,65,53));
-  background: -moz-linear-gradient(top,rgb(220,85,70),rgb(210,65,53));
-  background: -ms-linear-gradient(top,rgb(220,85,70),rgb(210,65,53));
-  background: linear-gradient(top,rgb(220,85,70),rgb(210,65,53));
-}
 .logo a {
   width: 88px;
   height: 88px;
@@ -305,36 +211,6 @@ body {
   background: -moz-linear-gradient(top,rgb(255,255,255),rgb(245,245,245));
   background: -ms-linear-gradient(top,rgb(255,255,255),rgb(245,245,245));
   background: linear-gradient(top,rgb(255,255,255),rgb(245,245,245));
-}
-.statusbar {
-  position: absolute;
-  bottom: 0;
-  border-top: 1px solid rgb(235,235,235);
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-.statusbar li {
-  list-style: none;
-}
-.statusbar a {
-  color: rgb(102,102,102);
-  text-decoration: none;
-  text-align: center;
-  display: block;
-}
-.statusbar a:hover {
-  background-color: rgb(247,247,247);
-}
-.statusbar .profiles-setting, .statusbar .logout {
-  float: right;
-}
-.statusbar .profiles-setting a, .statusbar .logout a {
-  font-family: 'icomoon';
-  width: 49px;
-  height: 49px;
-  line-height: 50px;
-  border-left: 1px solid rgb(235,235,235);
 }
 @font-face {
   font-family: 'icomoon';
