@@ -66,7 +66,7 @@ html, body {
     padding: 25px;
     background: #fff;
     border: 1px solid rgb(229, 229, 229);
-    width: 320px;
+    width: 355px;
 }
 .register-box div {
     margin: 0px 0px 1.5em;
@@ -99,6 +99,10 @@ strong {
     height: 32px;
     font-size: 18px;
     direction: ltr;
+}
+.control-group .controls .input-append .btn {
+    border-color: rgb(192, 192, 192) rgb(217, 217, 217) rgb(217, 217, 217);
+    background-color: #009999;
 }
 input[type="email"], input[type="password"] {
     display: inline-block;
