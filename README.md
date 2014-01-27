@@ -80,4 +80,4 @@ Running
 
 You will need Flask, Gunicorn, and [Faker](https://github.com/joke2k/faker).
 Start the project with `python main.py` and then navigate to
-http://localhost:8000.
+http://localhost:6680.

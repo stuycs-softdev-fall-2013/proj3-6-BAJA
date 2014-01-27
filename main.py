@@ -1,8 +1,9 @@
-from sites import qmail, school
+from sites import qmail, school, bank
 
 SITES = {
-    (qmail, 6401),
-    (school, 6402)
+    (qmail, 6680),
+    (school, 6681),
+    (bank, 6682)
 }
 
 def main(debug=False):
