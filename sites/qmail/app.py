@@ -48,6 +48,7 @@ def index(mid):
     email = db.getMessage(mid)
     return render_template("message.html", to=email['To'], from=email['From'],
                             sub=email['Subject'], msg=email['Message'])
+
 @app.route("/send", methods=["GET", "POST"])
 def send():
     if request.method == "GET":
