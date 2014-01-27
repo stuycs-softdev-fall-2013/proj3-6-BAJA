@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 from sites.qmail import app as qmail
 from sites.school import app as school
 from sites.wife import app as wife
