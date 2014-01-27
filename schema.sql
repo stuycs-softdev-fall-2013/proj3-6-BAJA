@@ -18,11 +18,11 @@ CREATE TABLE game_data (
 DROP TABLE IF EXISTS qmail_users;
 CREATE TABLE qmail_users (
     qmu_id INTEGER PRIMARY KEY,
-    qmu_address TEXT,
+    qmu_address BLOB,
     qmu_first_name TEXT,
     qmu_last_name TEXT,
-    qmu_password_hash TEXT,
-    qmu_password_salt TEXT
+    qmu_password_hash BLOB,
+    qmu_password_salt BLOB
 );
 
 DROP TABLE IF EXISTS qmail_mailboxes;
@@ -44,9 +44,8 @@ DROP TABLE IF EXISTS qmail_recipients;
 CREATE TABLE qmail_recipients (
     qmr_id INTEGER PRIMARY KEY,
     qmr_message INTEGER,
-    qmr_recipient INTEGER,
     qmr_type INTEGER,
-    qmr_address TEXT,
+    qmr_address BLOB,
     qmr_name TEXT
 );
 
@@ -54,6 +53,6 @@ DROP TABLE IF EXISTS qmail_attachments;
 CREATE TABLE qmail_attachments (
     qma_id INTEGER PRIMARY KEY,
     qma_message INTEGER,
-    qma_filename TEXT,
+    qma_filename BLOB,
     qma_content BLOB
 );
