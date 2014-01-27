@@ -2,6 +2,10 @@ body {
 	background-color: #FFFFFF;
 }
 
+tr {
+    height:30px;
+}
+
 td {
 	font: normal 11px Tahoma, Arial;
 	color: #8a8a8a;

@@ -23,6 +23,6 @@ var main = function(){
     textbox.value = "";
     }
     
-    var submitbutton = document.getElementById("submitO");
+    var submitbutton = document.getElementById("submit");
     submitbutton.addEventListener("click",moveToTODO);
 }();
