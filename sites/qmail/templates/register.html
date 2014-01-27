@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
-    <link rel="stylesheet" href="/static/register.css"/>
-    <link rel="stylesheet" href="/static/bootstrap.css"/>
-    <link rel="stylesheet" href="/static/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/register.css"/>
+    <link rel="stylesheet" href="../static/bootstrap.css"/>
+    <link rel="stylesheet" href="../static/bootstrap.min.css"/>
   </head>
 
   <body>
@@ -18,17 +18,17 @@
     <div class="side-content">
       <h2>One account is all you need</h2>
       <p>A single username and password gets you into everything Qoogle.</p>
-      <img src="/static/img/logostrip.jpeg" height="30px" width="250px">
+      <img src="../static/img/logostrip.jpeg" height="30px" width="250px">
       <h2>Make Qoogle yours</h2>
       <p>Set up your profile and preferences just the way you like.</p>
-      <img src="/static/img/profiles.png" height="124px" width="300px">
+      <img src="../static/img/profiles.png" height="124px" width="300px">
       <h2>Take it all with you</h2>
       <p>Switch between devices, and pick up wherever you left off.</p>
-      <img src="/static/img/device.png" height="172px" width="300px">
+      <img src="../static/img/device.png" height="172px" width="300px">
     </div>
 
     <div class="register-box">
-    <img id="profile-img" class="profile-img" src="/static/img/logo.jpg" alt="">
+    <img id="profile-img" class="profile-img" src="../static/img/logo.jpg" alt="">
     {% if error %}
       <div class="error-div"><p>{{error}}</p></div>
     {% endif %}
