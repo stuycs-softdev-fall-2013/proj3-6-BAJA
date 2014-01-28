@@ -68,6 +68,15 @@ class Database(object):
         result = self._execute(query, user_id)
         return User(*result[0])
 
+    def get_user_from_address(self, address):
+        """Return the User object associated with the given address.
+
+        Raises IndexError if the user does not exist.
+        """
+        query = "SELECT * FROM qmail_users WHERE qmu_address = ?"
+        result = self._execute(query, address)
+        return User(*result[0])
+
     def get_email(self, email_id, user_id):
         """Get an email from an ID if the user has permission to view it.
 

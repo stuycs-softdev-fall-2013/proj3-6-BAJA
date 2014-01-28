@@ -14,7 +14,12 @@ PW_SYMBOLS = "!@#$%^&*()-=_+[]{}\\|;':\",./<>?`~"
 
 def get_port(site):
     """Return the port associated with the given site name."""
-    raise NotImplementedError()
+    return {
+        "qmail": 6680,
+        "school": 6673,
+        "wife": 6691,
+        "bank": 6603
+    }[site]
 
 def gen_password(length, chars):
     """Generate a random password of a given length using a certain charset."""

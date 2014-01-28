@@ -4,13 +4,13 @@ from flask import Flask, make_response, redirect, render_template, request, sess
 
 from game.database import Database
 from game.user import User
+from game.utils import get_port
 
 app = Flask(__name__)
 app.secret_key = "X7jfId6Jb8T3sxVJ6xMQeEfGkqm3Qwft"
 db = Database("database.db")
 
 DOMAIN = "@qmail.com"
-PORT = 6680
 
 # End-user routes
 
@@ -80,9 +80,9 @@ def email(eid):
 @app.route("/send.json", methods=["POST"])
 def send():
     def build_user(address):
-        if address.endswith(DOMAIN):                                                # Actually verify the address.
-            return db.get_user(address)                                             # This is the wrong library call and it is prone to errors. Fix.
-        return User(-1, address, None, None)
+        if address.endswith(DOMAIN):
+            return db.get_user_from_address(address).tuple()
+        return (address, None)
 
     if not session.get("user"):
         return redirect("/login")
@@ -90,18 +90,21 @@ def send():
     sender = db.get_user(session["user"])
     subject = request.form.get("subject")
     body = request.form.get("body")
-    to = [build_user(addr) for addr in request.form.get("to").split(",")]
-    cc = [build_user(addr) for addr in request.form.get("cc").split(",")]
-    bcc = [build_user(addr) for addr in request.form.get("bcc").split(",")]
+    try:
+        to = [build_user(addr) for addr in request.form.get("to").split(",")]
+        cc = [build_user(addr) for addr in request.form.get("cc").split(",")]
+        bcc = [build_user(addr) for addr in request.form.get("bcc").split(",")]
+    except IndexError:
+        return dumps({"error": "Invalid address(es) given."})
     attachments = None
 
-    if not sender or not subject or not body or not to:
+    if not subject or not body or not to:
         return dumps({"error": "Missing required field(s)."})
 
-    email = db.send_email(sender, subject, body, to, cc, bcc, attachments)
+    email = db.send_email(sender.tuple(), subject, body, to, cc, bcc, attachments)
     resp = make_response(dumps(email.serialize()))
     resp.mimetype = "application/json"
     return resp
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=PORT, debug=True)
+    app.run(host="0.0.0.0", port=get_port("qmail"), debug=True)

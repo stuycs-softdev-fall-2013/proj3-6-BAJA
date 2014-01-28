@@ -24,7 +24,8 @@ def post_register(db, user):
         link = "http://" + urlparse(request.url).netloc + utils.get_port("school")
         subject = mission_message['brief']['body']
         body = mission_message['brief']['body'].format({"name": user.first, "kid_name": kid_name, "link": link})
-        db.send_email(user, subject, body, [db.get_user(AGENT_ID)])
+        to = [db.get_user(AGENT_ID).tuple()]
+        db.send_email(user.tuple(), subject, body, to)
         #Register kid into database
         k_id = db.add_student(kid_name)
         db.set_mission_data(user, 1, "kid", k_id)
@@ -42,12 +43,12 @@ def post_send(db, email):
             we attempted to solve and that we actually solved the problem
             and then sends out a response.
         """
-        in_progress = db.get_missions(email.sender, MISSION_IN_PROGRESS)
+        in_progress = db.get_missions(sender, MISSION_IN_PROGRESS)
         mission_id = messages.mission_number(email.subject)
         if( mission_id in in_progress ):
             #We're currently working on the mission we tried to solve
             if mission_successful(db, email, mission_id):
-                db.update_mission(email.sender, mission_id, MISSION_SUCCESS)
+                db.update_mission(sender, mission_id, MISSION_SUCCESS)
                 reply = messages.load_response(messages.next_mission(mission_id), False)
             else:
                 reply = messages.load_response(mission_id, False)
@@ -55,6 +56,7 @@ def post_send(db, email):
             reply = messages.load_response(mission_id, False)
         db.send_email(email.to[0], reply['subject'], reply['body'], [email.sender])
     #Wait five seconds before responding to email
+    sender = db.get_user_from_address(email.sender)
     Timer(5, send_email).start()
 
 def mission_successful(db, email, mission_id):
@@ -65,9 +67,8 @@ def mission_successful(db, email, mission_id):
         other times its reading through the content of the email.
     """
     if mission_id == 1:
-        if( db.get_student_grade(user, db.get_mission_data(email.sender, 1, "kid")) == 80):
+        if db.get_student_grade(user, db.get_mission_data(email.sender, 1, "kid")) == 80:
             return True
         return False
-    elif: mission_id == 2:
-        if( db.get_
-
+    # elif mission_id == 2:
+    #     if( db.get_
