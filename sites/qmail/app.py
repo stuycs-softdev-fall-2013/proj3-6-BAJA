@@ -82,12 +82,6 @@ def sentbox():
         return do_api_reply({"error": "You are not logged in."})
     return do_api_reply(db.get_sentbox(session["user"]))
 
-@app.route("/email/{eid}.json")
-def email(eid):
-    if not session.get("user"):
-        return do_api_reply({"error": "You are not logged in."})
-    return do_api_reply(db.get_email(eid, session["user"]))
-
 @app.route("/send.json", methods=["POST"])
 def send():
     def build_user(address):

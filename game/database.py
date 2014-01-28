@@ -77,22 +77,12 @@ class Database(object):
         result = self._execute(query, address)
         return User(*result[0])
 
-    def get_email(self, email_id, user_id):
-        """Get an email from an ID if the user has permission to view it.
-
-        Returns None if no email could be found or the user isn't allowed to
-        view it. Raises IndexError if the user does not exist.
-        """
-        user = self.get_user(user_id)
+    def get_email(self, email_id):
+        """Get an Email object from an ID."""
         query = """SELECT qmm_type, qmm_address, qmm_name
                    FROM qmail_email_members WHERE qmm_email = ?"""
         members = self._execute(query, email_id)
-        if not [mem for mem in members if mem[1] == user.address]:
-            return None  # User not permitted to view
-        try:
-            sender = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_SENDER][0]
-        except IndexError:
-            return None  # No senders -> email doesn't exist
+        sender = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_SENDER][0]
         to = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_TO]
         cc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_CC]
         bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC]
