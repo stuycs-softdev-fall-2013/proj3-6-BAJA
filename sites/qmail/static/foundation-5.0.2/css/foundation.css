@@ -861,11 +861,11 @@ select {
 
   .large-1 {
     position: relative;
-    width: 8.33333%; }
+    width: 12.33333%; }
 
   .large-2 {
     position: relative;
-    width: 16.66667%; }
+    width: 12.66667%; }
 
   .large-3 {
     position: relative;
@@ -4014,12 +4014,15 @@ ul.off-canvas-list {
     background: #444444;
     border-top: 1px solid #5e5e5e;
     border-bottom: none;
-    margin: 0; }
+    margin: 0;
+    height:2.8125rem;
+    padding-top:12px; }
   ul.off-canvas-list li a {
     display: block;
     padding: 0.66667rem;
     color: rgba(255, 255, 255, 0.7);
-    border-bottom: 1px solid #262626; }
+    border-bottom: 1px solid #262626;
+    background:#0A0F0F; }
 
 .move-right > .inner-wrap {
   -webkit-transform: translate3d(250px, 0, 0);
