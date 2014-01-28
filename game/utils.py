@@ -30,8 +30,10 @@ def gen_name(first=None, last=None):
     fake = Faker()
     return (first or fake.first_name()) + " " + (last or fake.last_name())
 
-def gen_grade():
+def gen_grade(max=100):
     """Generate a random student report card grade."""
+    if max < 90:
+        return random.randint(0, (max - 35) / 5) * 5 + 35
     if random.random() < 0.5:
         return random.randint(0, 10) * 5 + 35
-    return random.randint(0, 10) + 90
+    return random.randint(0, max - 90) + 90

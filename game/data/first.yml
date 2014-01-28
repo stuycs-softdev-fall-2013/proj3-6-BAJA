@@ -6,9 +6,14 @@ brief:
     body: |
         Dear {name},
 
-        My good friend Mike Zamansky mentioned you as a good programmer. I would be interested in hiring you for a quick job. My kid, {kid_name}, is in danger of failing a few of his classes, and he won't be able to graduate without an 80 or higher in all of them.
+        My close friend Mike Zamansky mentioned you as a good programmer. I would be interested in hiring you for a quick job. My kid, {kid_name}, is in danger of failing a few classes, and won't be able to graduate without an 80 or higher in all of them.
 
-        The school's website is {link}. I've heard it's not very secure. Can you try to hack into it and raise his grades for me?
+        The school's website is {link}. You can check my kid's grades with the following login info:
+
+        Username: {kid_name}
+        Password: {password}
+
+        I've heard the teacher login isn't very secure. Can you try to hack into it and prevent my kid from failing?
 
         Thanks,
         Jon Connelly

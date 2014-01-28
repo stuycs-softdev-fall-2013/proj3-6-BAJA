@@ -44,7 +44,8 @@ def post_create(db):
 
     students = []
     for i in xrange(randint(1200, 3600)):
-        students.append(db.add_student(utils.generate_name()))
+        password = utils.gen_password(12, utils.PW_ALPHA)
+        students.append(db.add_student(utils.gen_name(), password))
     for group in SUBJECTS:
         temp = students[:]
         shuffle(temp)
@@ -61,17 +62,21 @@ def post_register(db, user):
     def send_email():
         """Sends the initial email to the user from the agent."""
         kid_name = utils.generate_name(last="Connelly")
+        password = utils.gen_password(12, utils.PW_ALPHA)
+        k_id = db.add_student(kid_name, password)
+        for group in SUBJECTS:
+            subject = random.choice(group)
+            teacher = random.choice([t[0] for t in db.get_teachers() where t[2] == subject_students])
+            db.enroll_student(k_id, teacher, subject, utils.gen_grade(max=75))
+        db.update_mission(user, 1, MISSION_IN_PROGRESS)
+        db.set_mission_data(user, 1, "kid", k_id)
+
         mission_message = messages.get_mission(1)
         link = "http://{0}:{1}/".format(urlparse(request.url).netloc, utils.get_port("school"))
         subject = mission_message['brief']['subject']
-        body = mission_message['brief']['body'].format(name=user.first, kid_name=kid_name, link=link)
+        body = mission_message['brief']['body'].format(name=user.first, kid_name=kid_name, link=link, password=password)
         sender = db.get_user(AGENT_ID).tuple()
         db.send_email(sender, subject, body, [user.tuple()])
-        # Register kid into database
-        k_id = db.add_student(kid_name)
-        db.update_mission(user, 1, MISSION_IN_PROGRESS)
-        db.set_mission_data(user, 1, "kid", k_id)
-        db.set_student_grade(k_id, "Math", 60)
 
     if user.id != AGENT_ID:
         Timer(5, send_email).start()

@@ -258,18 +258,18 @@ class Database(object):
 
     # School
 
-    def add_student(self, name):
-        """Add a student to the school database with a name; return an ID.
-
-        Generates random grades for the student in the various subjects.
-        """
+    def add_student(self, name, password):
+        """Add a student to the school database with a name; return an ID."""
         pass
 
     def add_teacher(self, name, subject):
+        """Add a teacher to the school database with a name and a subject."""
         pass
 
     def enroll_student(self, student_id, teacher_id, grade):
+        """Add a student to a course with a grade."""
         pass
 
-    def get_student(self, student_id):
+    def get_teachers(self):
+        """Return a list of tuples of (id, name, subject)."""
         pass
