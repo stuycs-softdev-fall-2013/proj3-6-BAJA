@@ -120,7 +120,7 @@ class Database(object):
         Returns a 2-tuple: a boolean indicating success or failure, and either
         the created user's ID upon success or an error string on failure.
         """
-        with self._connect() as conn:
+        with self._co/nect() as conn:
             conn.execute("BEGIN EXCLUSIVE TRANSACTION")
 
             if not re.match(r"[^@]+@[^@]+\.[^@]+$", address):
@@ -146,13 +146,51 @@ class Database(object):
                    attachments=None):
         """Send an email from a given user with a given subject and body.
 
-        `to` is a list of users in the "To:" field; `cc` is a list for the
-        "CC:" field; and `bcc` is a list for the "BCC:" field. `attachments` is
-        a list of Attachment objects.
+        `sender` is a tuple (address string, full name unicode). `subject` and
+        `body` are unicode. `to` is a list of tuples in the "To:" field; `cc`
+        is a tuple list for the "CC:" field; and `bcc` is a tuple list for the
+        "BCC:" field. `attachments` is a list of Attachment objects.
 
         Return an Email object on success or raise an exception on failure.
         """
-        stime = time.mktime(time.localtime())
+        with self._co/nect() as conn:
+            conn.execute("BEGIN EXCLUSIVE TRANSACTION")
+
+            res = conn.execute("SELECT MAX(qme_id) FROM qmail_emails")
+            maxid = res.fetchone()[0]
+            eid = maxid + 1 if maxid else 1
+            res = conn.execute("SELECT MAX(qmm_id) FROM qmail_email_members")
+            maxid = res.fetchone()[0]
+            mid = maxid + 1 if maxid else 1
+            res = conn.execute("SELECT MAX(qma_id) FROM qmail_attachments")
+            maxid = res.fetchone()[0]
+            aid = maxid + 1 if maxid else 1
+            stime = time.mktime(time.localtime())
+
+            query1 = "INSERT INTO qmail_emails VALUES (?, ?, ?, ?)"
+            query2 = "INSERT INTO qmail_email_members VALUES (?, ?, ?, ?, ?)"
+            query3 = "INSERT INTO qmail_attachments VALUES (?, ?, ?, ?)"
+            conn.execute(query1, (eid, subject, body, stime))
+            conn.execute(query2, (mid, eid, EMAIL_SENDER, sender[0], sender[1]))
+            mid += 1
+            for addr, name in to:
+                conn.execute(query2, (mid, eid, EMAIL_TO, addr, name))
+                mid += 1
+            if cc:
+                for addr, name in cc:
+                    conn.execute(query2, (mid, eid, EMAIL_CC, addr, name))
+                    mid += 1
+            if bcc:
+                for addr, name in bcc:
+                    conn.execute(query2, (mid, eid, EMAIL_BCC, addr, name))
+                    mid += 1
+            if attachments:
+                for att in attachments:
+                    conn.execute(query3, (aid, eid, att.filename, att.content))
+                    aid += 1
+            conn.execute("END TRANSACTION")
+
+        return Email(eid, sender, subject, body, to, cc, bcc, attachments)
 
     # Missions
 

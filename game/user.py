@@ -26,3 +26,7 @@ class User(object):
             "first": self.first,
             "last": self.last
         }
+
+    def tuple(self):
+        """Convert the user into a tuple for an Email object."""
+        return (self.address, self.first + " " + self.last)
