@@ -64,12 +64,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4><a href="/teachers/{{teacher[0]}}">Grade: {{student[1]}}</a></h4>
+                <h4>Grade: {{student[loop.index]}}</h4>
                 <h2><span style="
                 font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Teacher: {{student[2]}</a><h2>
+                ">Teacher: {{student[loop.index + 1]}</span><h2>
               </div>
             </div>
           {% elif loop.index is divisibleby(4) %}
@@ -78,12 +78,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4><a href="/teachers/{{teacher[0]}}">Grade: {{student[1]}}</a></h4>
+                <h4>Grade: {{student[loop.index]}}</h4>
                 <h2><span style="
                 font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Teacher: {{student[2]}}</a><h2>
+                ">Teacher: {{student[loop.index + 1]}}</span><h2>
               </div>
             </div>
           </div>
@@ -93,12 +93,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4><a href="/teachers/{{teacher[0]}}">Grade: {{student[1]}}</a></h4>
+                <h4>Grade: {{student[loop.index]}}</h4>
                 <h2><span style="
                 font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Grade: {{student[2]}}</a><h2>
+                ">Grade: {{student[loop.index + 1]}}</span><h2>
               </div>
             </div>
           {% endif %}
