@@ -14,7 +14,7 @@ var display_email = function(email) {
 //Assumes the ajax response is sorted by eid, going upward
 
 var load_emails = function() {
-    $.ajax({url:'/inbox',
+    $.ajax({url:'/inbox.json',
             success: function(r) {
                 for(int i = 0; i < r['emails'].length; i++) {
                     if(most_recent_email < r['emails'][i]['eid']) {
