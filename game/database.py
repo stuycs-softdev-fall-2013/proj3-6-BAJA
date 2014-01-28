@@ -319,5 +319,6 @@ class Database(object):
     def get_students(self, teacher_id):
         """Return a list of tuples of (id, name, grade)."""
         query = """SELECT s_id, s_name, g_grade FROM students
-                   JOIN grades ON s_id = g_student WHERE g_teacher = ?"""
+                   JOIN grades ON s_id = g_student WHERE g_teacher = ?
+                   ORDER BY s_name ASC"""
         return self._execute(query, teacher_id)

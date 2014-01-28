@@ -27,7 +27,7 @@ def teachers():
 
 @app.route("/teachers/<tid>")
 def teacher_class(tid):
-    return render_template("TeacherClass.html", subject=db.get_teacher(tid),
+    return render_template("TeacherClass.html", teacher=db.get_teacher(tid),
                            students=db.get_students(tid))
 
 if __name__ == "__main__":
