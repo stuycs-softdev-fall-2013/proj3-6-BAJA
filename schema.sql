@@ -29,7 +29,8 @@ DROP TABLE IF EXISTS qmail_emails;
 CREATE TABLE qmail_emails (
     qme_id INTEGER PRIMARY KEY,
     qme_subject TEXT,
-    qme_body TEXT
+    qme_body TEXT,
+    qme_time INTEGER
 );
 
 DROP TABLE IF EXISTS qmail_email_members;
