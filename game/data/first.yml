@@ -5,7 +5,7 @@ brief:
     subject: Job Offer
     body: |
         Dear {name},
-        My close friend Mike Zamansky referred you to me as a good programmer. I would be interested in hiring you for a quick job. My poor kid, {kid_name.rsplit(" ", 1)[0]}, is in danger of failing a few classes in school, and won't be able to graduate without an 80 or higher in all of them.
+        My close friend Mike Zamansky referred you to me as a good programmer. I would be interested in hiring you for a quick job. My poor kid, {kid_first_name}, is in danger of failing a few classes in school, and won't be able to graduate without an 80 or higher in all of them.
         The school's website is <a href="{link}">{link}</a>. You can check my kid's grades with the following login info:
         Username: <tt>{kid_name}</tt><br/>Password: <tt>{password}</tt>
         I've heard that the teacher login isn't very secure. Can you try to hack into it and prevent my kid from failing? Send me a reply when you're done.

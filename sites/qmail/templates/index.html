@@ -30,13 +30,13 @@
     <div class = "large-3 medium-4 columns">
  <div class="button-bar">
   <ul class="button-group [radius round]">
-    <li><a href="#to" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#to').focus()" style="background:#00AA55;">Compose</a></li>
-    <li><a href="/" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00AA66;">Inbox</a></li>
-    <li><a href="/sent" style="background:#00AA77;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
+    <li><a href="#to" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#to').focus()" style="background:#007733;">Compose</a></li>
+    <li><a id="inbox-button" href="#" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#009955;">Inbox</a></li>
+    <li><a id="sent-button" href="#" style="background:#00BB55;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
   </ul>
 </div>
       <ul id="email-list" class="off-canvas-list">
-        <li id="email-label"><label>Emails</label></li>
+        <li id="email-label"><label id="mailbox-label">Inbox</label></li>
       </ul>
     </div>
 
@@ -83,22 +83,24 @@
                 <div id="email-body"></div>
               </div>
               <hr>
-              <h4>Compose</h4>
-              <form id="send-form">
-                  <h5> To </h5>
-                  <input type="text" id="to" name="to" style="height:2.125rem; width:25rem;">
-                  <h5> CC </h5>
-                  <input type="text" id="cc" name="cc" style="height:2.125rem; width:25rem;">
-                  <h5> BCC </h5>
-                  <input type="text" id="bcc" name="bcc" style="height:2.125rem; width:25rem;">
-                  <h5> Subject </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:45rem;">
-                  <h5> Body </h5>
-                  <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
-                  <ul class="button-group [radius round]">
-                      <li><a href="#" style="float:left; margin-right:20px;" id="send_email" class="button [secondary alert success]">Send</a></li>
-                  </ul>
-              </form>
+              <div id="compose-box">
+                <h4>Compose</h4>
+                <form id="send-form">
+                    <h5> To </h5>
+                    <input type="text" id="to" name="to" style="height:2.125rem; width:25rem;">
+                    <h5> CC </h5>
+                    <input type="text" id="cc" name="cc" style="height:2.125rem; width:25rem;">
+                    <h5> BCC </h5>
+                    <input type="text" id="bcc" name="bcc" style="height:2.125rem; width:25rem;">
+                    <h5> Subject </h5>
+                    <input type="text" id="subject" name="subject" style="height:2.125rem; width:45rem;">
+                    <h5> Body </h5>
+                    <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
+                    <ul class="button-group [radius round]">
+                        <li><a href="#" style="float:left; margin-right:20px;" id="send_email" class="button [secondary alert success]">Send</a></li>
+                    </ul>
+                </form>
+              </div>
             </div>
           </div>
         </section>

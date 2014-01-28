@@ -79,7 +79,7 @@ def post_register(db, user):
 
         mission_message = messages.get_mission(1)
         subject = mission_message['brief']['subject']
-        body = mission_message['brief']['body'].format(name=user.first, kid_name=kid_name, link=link, password=password)
+        body = mission_message['brief']['body'].format(name=user.first, kid_name=kid_name, kid_first_name=kid_name.rsplit(" ", 1)[0], link=link, password=password)
         sender = db.get_user(AGENT_ID).tuple()
         db.send_email(sender, subject, body, [user.tuple()])
 
