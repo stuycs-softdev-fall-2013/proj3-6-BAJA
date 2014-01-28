@@ -259,7 +259,10 @@ class Database(object):
     # School
 
     def add_student(self, name):
-        """Add a student to the school database with a name; return an ID."""
+        """Add a student to the school database with a name; return an ID.
+
+        Generates random grades for the student in the various subjects.
+        """
         pass
 
     def set_student_grade(self, student_id, subject, grade):

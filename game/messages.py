@@ -1,12 +1,13 @@
 from os import listdir, path
-from yaml import loads
+
+import yaml
 
 messages = []
 
 def load_messages():
     for filename in listdir("game/data"):
         with open(path.join("game/data", filename)) as fp:
-            messages.append( loads(fp.read()) )
+            messages.append( yaml.load(fp.read()) )
 
 def mission_number(subject):
     for m in messages:

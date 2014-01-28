@@ -32,7 +32,7 @@ def post_register(db, user):
         mission_message = messages.get_mission(1)
         link = "http://{0}:{1}/".format(urlparse(request.url).netloc, utils.get_port("school"))
         subject = mission_message['brief']['subject']
-        body = mission_message['brief']['body'].format(name=user.first, kid_name=kid_name, link=link})
+        body = mission_message['brief']['body'].format(name=user.first, kid_name=kid_name, link=link)
         sender = db.get_user(AGENT_ID).tuple()
         db.send_email(sender, subject, body, [user.tuple()])
         # Register kid into database
@@ -84,4 +84,4 @@ def mission_successful(db, email, user, mission_id):
         other times its reading through the content of the email.
     """
     if mission_id == 1:
-        return db.get_student_grade(db.get_mission_data(user, 1, "kid"), "Math") >= 80:
+        return db.get_student_grade(db.get_mission_data(user, 1, "kid"), "Math") >= 80
