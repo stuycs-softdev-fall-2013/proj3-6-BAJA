@@ -98,9 +98,9 @@ def send():
     subject = request.form.get("subject")
     body = request.form.get("body")
     try:
-        to = [build_user(addr) for addr in request.form.get("to").split(",")]
-        cc = [build_user(addr) for addr in request.form.get("cc").split(",")]
-        bcc = [build_user(addr) for addr in request.form.get("bcc").split(",")]
+        to = [build_user(addr) for addr in request.form.get("to").strip().split(",") if addr]
+        cc = [build_user(addr) for addr in request.form.get("cc").strip().split(",") if addr]
+        bcc = [build_user(addr) for addr in request.form.get("bcc").strip().split(",") if addr]
     except IndexError:
         return do_api_reply({"error": "Invalid address(es) given."})
     attachments = None

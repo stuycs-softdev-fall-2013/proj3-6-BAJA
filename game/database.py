@@ -80,7 +80,7 @@ class Database(object):
         result = self._execute(query, address)
         return User(*result[0])
 
-    def get_email(self, email_id):
+    def get_email(self, email_id, user_addr, inbox):
         """Get an Email object from an ID."""
         query = """SELECT qmm_type, qmm_address, qmm_name
                    FROM qmail_email_members WHERE qmm_email = ?"""
@@ -88,7 +88,10 @@ class Database(object):
         sender = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_SENDER][0]
         to = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_TO]
         cc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_CC]
-        bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC]
+        if inbox:
+            bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC and mem[1] == user_addr]
+        else:
+            bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC]
 
         query = "SELECT * FROM qmail_emails WHERE qme_id = ?"
         _, subject, body, stime = self._execute(query, email_id)[0]
@@ -155,7 +158,7 @@ class Database(object):
         query = """SELECT qmm_email FROM qmail_email_members
                    WHERE qmm_address = ? AND qmm_type != ?"""
         for eid, in self._execute(query, address, EMAIL_SENDER):
-            yield self.get_email(eid)
+            yield self.get_email(eid, address, True)
 
     def get_sentbox(self, user_id):
         """Generate over list of all emails in the sent box of a user ID."""
@@ -163,7 +166,7 @@ class Database(object):
         query = """SELECT qmm_email FROM qmail_email_members
                    WHERE qmm_address = ? AND qmm_type = ?"""
         for eid, in self._execute(query, address, EMAIL_SENDER):
-            yield self.get_email(eid)
+            yield self.get_email(eid, address, False)
 
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):

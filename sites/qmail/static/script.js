@@ -27,7 +27,10 @@ var show_email = function(email_id) {
     elem.html("");
     for (var i = 0; i < addrs.length; i++) {
         n = Math.floor(Math.random() * 100000)
-        elem.html(elem.html() + addrs[i][1] + " (<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>)");
+        if (addrs[i][1] == null)
+            elem.html(elem.html() +"<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>");
+        else
+            elem.html(elem.html() + addrs[i][1] + " (<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>)");
         $("#email-send-to-" + n).click(function(res) { return function() { $("#to").val(res) } }(addrs[i][0]) );
     }
     addrs = email["cc"];
@@ -39,7 +42,10 @@ var show_email = function(email_id) {
         $("#cc-row").show();
     for (var i = 0; i < addrs.length; i++) {
         n = Math.floor(Math.random() * 100000)
-        elem.html(elem.html() + addrs[i][1] + " (<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>)");
+        if (addrs[i][1] == null)
+            elem.html(elem.html() +"<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>");
+        else
+            elem.html(elem.html() + addrs[i][1] + " (<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>)");
         $("#email-send-to-" + n).click(function(res) { return function() { $("#to").val(res) } }(addrs[i][0]) );
     }
     addrs = email["bcc"];
@@ -51,7 +57,10 @@ var show_email = function(email_id) {
         $("#bcc-row").show();
     for (var i = 0; i < addrs.length; i++) {
         n = Math.floor(Math.random() * 100000)
-        elem.html(elem.html() + addrs[i][1] + " (<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>)");
+        if (addrs[i][1] == null)
+            elem.html(elem.html() +"<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>");
+        else
+            elem.html(elem.html() + addrs[i][1] + " (<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>)");
         $("#email-send-to-" + n).click(function(res) { return function() { $("#to").val(res) } }(addrs[i][0]) );
     }
     var d = new Date(0);
@@ -60,6 +69,7 @@ var show_email = function(email_id) {
     $("#email-time").text(etime);
     $("#email-subject").text(email["subject"]);
     $("#email-body").html("<p>" + email["body"].split("\n").join("</p><p>") + "</p>");
+    $("#to").val(email["sender"][0]);
     if (email["subject"].indexOf("Re: ") == 0)
         $("#subject").val(email["subject"]);
     else
