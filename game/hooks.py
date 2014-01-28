@@ -54,14 +54,14 @@ def post_create(db):
         for i, subject in enumerate(group):
             subject_students = group_students[i]
             for i in xrange(len(subject_students) / randint(75, 150)):
-                teacher = db.add_teacher(utils.generate_name(), subject)
+                teacher = db.add_teacher(utils.gen_name(), subject)
                 db.enroll_student(student, teacher, subject, utils.gen_grade())
 
 def post_register(db, user):
     """Called by the database after a user registers."""
     def send_email():
         """Sends the initial email to the user from the agent."""
-        kid_name = utils.generate_name(last="Connelly")
+        kid_name = utils.gen_name(last="Connelly")
         password = utils.gen_password(12, utils.PW_ALPHA)
         k_id = db.add_student(kid_name, password)
         for group in SUBJECTS:

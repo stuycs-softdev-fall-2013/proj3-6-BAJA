@@ -1,25 +1,22 @@
 var most_recent_email = -1;
 
 var display_email = function(email) {
-     var emails = document.getElementById('emails');
-     var e_block = document.createElement('div');
-     e_block.setAttribute('id',"email");
-     var from = document.createElement('div');
-     from.innerHTML = email['from'];
-     e_block.appendChild(from);
-     e_block.innerHTML = email['subject'];
+     var emails = document.getElementById('email-list');
+     var e_block = document.createElement('li');
+     e_block.setAttribute('id',"email-" + email["id"]);
+     e_block.innerHTML += email["sender"][1] + " : " + email["subject"];
      emails.appendChild(e_block);
 }
 
 //Assumes the ajax response is sorted by eid, going upward
 
 var load_emails = function() {
-    $.ajax({'inbox.json', 
+    $.ajax({'inbox.json',
             function(r) {
                 for(int i = 0; i < r['emails'].length; i++) {
-                    if(most_recent_email < r['emails'][i]['eid']) {
+                    if(most_recent_email < r['emails'][i]['id']) {
                         display_email(r['emails'][i]);
-                        most_recent_email = r['emails'][i]['eid'];
+                        most_recent_email = r['emails'][i]['id'];
                     }
                 }
             }
@@ -28,7 +25,7 @@ var load_emails = function() {
 }
 
 var send_email = function() {
-    $.ajax({'send.json',  $.( "#send_data" ).serialize()
+    $.ajax({'send.json',  $( "#send_data" ).serialize()
             function(r) {
                 return;
             }
