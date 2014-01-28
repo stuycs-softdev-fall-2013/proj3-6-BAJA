@@ -30,7 +30,7 @@ def login():
     if request.method == "GET":
         return render_template("login.html")
 
-    address = request.form.get("address")
+    address = request.form.get("email")
     password = request.form.get("password")
     if not address or not password:
         return render_template("login.html", error="All fields are required.")
@@ -62,6 +62,11 @@ def register():
         session["user"] = data
         return redirect("/")
     return render_template("register.html", error=data)
+
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    return redirect("/login")
 
 # API routes
 
