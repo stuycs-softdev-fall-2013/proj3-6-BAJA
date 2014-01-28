@@ -13,7 +13,7 @@ var display_email = function(email, context_copy) {
     var d = new Date(0);
     d.setUTCSeconds(email["time"]);
     var etime = moment(d).fromNow();
-    e_block.innerHTML += '<a onclick="show_email(' + email["id"] + ')"><b>' + email["sender"][1] + (new Array(9).join("&nbsp;")) + "</b>" + email["subject"] + (new Array(9).join("&nbsp;")) + "<i>" + etime + "</i></a>";
+    e_block.innerHTML += '<a onclick="show_email(' + email["id"] + ')"><b>' + (context_copy ? email["sender"][1] : email["to"][0][1]) + (new Array(9).join("&nbsp;")) + "</b>" + email["subject"] + (new Array(9).join("&nbsp;")) + "<i>" + etime + "</i></a>";
     emails.insertBefore(e_block, document.getElementById("email-label").nextSibling);
     if (context != context_copy)
         $("#email-" + context_copy + "-" + email["id"]).hide();
