@@ -21,7 +21,11 @@ def teacher():
 
 @app.route("/teachers")
 def teachers():
-    return render_template("ListOfTeachers.html", teachers=[])
+    return render_template("ListOfTeachers.html", teachers=db.get_teachers())
+
+@app.route("/teacher/<tid>")
+def teacher_class(tid):
+    return render_template("TeacherClass.html", students=db.get_students(tid))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=get_port("school"), debug=True)
