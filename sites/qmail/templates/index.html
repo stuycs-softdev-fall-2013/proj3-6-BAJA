@@ -4,20 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qmail</title>
-    <link rel="stylesheet" href="../static/foundation-5.0.2/css/foundation.css" />
-    <script src="../static/foundation-5.0.2/js/modernizr.js"></script>
+    <link rel="stylesheet" href="/static/foundation-5.0.2/css/foundation.css" />
+    <script src="/static/foundation-5.0.2/js/modernizr.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
   </head>
   <body>
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">Qmail</a></h1>
+          <h1><a href="/">Qmail</a></h1>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       </ul>
       <section class="top-bar-section">
         <ul class="left">
-          <li><a href="#">{{user.address}} {{user.first}} {{user.last}}</a></li>
+          <li><a href="/">{{user.first}} {{user.last}} ({{user.address}})</a></li>
         </ul>
         <ul class="right">
           <li class="active"><a href="/logout">Log Out</a></li>
@@ -29,50 +30,15 @@
     <div class = "large-3 medium-4 columns">
  <div class="button-bar">
   <ul class="button-group [radius round]">
-    <li><a href="#subject" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#subject').focus()" style="background:#00CC00;">Compose</a></li>
-    <li><a href="sentbox.html" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00CC00;">Inbox</a></li>
-    <li><a href="#Inbox" style="background:#00CC00;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
+    <li><a href="#to" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#to').focus()" style="background:#007733;">Compose</a></li>
+    <li><a id="inbox-button" href="#" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#009955;">Inbox</a></li>
+    <li><a id="sent-button" href="#" style="background:#00BB55;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
   </ul>
 </div>
-      <ul class="off-canvas-list">
-        <li><label>Emails</label></li>
-        <li><a name="#" href="#">Hari Seldon</a></li>
-        <li><a href="#">R. Daneel Olivaw</a></li>
-        <li><a href="#">The Mule</a></li>
-        <li><a href="#">Dors Venabili</a></li>
-        <li><a href="#">Yugo Amaryl</a></li>
-        <li><a href="#">The Mule</a></li>
-        <li><a href="#">Emperor Cleon I</a></li>
-        <li><a href="#">Gaal Dornick</a></li>
-        <li><a href="#">Bel Riose</a></li>
-        <li><a href="#">Salvor Hardin</a></li>
-        <li><a href="#">Bel Riose</a></li>
-        <li><a href="#">Bel Riose</a></li>
-        <li><a href="#">Bel Riose</a></li>
-        <li><a href="#">Bel Riose</a></li>
-        <li><a href="#">Bel Riose</a></li>
-
+      <ul id="email-list" class="off-canvas-list">
+        <li id="email-label"><label id="mailbox-label">Inbox</label></li>
       </ul>
     </div>
-
-<!--     <div class = "large-1 medium-4 columns">
-    <ul class="off-canvas-list">
-            <li><label>Emails</label></li>
-            <li><a href="#">Hari Seldon</a></li>
-            <li><a href="#">R. Daneel Olivaw</a></li>
-            <li><a href="#">The Mule</a></li>
-            <li><a href="#">Dors Venabili</a></li>
-            <li><a href="#">Yugo Amaryl</a></li>
-            <li><a href="#">The Mule</a></li>
-            <li><a href="#">Emperor Cleon I</a></li>
-            <li><a href="#">Gaal Dornick</a></li>
-            <li><a href="#">Bel Riose</a></li>
-            <li><a href="#">Salvor Hardin</a></li>
-            <li><a href="#">Bel Riose</a></li>
-            <li><a href="#">Testing</a></li>
-
-          </ul>
-    </div> -->
 
     <div class = "large-9 medium-4 columns">
 
@@ -81,39 +47,60 @@
 
         <nav class="tab-bar">
           <section class="left tab-bar-section">
-            <h1 class="title">Check Inbox</h1>
-          </section>
-          <section class="right-small">
-            <a class="right-off-canvas-toggle menu-icon"><span></span></a>
+            <h1 class="title">Message</h1>
           </section>
         </nav>
         <section class="main-section">
           <div class="row">
             <div class="large-12 columns" style="padding-left:20px;">
               <br>
-
-              <h5> To: {{user.first}} {{user.last}} </h5>
-              <br> 
-              <p>INPUT EMAIL TEXT HERE</p>
-
-              <h5> From: John Connolley </h5> 
+              <div id="email-data">
+                <div style="display: table;">
+                  <div style="display: table-row;">
+                    <div style="display: table-cell; padding-right: 1em;"><h5>From:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-sender-name"></span> (<a href="#" id="email-sender-address"></a>)<h5></div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;"><h5>To:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-to"></span><h5></div>
+                  </div>
+                  <div id="cc-row" style="display: table-row;">
+                    <div style="display: table-cell;"><h5>CC:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-cc"></span><h5></div>
+                  </div>
+                  <div id="bcc-row" style="display: table-row;">
+                    <div style="display: table-cell;"><h5>BCC:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-bcc"></span><h5></div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;"><h5>Time:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-time"></span><h5></div>
+                  </div>
+                </div>
+                <h4 id="email-subject"></h4>
+                <br>
+                <br>
+                <div id="email-body"></div>
+              </div>
               <hr>
-              <form>
-                  <h5> To: </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
-                  <h5> CC: </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
-                  <h5> BCC: </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
-                  <h5> Subject: </h5>
-                  <input type="text" name="to" style="height:2.125rem; width:17.25rem;">
-                  <h5> Body </h5>
-                  <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
-                  <ul class="button-group [radius round]">
-                      <li><a href="#" style="float:left; margin-right:20px;" id="send_email" class="button [secondary alert success]">Send</a></li>
-
-                  </ul>
-              </form>
+              <div id="compose-box">
+                <h4>Compose</h4>
+                <form id="send-form">
+                    <h5> To </h5>
+                    <input type="text" id="to" name="to" style="height:2.125rem; width:25rem;">
+                    <h5> CC </h5>
+                    <input type="text" id="cc" name="cc" style="height:2.125rem; width:25rem;">
+                    <h5> BCC </h5>
+                    <input type="text" id="bcc" name="bcc" style="height:2.125rem; width:25rem;">
+                    <h5> Subject </h5>
+                    <input type="text" id="subject" name="subject" style="height:2.125rem; width:45rem;">
+                    <h5> Body </h5>
+                    <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
+                    <ul class="button-group [radius round]">
+                        <li><a href="#" style="float:left; margin-right:20px;" id="send_email" class="button [secondary alert success]">Send</a></li>
+                    </ul>
+                </form>
+              </div>
             </div>
           </div>
         </section>
@@ -124,6 +111,6 @@
 
     <script src="/static/foundation-5.0.2/js/jquery.js"></script>
     <script src="/static/foundation-5.0.2/js/foundation.min.js"></script>
-    <script source="/static/script.js"></script>
+    <script src="/static/script.js"></script>
   </body>
 </html>

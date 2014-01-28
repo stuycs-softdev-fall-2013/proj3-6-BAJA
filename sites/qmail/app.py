@@ -74,13 +74,15 @@ def logout():
 def inbox():
     if not session.get("user"):
         return do_api_reply({"error": "You are not logged in."})
-    return do_api_reply(db.get_inbox(session["user"]))
+    gen = db.get_inbox(session["user"])
+    return do_api_reply([email.serialize() for email in gen])
 
 @app.route("/sentbox.json")
 def sentbox():
     if not session.get("user"):
         return do_api_reply({"error": "You are not logged in."})
-    return do_api_reply(db.get_sentbox(session["user"]))
+    gen = db.get_sentbox(session["user"])
+    return do_api_reply([email.serialize() for email in gen])
 
 @app.route("/send.json", methods=["POST"])
 def send():
@@ -96,9 +98,9 @@ def send():
     subject = request.form.get("subject")
     body = request.form.get("body")
     try:
-        to = [build_user(addr) for addr in request.form.get("to").split(",")]
-        cc = [build_user(addr) for addr in request.form.get("cc").split(",")]
-        bcc = [build_user(addr) for addr in request.form.get("bcc").split(",")]
+        to = [build_user(addr) for addr in request.form.get("to").strip().split(",") if addr]
+        cc = [build_user(addr) for addr in request.form.get("cc").strip().split(",") if addr]
+        bcc = [build_user(addr) for addr in request.form.get("bcc").strip().split(",") if addr]
     except IndexError:
         return do_api_reply({"error": "Invalid address(es) given."})
     attachments = None
@@ -107,7 +109,7 @@ def send():
         return do_api_reply({"error": "Missing required field(s)."})
 
     email = db.send_email(sender.tuple(), subject, body, to, cc, bcc, attachments)
-    return do_api_reply(email)
+    return do_api_reply(email.serialize())
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=get_port("qmail"), debug=True)

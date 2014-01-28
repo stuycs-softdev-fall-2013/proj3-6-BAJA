@@ -1,21 +1,16 @@
-mid: 2
+id: 2
 next_id: 3
-subreply: Re: Nice Job
+subreply: "Re: Nice Job"
 brief:
     subject: Nice Job
     body: |
         Dear {name},
-
         Nice job, I appreciate the help. If you're still looking for work, I could use your help for another issue I'm having. I think my wife is cheating on me. If you could break into her email, {email}, I would be very thankful. You should be looking for a message from someone named "Bill Donovan." Don't worry about the message, she's very paranoid and encrypts her emails. I don't need you to crack the code though. I think I know her well enough to be able to solve it. Copy the code and send it to me as a reply to this email.
-
-        Thanks,
-        Jon
+        Thanks,<br>Jon
 
 reply_failed:
-    subject: Re: Nice Job
+    subject: "Re: Nice Job"
     body: |
         {name},
-
         Are you sure that's the right code? It doesn't look right. Get back to me when you have what I'm looking for.
-
         Jon

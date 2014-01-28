@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teachers</title>
 
-    <link rel="stylesheet" href="../../qmail/static/foundation-5.0.2/css/normalize.css"> 
-    <link rel="stylesheet" href="../../qmail/static/foundation-5.0.2/css/foundation.css">   
-    <link href="../static/style.css" rel="stylesheet">
-    <script src="../../qmail/static/foundation-5.0.2/js/vendor/custom.modernizr.js"></script> 
+    <link rel="stylesheet" href="/static/foundation-5.0.2/css/normalize.css">
+    <link rel="stylesheet" href="/static/foundation-5.0.2/css/foundation.css">
+    <link href="/static/style.css" rel="stylesheet">
+    <script src="/static/foundation-5.0.2/js/vendor/custom.modernizr.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 
   </head>
@@ -27,37 +27,36 @@
             </li>
             <li class="toggle-topbar menu-icon"><a href="#" onclick="return false;">"><span>Menu</span></a></li>
           </ul>
-       
-          <section class="top-bar-section"  >  
+
+          <section class="top-bar-section"  >
             <!-- Right Nav Section -->
             <ul class="right" id="top-nav">
-              <li class="divider"></li> 
-              <li ><a href="TeacherLogin.html"  id="portfolio-link" class="nav-link">Log Out</a></li>       
+              <li class="divider"></li>
+              <li ><a href="/logout"  id="portfolio-link" class="nav-link">Log Out</a></li>
               </ul>
           </section>
         </nav>
-    </div> 
+    </div>
     <hr>
     <div class="row" id="home">
       <ul class="example-orbit" data-orbit>
         <li>
-          <img src="../static/TeacherA.jpg" style="height:476; width:1190;" alt="slide 1" />
-          <div class="orbit-caption"> “[Kids] don't remember what you try to teach them. They remember what you are.” - Jim Henson </div> 
-        </li> 
-        <li>
-          <img src="../static/TeacherB.jpg" style="height:476; width:1190;" alt="slide 2" /> 
-          <div class="orbit-caption"> “The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.” - William Arthur Ward </div> 
+          <img src="/static/TeacherA.jpg" style="height:476; width:1190;" alt="slide 1" />
+          <div class="orbit-caption"> “[Kids] don't remember what you try to teach them. They remember what you are.” - Jim Henson </div>
         </li>
-        <li> 
-          <img src="../static/TeacherC.jpg" style="height:476; width:1190;" alt="slide 3" /> 
-          <div class="orbit-caption"> “Those who know, do. Those that understand, teach.” - Aristotle </div> 
+        <li>
+          <img src="/static/TeacherB.jpg" style="height:476; width:1190;" alt="slide 2" />
+          <div class="orbit-caption"> “The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.” - William Arthur Ward </div>
+        </li>
+        <li>
+          <img src="/static/TeacherC.jpg" style="height:476; width:1190;" alt="slide 3" />
+          <div class="orbit-caption"> “Those who know, do. Those that understand, teach.” - Aristotle </div>
         </li>
       </ul>
-      <h1 style="text-align:center;"> Welcome Teachers,
-        <br> SELECT YOUR NAME <h1>
+      <h1 style="text-align:center;"> Welcome, Teachers!<h1>
       <section id="features">
-        {% for teachers in teachers} 
-          {% if (loop.index + 3) is divisible 4 %}
+        {% for teacher in teachers %}
+          {% if (loop.index + 3) is divisibleby(4) %}
             <div class="row">
             <br>
             <div class="small-6 large-3 columns text-center features-box">
@@ -65,49 +64,49 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>teachers.name</h4>
-                <h2><a href="/teacher/{id}" style="
-                font-size:20px;
+                <h4><a href="/teachers/{{teacher[0]}}">{{teacher[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Students</a><h2>
-              </div> 
-            </div> 
-          {% elif loop.index is divisible 4 %}
+                ">{{teacher[2]}}</a><h2>
+              </div>
+            </div>
+          {% elif loop.index is divisibleby(4) %}
             <div class="small-6 large-3 columns text-center features-box">
               <div class="features-img text-center">
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>teachers.name</h4>
-                <h2><a href="/teacher/{id}" style="
-                font-size:20px;
+                <h4><a href="/teachers/{{teacher[0]}}">{{teacher[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Students</a><h2>
-              </div> 
-            </div> 
+                ">{{teacher[2]}}</a><h2>
+              </div>
+            </div>
           </div>
-          {% else}
+          {% else %}
             <div class="small-6 large-3 columns text-center features-box">
               <div class="features-img text-center">
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>teachers.name</h4>
-                <h2><a href="/teacher/{id}" style="
-                font-size:20px;
+                <h4><a href="/teachers/{{teacher[0]}}">{{teacher[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Students</a><h2>
-              </div> 
-            </div> 
+                ">{{teacher[2]}}</a><h2>
+              </div>
+            </div>
           {% endif %}
         {% endfor %}
-      </section>  
+      </section>
 
-        <script src="../../qmail/static/foundation-5.0.2/js/jQuery.js"></script>
-        <script src="../../qmail/static/foundation-5.0.2/js/foundation.min.js"></script>
+        <script src="/static/foundation-5.0.2/js/jQuery.js"></script>
+        <script src="/static/foundation-5.0.2/js/foundation.min.js"></script>
         <script type="text/javascript" src="jQuery.js"></script>
     <script>
       $(document).foundation({
@@ -143,10 +142,10 @@
           swipe: true,
       }
     });
-          
+
     </script>
     <br>
-    <ul class="pagination" style="float:right;">
+<!--     <ul class="pagination" style="float:right;">
       <li class="arrow unavailable"><a href="">&laquo;</a></li>
       <li><a href="TeachersPage.html">1</a></li>
       <li><a href="Students-SoftDev-1.html">2</a></li>
@@ -154,6 +153,6 @@
       <li class="current"><a href="">4</a></li>
       <li class="arrow"><a href="">&raquo;</a></li>
     </ul>
-    <hr>
+ -->    <hr>
 </body>
 </html>

@@ -1,9 +1,7 @@
-mid: -1
+id: -1
 reply_failed:
     subject: Mistaken Email
     body: |
         {name},
-
-            I don't understand this email. What does it have to do with what've discussed?
-
+        I don't understand this email. What does it have to do with what've discussed?
         Jon

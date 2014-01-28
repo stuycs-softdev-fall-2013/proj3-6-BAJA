@@ -13,7 +13,7 @@ from sites.bank import app as bank
 
 SITES = {
     ("qmail", qmail, get_port("qmail")),
-    # ("school", school, get_port("school")),
+    ("school", school, get_port("school")),
     # ("wife", wife, get_port("wife")),
     # ("bank", bank, get_port("bank"))
 }

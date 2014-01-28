@@ -80,7 +80,7 @@ class Database(object):
         result = self._execute(query, address)
         return User(*result[0])
 
-    def get_email(self, email_id):
+    def get_email(self, email_id, user_addr, inbox):
         """Get an Email object from an ID."""
         query = """SELECT qmm_type, qmm_address, qmm_name
                    FROM qmail_email_members WHERE qmm_email = ?"""
@@ -88,7 +88,10 @@ class Database(object):
         sender = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_SENDER][0]
         to = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_TO]
         cc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_CC]
-        bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC]
+        if inbox:
+            bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC and mem[1] == user_addr]
+        else:
+            bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC]
 
         query = "SELECT * FROM qmail_emails WHERE qme_id = ?"
         _, subject, body, stime = self._execute(query, email_id)[0]
@@ -150,20 +153,20 @@ class Database(object):
         return (True, uid)
 
     def get_inbox(self, user_id):
-        """Get a list of all emails in the inbox of a user ID."""
+        """Generate over list of all emails in the inbox of a user ID."""
         address = self.get_user(user_id).address
         query = """SELECT qmm_email FROM qmail_email_members
-                   WHERE qmm_address = ? AND qmm_type IN (?, ?, ?)"""
-        for eid in self._execute(query, (address, EMAIL_TO, EMAIL_CC, EMAIL_BCC)):
-            yield self.get_email(eid)
+                   WHERE qmm_address = ? AND qmm_type != ?"""
+        for eid, in self._execute(query, address, EMAIL_SENDER):
+            yield self.get_email(eid, address, True)
 
     def get_sentbox(self, user_id):
-        """Get a list of all emails in the sent box of a user ID."""
+        """Generate over list of all emails in the sent box of a user ID."""
         address = self.get_user(user_id).address
         query = """SELECT qmm_email FROM qmail_email_members
                    WHERE qmm_address = ? AND qmm_type = ?"""
-        for eid in self._execute(query, (address, EMAIL_SENDER)):
-            yield self.get_email(eid)
+        for eid, in self._execute(query, address, EMAIL_SENDER):
+            yield self.get_email(eid, address, False)
 
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):
@@ -215,7 +218,8 @@ class Database(object):
 
         conn.commit()
         conn.close()
-        email = Email(eid, sender, subject, body, to, cc, bcc, attachments)
+        email = Email(eid, sender, subject, body, stime, to, cc, bcc,
+                      attachments)
         post_send(self, email)
         return email
 
@@ -225,50 +229,95 @@ class Database(object):
         """Get a list of all mission IDs associated with a user and status."""
         query = """SELECT gd_mission FROM game_data
                    WHERE gd_user = ? and gd_status = ?"""
-        results = self._execute(query, (user.id, status))
+        results = self._execute(query, user.id, status)
         return [mid for (mid,) in results]
 
     def update_mission(self, user, mission_id, status):
         """Update the status of the mission for the given user."""
         query = "SELECT 1 FROM game_data WHERE gd_user = ? and gd_mission = ?"
-        if self._execute(query, (user.id, mission_id)):
+        if self._execute(query, user.id, mission_id):
             query = """UPDATE game_data SET gd_status = ?
                        WHERE gd_user = ? AND gd_mission = ?"""
-            self._execute(query, (status, user.id, mission_id))
+            self._execute(query, status, user.id, mission_id)
         else:
             query = "INSERT INTO game_data VALUES (?, ?, ?, ?)"
-            self._execute(query, (user.id, mission_id, status, "{}"))
+            self._execute(query, user.id, mission_id, status, "{}")
 
     def get_mission_data(self, user, mission_id, key):
         """Get an attribute of a mission associated with a given user."""
         query = """SELECT gd_attributes FROM game_data
                    WHERE gd_user = ? and gd_mission = ?"""
-        result = self._execute(query, (user.id, mission_id))
+        result = self._execute(query, user.id, mission_id)
         return loads(result[0][0])[key]
 
     def set_mission_data(self, user, mission_id, key, value):
         """Set an attribute of a mission associated with a given user."""
         query = """SELECT gd_attributes FROM game_data
                    WHERE gd_user = ? and gd_mission = ?"""
-        data = self._execute(query, (user.id, mission_id))[0]
+        data = loads(self._execute(query, user.id, mission_id)[0][0])
         data[key] = value
         query = """UPDATE game_data SET gd_attributes = ?
                    WHERE gd_user = ? AND gd_mission = ?"""
-        self._execute(query, (dumps(data), user.id, mission_id))
+        self._execute(query, dumps(data), user.id, mission_id)
 
     # School
 
-    def add_student(self, name):
-        """Add a student to the school database with a name; return an ID.
+    def add_student(self, name, password):
+        """Add a student to the school database with a name; return an ID."""
+        conn = self._connect()
+        conn.isolation_level = "EXCLUSIVE"
+        conn.execute("BEGIN EXCLUSIVE")
 
-        Generates random grades for the student in the various subjects.
-        """
-        pass
+        res = conn.execute("SELECT MAX(s_id) FROM students")
+        maxid = res.fetchone()[0]
+        sid = maxid + 1 if maxid else 1
 
-    def set_student_grade(self, student_id, subject, grade):
-        """Set the grade of a given student in a given subject."""
-        pass
+        query = "INSERT INTO students VALUES (?, ?, ?)"
+        conn.execute(query, (sid, name, password))
 
-    def get_student_grade(self, student_id, subject):
-        """Get the grade of a given student in a given subject."""
-        pass
+        conn.commit()
+        conn.close()
+        return sid
+
+    def add_teacher(self, name, subject):
+        """Add a teacher to the school database with a name and a subject."""
+        conn = self._connect()
+        conn.isolation_level = "EXCLUSIVE"
+        conn.execute("BEGIN EXCLUSIVE")
+
+        res = conn.execute("SELECT MAX(t_id) FROM teachers")
+        maxid = res.fetchone()[0]
+        tid = maxid + 1 if maxid else 1
+
+        query = "INSERT INTO teachers VALUES (?, ?, ?)"
+        conn.execute(query, (tid, name, subject))
+
+        conn.commit()
+        conn.close()
+        return tid
+
+    def enroll_student(self, student_id, teacher_id, grade):
+        """Add a student to a course with a grade."""
+        query = "SELECT 1 FROM grades WHERE g_student = ? AND g_teacher = ?"
+        if self._execute(query, student_id, teacher_id):
+            query = """UPDATE grades SET g_grade = ?
+                       WHERE g_student = ? AND g_teacher = ?"""
+            self._execute(query, grade, student_id, teacher_id)
+        else:
+            query = "INSERT INTO grades VALUES (?, ?, ?)"
+            self._execute(query, student_id, teacher_id, grade)
+
+    def get_teachers(self):
+        """Return a list of tuples of (id, name, subject)."""
+        return self._execute("SELECT * FROM teachers ORDER BY t_name ASC")
+
+    def get_teacher(self, teacher_id):
+        """Return a tuple of (id, name, subject)."""
+        query = "SELECT * FROM teachers WHERE t_id = ?"
+        return self._execute(query, teacher_id)[0]
+
+    def get_students(self, teacher_id):
+        """Return a list of tuples of (id, name, grade)."""
+        query = """SELECT s_id, s_name, g_grade FROM students
+                   JOIN grades ON s_id = g_student WHERE g_teacher = ?"""
+        return self._execute(query, teacher_id)

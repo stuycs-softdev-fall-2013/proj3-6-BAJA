@@ -1,23 +1,19 @@
-mid: 1
+id: 1
 next_id: 2
-subreply: Re: Job Offer
+subreply: "Re: Job Offer"
 brief:
     subject: Job Offer
     body: |
         Dear {name},
-
-        My good friend Mike Zamansky mentioned you as a good programmer. I would be interested in hiring you for a quick job. My kid, {kid_name}, is in danger of failing his math class and he won't be able to graduate without an 80 or higher.
-
-        The school's grading website for teachers is {link}. I've heard it's not very secure. Can you try to hack into it and raise his grade for me?
-
-        Thanks,
-        Jon Connelly
+        My close friend Mike Zamansky referred you to me as a good programmer. I would be interested in hiring you for a quick job. My poor kid, {kid_first_name}, is in danger of failing a few classes in school, and won't be able to graduate without an 80 or higher in all of them.
+        The school's website is <a href="{link}">{link}</a>. You can check my kid's grades with the following login info:
+        Username: <tt>{kid_name}</tt><br/>Password: <tt>{password}</tt>
+        I've heard that the teacher login isn't very secure. Can you try to hack into it and prevent my kid from failing? Send me a reply when you're done.
+        Thanks,<br>Jon Connelly
 
 reply_failed:
-    subject: Re: Job Offer
+    subject: "Re: Job Offer"
     body: |
         {name},
-
-            The grade still doesn't look right. Try again.
-
+        I still see some grades below 80. Check again.
         Jon
