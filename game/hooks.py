@@ -129,7 +129,7 @@ def mission_successful(db, email, user, mission_id):
         other times its reading through the content of the email.
     """
     if mission_id == 1:
-        return db.get_student_grade(db.get_mission_data(user, 1, "kid"), "Math") >= 80
+        return all([grade[2] >= 80 for grade in db.get_grades(db.get_mission_data(user, 1, "kid"))])
     elif mission_id == 2:
         return WIFE_CODE in email.body
     elif mission_id == 3:
