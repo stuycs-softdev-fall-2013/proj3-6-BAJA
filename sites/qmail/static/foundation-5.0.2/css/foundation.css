@@ -1965,10 +1965,12 @@ button, .button {
     /*     @else                            { font-size: $padding - rem-calc(2); } */ }
   button.small, .button.small {
     padding-top: 0.875rem;
-    padding-right: 1.75rem;
+    padding-right: 2.11rem;
     padding-bottom: 0.9375rem;
-    padding-left: 1.75rem;
+    padding-left: 2.11rem;
     font-size: 0.8125rem;
+    margin:0px;
+    float:left;
     /*     @else                            { font-size: $padding - rem-calc(2); } */ }
   button.tiny, .button.tiny {
     padding-top: 0.625rem;
@@ -2162,8 +2164,7 @@ button, .button {
   .button-bar:after {
     clear: both; }
   .button-bar .button-group {
-    float: left;
-    margin-right: 0.625rem; }
+}
     .button-bar .button-group div {
       overflow: hidden; }
 
