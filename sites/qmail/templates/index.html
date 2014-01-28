@@ -6,6 +6,7 @@
     <title>Qmail</title>
     <link rel="stylesheet" href="/static/foundation-5.0.2/css/foundation.css" />
     <script src="/static/foundation-5.0.2/js/modernizr.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
   </head>
   <body>
     <nav class="top-bar" data-topbar>
@@ -29,13 +30,13 @@
     <div class = "large-3 medium-4 columns">
  <div class="button-bar">
   <ul class="button-group [radius round]">
-    <li><a href="#subject" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#subject').focus()" style="background:#00AA55;">Compose</a></li>
+    <li><a href="#" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#to').focus()" style="background:#00AA55;">Compose</a></li>
     <li><a href="/" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00AA66;">Inbox</a></li>
     <li><a href="/sent" style="background:#00AA77;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
   </ul>
 </div>
       <ul id="email-list" class="off-canvas-list">
-        <li><label>Emails</label></li>
+        <li id="email-label"><label>Emails</label></li>
       </ul>
     </div>
 
@@ -53,18 +54,35 @@
           <div class="row">
             <div class="large-12 columns" style="padding-left:20px;">
               <br>
-
-              <h5> To: {{user.first}} {{user.last}} </h5>
-              <br>
-              <p>INPUT EMAIL TEXT HERE</p>
-
-              <h5> From: John Connolley </h5>
-
+              <div id="email-data">
+                <div style="display: table;">
+                  <div style="display: table-row;">
+                    <div style="display: table-cell; padding-right: 1em;"><h5>From:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-sender-name"></span> (<a href="#" id="email-sender-address"></a>)<h5></div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;"><h5>To:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-to"></span><h5></div>
+                  </div>
+                  <div id="cc-row" style="display: table-row;">
+                    <div style="display: table-cell;"><h5>CC:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-cc"></span><h5></div>
+                  </div>
+                  <div id="bcc-row" style="display: table-row;">
+                    <div style="display: table-cell;"><h5>BCC:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-bcc"></span><h5></div>
+                  </div>
+                </div>
+                <h4 id="email-subject"></h4>
+                <br>
+                <br>
+                <div id="email-body"></div>
+              </div>
               <hr>
-
+              <h4>Compose</h4>
               <form id="send-form">
                   <h5> To </h5>
-                  <input type="text" id="subject" name="to" style="height:2.125rem; width:25rem;">
+                  <input type="text" id="to" name="to" style="height:2.125rem; width:25rem;">
                   <h5> CC </h5>
                   <input type="text" id="cc" name="cc" style="height:2.125rem; width:25rem;">
                   <h5> BCC </h5>
