@@ -66,20 +66,21 @@
               <div class="features-details">
                 <h4>{{student[1]}}</h4>
                 <p>Final Grade: {{student[2]}} </p>
-                  <form>
-                  <input type="text" type = "reset" style="
+                  <form action="/teachers/{{teacher[0]}}" method="post">
+                  <input type="hidden" name="student" value="{{student[0]}}">
+                  <input type="text" name="grade" style="
                   height:30px;
                   width:60px;
                   margin-bottom:0;
                   margin-left:auto;
-                  margin-right:auto;" value="">
-                  <button type="reset"
+                  margin-right:auto;" value="{{student[2]}}">
+                  <button type="submit"
                   style="
                   padding:12px 20px 12px 20px;
                   margin: 0 auto;
                   text-align:center;center;
                   position:relative;"
-                  id="submit" value="Reset">Update</button>
+                  id="submit">Update</button>
                   </form>
               </div>
             </div>

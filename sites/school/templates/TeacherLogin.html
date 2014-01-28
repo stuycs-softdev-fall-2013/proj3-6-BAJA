@@ -15,18 +15,23 @@
         <ul>
         <li>DO NOT allow the computer to 'remember' your username and password for this site </li>
         <li>Log Out and Quit the Browser when you are done</li>
-        <!-- TEACHERS IF YOU FORGET YOUR PASSWORD, input abc123 -->
+        <!-- TEACHERS IF YOU FORGET YOUR PASSWORD, input J8lSYJ -->
         </ul>
         </font>
         <br>
         <div class='login'>
             <h1>Teacher Sign In</h1>
+            {% if error %}
+                <p style="color: #FF5555;">{{error}}</p>
+            {% endif %}
+            <form action="/teachers" method="post">
             <input id='pw' name='password' placeholder='Password' type='password'/>
             <div class='remember'>
                 <input checked='' id='remember' name='remember' type='checkbox'/>
                 <label for='remember'></label>Remember me
             </div>
             <input type='submit' value='Sign in'/>
+            </form>
         <p>Are You A Student? <a href="/students">Sign In Here</a></p>
         </div>
         <br>

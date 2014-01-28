@@ -296,7 +296,7 @@ class Database(object):
         conn.close()
         return tid
 
-    def enroll_student(self, student_id, teacher_id, grade):
+    def grade_student(self, student_id, teacher_id, grade):
         """Add a student to a course with a grade."""
         query = "SELECT 1 FROM grades WHERE g_student = ? AND g_teacher = ?"
         if self._execute(query, student_id, teacher_id):
@@ -322,3 +322,8 @@ class Database(object):
                    JOIN grades ON s_id = g_student WHERE g_teacher = ?
                    ORDER BY s_name ASC"""
         return self._execute(query, teacher_id)
+
+    def get_student(self, student_name):
+        """Return a tuple of (id, name, password)."""
+        query = "SELECT * FROM students WHERE s_name = ?"
+        return self._execute(query, student_name)[0]

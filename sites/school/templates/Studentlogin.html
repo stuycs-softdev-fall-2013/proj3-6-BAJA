@@ -20,6 +20,10 @@
         <br>
 		<div class='login'>
   			<h1>Sign In</h1>
+            {% if error %}
+                <p style="color: #FF5555;">{{error}}</p>
+            {% endif %}
+            <form action="/students" method="post">
   			<input name='username' placeholder='Username' type='text'/>
   			<input id='pw' name='password' placeholder='Password' type='password'/>
   			<div class='remember'>
@@ -27,6 +31,7 @@
     			<label for='remember'></label>Remember me
   			</div>
   			<input type='submit' value='Sign in'/>
+            </form>
         <p>Are You A Teacher? <a href="/teachers">Sign In Here</a></p>
 		</div>
         <br>

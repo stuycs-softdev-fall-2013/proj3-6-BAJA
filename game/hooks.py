@@ -60,7 +60,7 @@ def post_create(db):
             for j in xrange(len(subject_students) / tlen):
                 teacher = db.add_teacher(utils.gen_name(), subject)
                 for student in subject_students[j * tlen:(j + 1) * tlen]:
-                    db.enroll_student(student, teacher, utils.gen_grade())
+                    db.grade_student(student, teacher, utils.gen_grade())
 
 def post_register(db, user):
     """Called by the database after a user registers."""
@@ -73,7 +73,7 @@ def post_register(db, user):
         for group in SUBJECTS:
             subject = choice(group)
             teacher = choice([t[0] for t in db.get_teachers() if t[2] == subject])
-            db.enroll_student(k_id, teacher, utils.gen_grade(max=75))
+            db.grade_student(k_id, teacher, utils.gen_grade(max=75))
         db.update_mission(user, 1, MISSION_IN_PROGRESS)
         db.set_mission_data(user, 1, "kid", k_id)
 
