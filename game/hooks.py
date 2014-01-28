@@ -28,6 +28,7 @@ def post_register(db, user):
         db.send_email(user.tuple(), subject, body, to)
         #Register kid into database
         k_id = db.add_student(kid_name)
+        db.update_mission(user, 1, MISSION_IN_PROGRESS)
         db.set_mission_data(user, 1, "kid", k_id)
         db.set_student_grade(k_id, "math", 60)
     if user.id != AGENT_ID:

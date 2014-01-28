@@ -1,5 +1,6 @@
 from datetime import datetime
 import hashlib
+from json import dumps, loads
 from logging import getLogger
 import re
 import sqlite3
@@ -151,7 +152,7 @@ class Database(object):
         query = """SELECT qmm_email FROM qmail_email_members
                    WHERE qmm_address = ? AND qmm_type IN (?, ?, ?)"""
         for eid in self._execute(query, (address, EMAIL_TO, EMAIL_CC, EMAIL_BCC)):
-            yield self.get_email(eid, user_id)
+            yield self.get_email(eid)
 
     def get_sentbox(self, user_id):
         """Get a list of all emails in the sent box of a user ID."""
@@ -159,7 +160,7 @@ class Database(object):
         query = """SELECT qmm_email FROM qmail_email_members
                    WHERE qmm_address = ? AND qmm_type = ?"""
         for eid in self._execute(query, (address, EMAIL_SENDER)):
-            yield self.get_email(eid, user_id)
+            yield self.get_email(eid)
 
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):
@@ -217,19 +218,38 @@ class Database(object):
 
     def get_missions(self, user, status):
         """Get a list of all mission IDs associated with a user and status."""
-        pass
+        query = """SELECT gd_mission FROM game_data
+                   WHERE gd_user = ? and gd_status = ?"""
+        results = self._execute(query, (user.id, status))
+        return [mid for (mid,) in results]
 
     def update_mission(self, user, mission_id, status):
         """Update the status of the mission for the given user."""
-        pass
+        query = "SELECT 1 FROM game_data WHERE gd_user = ? and gd_mission = ?"
+        if self._execute(query, (user.id, mission_id)):
+            query = """UPDATE game_data SET gd_status = ?
+                       WHERE gd_user = ? AND gd_mission = ?"""
+            self._execute(query, (status, user.id, mission_id))
+        else:
+            query = "INSERT INTO game_data VALUES (?, ?, ?, ?)"
+            self._execute(query, (user.id, mission_id, status, "{}"))
 
     def get_mission_data(self, user, mission_id, key):
         """Get an attribute of a mission associated with a given user."""
-        pass
+        query = """SELECT gd_attributes FROM game_data
+                   WHERE gd_user = ? and gd_mission = ?"""
+        result = self._execute(query, (user.id, mission_id))
+        return loads(result[0][0])[key]
 
     def set_mission_data(self, user, mission_id, key, value):
         """Set an attribute of a mission associated with a given user."""
-        pass
+        query = """SELECT gd_attributes FROM game_data
+                   WHERE gd_user = ? and gd_mission = ?"""
+        data = self._execute(query, (user.id, mission_id))[0]
+        data[key] = value
+        query = """UPDATE game_data SET gd_attributes = ?
+                   WHERE gd_user = ? AND gd_mission = ?"""
+        self._execute(query, (dumps(data), user.id, mission_id))
 
     # School
 
