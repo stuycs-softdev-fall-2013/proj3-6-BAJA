@@ -30,7 +30,7 @@
     <div class = "large-3 medium-4 columns">
  <div class="button-bar">
   <ul class="button-group [radius round]">
-    <li><a href="#" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#to').focus()" style="background:#00AA55;">Compose</a></li>
+    <li><a href="#to" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#to').focus()" style="background:#00AA55;">Compose</a></li>
     <li><a href="/" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00AA66;">Inbox</a></li>
     <li><a href="/sent" style="background:#00AA77;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
   </ul>
@@ -72,6 +72,10 @@
                     <div style="display: table-cell;"><h5>BCC:</h5></div>
                     <div style="display: table-cell;"><h5><span id="email-bcc"></span><h5></div>
                   </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;"><h5>Time:</h5></div>
+                    <div style="display: table-cell;"><h5><span id="email-time"></span><h5></div>
+                  </div>
                 </div>
                 <h4 id="email-subject"></h4>
                 <br>
@@ -88,12 +92,11 @@
                   <h5> BCC </h5>
                   <input type="text" id="bcc" name="bcc" style="height:2.125rem; width:25rem;">
                   <h5> Subject </h5>
-                  <input type="text" name="subject" style="height:2.125rem; width:45rem;">
+                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:45rem;">
                   <h5> Body </h5>
                   <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
                   <ul class="button-group [radius round]">
                       <li><a href="#" style="float:left; margin-right:20px;" id="send_email" class="button [secondary alert success]">Send</a></li>
-
                   </ul>
               </form>
             </div>

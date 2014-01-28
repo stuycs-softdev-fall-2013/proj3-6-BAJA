@@ -54,8 +54,16 @@ var show_email = function(email_id) {
         elem.html(elem.html() + addrs[i][1] + " (<a href='#' id='email-send-to-" + n + "'>" + addrs[i][0] + "</a>)");
         $("#email-send-to-" + n).click(function(res) { return function() { $("#to").val(res) } }(addrs[i][0]) );
     }
+    var d = new Date(0);
+    d.setUTCSeconds(email["time"]);
+    var etime = moment(d).format('MMMM Do YYYY, h:mm:ss a');
+    $("#email-time").text(etime);
     $("#email-subject").text(email["subject"]);
     $("#email-body").html("<p>" + email["body"].split("\n").join("</p><p>") + "</p>");
+    if (email["subject"].indexOf("Re: ") == 0)
+        $("#subject").val(email["subject"]);
+    else
+        $("#subject").val("Re: " + email["subject"]);
 }
 
 //Assumes the ajax response is sorted by eid, going upward
@@ -75,7 +83,7 @@ var load_emails = function() {
 }
 
 var send_email = function() {
-    $.ajax('/send.json', {data: $('#send-form').serialize()});
+    $.post('/send.json', $('#send-form').serialize());
 }
 
 $("#email-data").hide();
