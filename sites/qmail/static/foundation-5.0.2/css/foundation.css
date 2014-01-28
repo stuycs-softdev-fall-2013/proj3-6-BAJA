@@ -4024,6 +4024,13 @@ ul.off-canvas-list {
     border-bottom: 1px solid #262626;
     background:#0A0F0F; }
 
+  ul.off-canvas-list li a:hover {
+    display: block;
+    padding: 0.66667rem;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid #262626;
+    background:#008cba; }
+
 .move-right > .inner-wrap {
   -webkit-transform: translate3d(250px, 0, 0);
   -moz-transform: translate3d(250px, 0, 0);
