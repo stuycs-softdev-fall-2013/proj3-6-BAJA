@@ -105,7 +105,7 @@ def post_send(db, email):
             # We're currently working on the mission we tried to solve
             if mission_successful(db, email, sender, mission_id):
                 db.update_mission(sender, mission_id, MISSION_SUCCESS)
-                reply = messages.load_response(messages.next_mission(mission_id), False)
+                reply = messages.load_response(messages.next_mission(mission_id), True)
             else:
                 reply = messages.load_response(mission_id, False)
         else:
