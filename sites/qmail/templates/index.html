@@ -25,11 +25,46 @@
       </section>
     </nav>
 
-    <div class = "large-2 medium-4 columns">
-    
+    <div class = "large-3 medium-4 columns">
+
+    <ul class="off-canvas-list">
+            <li><label>Emails</label></li>
+            <li><a href="#">Hari Seldon</a></li>
+            <li><a href="#">R. Daneel Olivaw</a></li>
+            <li><a href="#">The Mule</a></li>
+            <li><a href="#">Dors Venabili</a></li>
+            <li><a href="#">Yugo Amaryl</a></li>
+            <li><a href="#">The Mule</a></li>
+            <li><a href="#">Emperor Cleon I</a></li>
+            <li><a href="#">Gaal Dornick</a></li>
+            <li><a href="#">Bel Riose</a></li>
+            <li><a href="#">Salvor Hardin</a></li>
+            <li><a href="#">Bel Riose</a></li>
+            <li><a href="#">Testing</a></li>
+
+          </ul>
     </div>
 
-    <div class = "large-10 medium-4 columns">
+<!--     <div class = "large-1 medium-4 columns">
+    <ul class="off-canvas-list">
+            <li><label>Emails</label></li>
+            <li><a href="#">Hari Seldon</a></li>
+            <li><a href="#">R. Daneel Olivaw</a></li>
+            <li><a href="#">The Mule</a></li>
+            <li><a href="#">Dors Venabili</a></li>
+            <li><a href="#">Yugo Amaryl</a></li>
+            <li><a href="#">The Mule</a></li>
+            <li><a href="#">Emperor Cleon I</a></li>
+            <li><a href="#">Gaal Dornick</a></li>
+            <li><a href="#">Bel Riose</a></li>
+            <li><a href="#">Salvor Hardin</a></li>
+            <li><a href="#">Bel Riose</a></li>
+            <li><a href="#">Testing</a></li>
+
+          </ul>
+    </div> -->
+
+    <div class = "large-9 medium-4 columns">
 
       <div class="off-canvas-wrap docs-wrap">
       <div class="inner-wrap">
@@ -42,51 +77,24 @@
             <a class="right-off-canvas-toggle menu-icon"><span></span></a>
           </section>
         </nav>
-
-        <aside class="right-off-canvas-menu">
-          <ul class="off-canvas-list">
-            <li><label>Emails</label></li>
-            <li><a href="#">Hari Seldon</a></li>
-            <li><a href="#">R. Giskard Reventlov</a></li>
-            <li><a href="#">R. Daneel Olivaw</a></li>
-            <li><a href="#">The Mule</a></li>
-            <li><a href="#">Dors Venabili</a></li>
-            <li><a href="#">Yugo Amaryl</a></li>
-            <li><a href="#">The Mule</a></li>
-            <li><a href="#">Emperor Cleon I</a></li>
-            <li><a href="#">Gaal Dornick</a></li>
-            <li><a href="#">Bel Riose</a></li>
-            <li><a href="#">Salvor Hardin</a></li>
-            <li><a href="#">Bel Riose</a></li>
-          </ul>
-        </aside>
-
         <section class="main-section">
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 columns" style="padding-left:20px;">
               <br>
 
               <h5> To: {{user.first}} {{user.last}} </h5>
               <br> 
-              <p>INPUT TEXT</p>
+              <p>INPUT EMAIL TEXT HERE</p>
 
-              <p>INPUT TEXT</p>
               <h5> From: John Connolley </h5> 
               <hr>
-              <div class="large-10 columns">
-                  <textarea id="description" class="textarea" name="description" cols="70" rows="50"></textarea>
-              </div>
-              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
-              <ul class="button-group [radius round]">
-                <li><a href="#" style="float:left;" class="button [secondary alert success]">Send</a></li>
-              </ul>
               <form>
                   <h5> To: </h5>
-                  <input type="text" name="subject">
+                  <input type="text" name="subject" style="height:2.125rem; width:14.25rem;">
                   <h5> Subject: </h5>
-                  <input type="text" name="to">
+                  <input type="text" name="to" style="height:2.125rem; width:25.25rem;">
                   <h5> Body </h5>
-                  <textarea cols="50" rows="30" name="body"></textarea>
+                  <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
                   <ul class="button-group [radius round]">
                       <li><a href="#" style="float:left;" id="send_email" class="button [secondary alert success]">Send</a></li>
                   </ul>
