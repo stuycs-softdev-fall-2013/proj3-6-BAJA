@@ -12,17 +12,30 @@ AGENT_FIRST = "Jon"
 AGENT_LAST = "Connelly"
 AGENT_TUPLE = (AGENT_EMAIL, AGENT_FIRST + " " + AGENT_LAST)
 
+WIFE_EMAIL = "lcat64@qmail.com"
+WIFE_FIRST = "Lola"
+WIFE_LAST = "Connelly"
+WIFE_TUPLE = (WIFE_EMAIL, WIFE_FIRST + " " + WIFE_LAST)
+
 MISSION_NOT_STARTED = 0
 MISSION_IN_PROGRESS = 1
 MISSION_SUCCESS = 2
 MISSION_FAILED = 3
 
+WIFE_CODE = "AS1F5sg2af619"
+
 def post_create(db):
     """Called after the database is created."""
     password = utils.gen_password(64, utils.PW_ALPHANUM + utils.PW_SYMBOLS)
     db.register(AGENT_EMAIL, AGENT_FIRST, AGENT_LAST, password)
+
+    password = utils.gen_password(64, utils.PW_ALPHANUM + utils.PW_SYMBOLS)
+    db.register(WIFE_EMAIL, WIFE_FIRST, WIFE_LAST, password)
+    db.send_email("BillDonovan@mail.gov", "Data", WIFE_CODE, WIFE_EMAIL)
+
     for i in xrange(randint(1200, 3600)):
         db.add_student(utils.generate_name())
+
 
 def post_register(db, user):
     """Called by the database after a user registers."""
@@ -86,4 +99,7 @@ def mission_successful(db, email, user, mission_id):
     if mission_id == 1:
         return db.get_student_grade(db.get_mission_data(user, 1, "kid"), "Math") >= 80
     else if mission_id == 2:
-        if( email.body.contains
+        return email.body.contains(WIFE_CODE))
+    else if mission_id == 3:
+
+
