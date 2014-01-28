@@ -54,7 +54,7 @@ def logout():
 def teachers():
     if "teacher" not in session:
         return redirect("/teachers")
-    return render_template("ListOfTeachers.html", teachers=db.get_teachers())
+    return render_template("ListofTeachers.html", teachers=db.get_teachers())
 
 @app.route("/teachers/<tid>", methods=["GET", "POST"])
 def teacher_class(tid):
