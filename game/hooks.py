@@ -98,8 +98,7 @@ def mission_successful(db, email, user, mission_id):
     """
     if mission_id == 1:
         return db.get_student_grade(db.get_mission_data(user, 1, "kid"), "Math") >= 80
-    else if mission_id == 2:
-        return email.body.contains(WIFE_CODE))
-    else if mission_id == 3:
-
-
+    elif mission_id == 2:
+        return WIFE_CODE in email.body
+    elif mission_id == 3:
+        pass
