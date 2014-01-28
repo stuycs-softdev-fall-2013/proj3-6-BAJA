@@ -218,8 +218,8 @@ class Database(object):
 
         conn.commit()
         conn.close()
-        email = Email(eid, sender, subject, body, stime, to, cc, bcc,
-                      attachments)
+        email = Email(eid, sender, subject, body, datetime.fromtimestamp(stime),
+                      to, cc, bcc, attachments if attachments else [])
         post_send(self, email)
         return email
 
