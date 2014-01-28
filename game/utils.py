@@ -29,3 +29,9 @@ def gen_name(first=None, last=None):
     """Generate a random name, optionally using a first/last hint."""
     fake = Faker()
     return (first or fake.first_name()) + " " + (last or fake.last_name())
+
+def gen_grade():
+    """Generate a random student report card grade."""
+    if random.random() < 0.5:
+        return random.randint(0, 10) * 5 + 35
+    return random.randint(0, 10) + 90

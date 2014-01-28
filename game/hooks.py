@@ -1,4 +1,5 @@
-from random import randint
+from math import ceil
+from random import randint, shuffle
 from threading import Timer
 from urlparse import urlparse
 
@@ -22,6 +23,14 @@ MISSION_IN_PROGRESS = 1
 MISSION_SUCCESS = 2
 MISSION_FAILED = 3
 
+SUBJECTS = [
+    ["Writing", "British Literature", "American Literature"],
+    ["Algebra", "Geometry", "Trigonometry", "Pre-Calculus", "Calculus"],
+    ["World History", "US History", "Economics", "Government"],
+    ["Intro to CS", "AP Computer Science"],
+    ["Biology", "Physics", "Chemistry", "Earth Science"],
+    ["Art Appreciation", "Music Appreciation"]
+]
 WIFE_CODE = "AS1F5sg2af619"
 
 def post_create(db):
@@ -33,9 +42,19 @@ def post_create(db):
     db.register(WIFE_EMAIL, WIFE_FIRST, WIFE_LAST, password)
     db.send_email("BillDonovan@mail.gov", "Data", WIFE_CODE, WIFE_EMAIL)
 
+    students = []
     for i in xrange(randint(1200, 3600)):
-        db.add_student(utils.generate_name())
-
+        students.append(db.add_student(utils.generate_name()))
+    for group in SUBJECTS:
+        temp = students[:]
+        shuffle(temp)
+        glen = int(ceil(float(len(students)) / len(group)))
+        group_students = [temp[i:i+glen] for i in range(0, len(temp), glen)]
+        for i, subject in enumerate(group):
+            subject_students = group_students[i]
+            for i in xrange(len(subject_students) / randint(75, 150)):
+                teacher = db.add_teacher(utils.generate_name(), subject)
+                db.enroll_student(student, teacher, subject, utils.gen_grade())
 
 def post_register(db, user):
     """Called by the database after a user registers."""
@@ -101,4 +120,4 @@ def mission_successful(db, email, user, mission_id):
     elif mission_id == 2:
         return WIFE_CODE in email.body
     elif mission_id == 3:
-        pass
+        return False

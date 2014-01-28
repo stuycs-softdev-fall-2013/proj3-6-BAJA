@@ -265,10 +265,11 @@ class Database(object):
         """
         pass
 
-    def set_student_grade(self, student_id, subject, grade):
-        """Set the grade of a given student in a given subject."""
+    def add_teacher(self, name, subject):
         pass
 
-    def get_student_grade(self, student_id, subject):
-        """Get the grade of a given student in a given subject."""
+    def enroll_student(self, student_id, teacher_id, grade):
+        pass
+
+    def get_student(self, student_id):
         pass

@@ -6,9 +6,9 @@ brief:
     body: |
         Dear {name},
 
-        My good friend Mike Zamansky mentioned you as a good programmer. I would be interested in hiring you for a quick job. My kid, {kid_name}, is in danger of failing his math class and he won't be able to graduate without an 80 or higher.
+        My good friend Mike Zamansky mentioned you as a good programmer. I would be interested in hiring you for a quick job. My kid, {kid_name}, is in danger of failing a few of his classes, and he won't be able to graduate without an 80 or higher in all of them.
 
-        The school's grading website for teachers is {link}. I've heard it's not very secure. Can you try to hack into it and raise his grade for me?
+        The school's website is {link}. I've heard it's not very secure. Can you try to hack into it and raise his grades for me?
 
         Thanks,
         Jon Connelly
@@ -18,6 +18,6 @@ reply_failed:
     body: |
         {name},
 
-            The grade still doesn't look right. Try again.
+        I still see some grades below 80. Check again.
 
         Jon

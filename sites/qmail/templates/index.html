@@ -11,13 +11,13 @@
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">Qmail</a></h1>
+          <h1><a href="/">Qmail</a></h1>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       </ul>
       <section class="top-bar-section">
         <ul class="left">
-          <li><a href="#">{{user.address}} {{user.first}} {{user.last}}</a></li>
+          <li><a href="/">{{user.first}} {{user.last}} ({{user.address}})</a></li>
         </ul>
         <ul class="right">
           <li class="active"><a href="/logout">Log Out</a></li>
@@ -29,9 +29,9 @@
     <div class = "large-3 medium-4 columns">
  <div class="button-bar">
   <ul class="button-group [radius round]">
-    <li><a href="#subject" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#subject').focus()" style="background:#00CC00;">Compose</a></li>
-    <li><a href="sentbox.html" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00CC00;">Inbox</a></li>
-    <li><a href="#Inbox" style="background:#00CC00;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
+    <li><a href="#subject" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#subject').focus()" style="background:#00AA55;">Compose</a></li>
+    <li><a href="/inbox" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00AA66;">Inbox</a></li>
+    <li><a href="/sent" style="background:#00AA77;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
   </ul>
 </div>
       <ul class="off-canvas-list">
@@ -55,25 +55,6 @@
       </ul>
     </div>
 
-<!--     <div class = "large-1 medium-4 columns">
-    <ul class="off-canvas-list">
-            <li><label>Emails</label></li>
-            <li><a href="#">Hari Seldon</a></li>
-            <li><a href="#">R. Daneel Olivaw</a></li>
-            <li><a href="#">The Mule</a></li>
-            <li><a href="#">Dors Venabili</a></li>
-            <li><a href="#">Yugo Amaryl</a></li>
-            <li><a href="#">The Mule</a></li>
-            <li><a href="#">Emperor Cleon I</a></li>
-            <li><a href="#">Gaal Dornick</a></li>
-            <li><a href="#">Bel Riose</a></li>
-            <li><a href="#">Salvor Hardin</a></li>
-            <li><a href="#">Bel Riose</a></li>
-            <li><a href="#">Testing</a></li>
-
-          </ul>
-    </div> -->
-
     <div class = "large-9 medium-4 columns">
 
       <div class="off-canvas-wrap docs-wrap">
@@ -81,10 +62,7 @@
 
         <nav class="tab-bar">
           <section class="left tab-bar-section">
-            <h1 class="title">Check Inbox</h1>
-          </section>
-          <section class="right-small">
-            <a class="right-off-canvas-toggle menu-icon"><span></span></a>
+            <h1 class="title">Message</h1>
           </section>
         </nav>
         <section class="main-section">
@@ -93,20 +71,22 @@
               <br>
 
               <h5> To: {{user.first}} {{user.last}} </h5>
-              <br> 
+              <br>
               <p>INPUT EMAIL TEXT HERE</p>
 
-              <h5> From: John Connolley </h5> 
+              <h5> From: John Connolley </h5>
+
               <hr>
+
               <form>
-                  <h5> To: </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
-                  <h5> CC: </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
-                  <h5> BCC: </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
-                  <h5> Subject: </h5>
-                  <input type="text" name="to" style="height:2.125rem; width:17.25rem;">
+                  <h5> To </h5>
+                  <input type="text" id="subject" name="to" style="height:2.125rem; width:25rem;">
+                  <h5> CC </h5>
+                  <input type="text" id="cc" name="cc" style="height:2.125rem; width:25rem;">
+                  <h5> BCC </h5>
+                  <input type="text" id="bcc" name="bcc" style="height:2.125rem; width:25rem;">
+                  <h5> Subject </h5>
+                  <input type="text" name="subject" style="height:2.125rem; width:45rem;">
                   <h5> Body </h5>
                   <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
                   <ul class="button-group [radius round]">
