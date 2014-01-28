@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Students</title>
+
+    <link rel="stylesheet" href="/static/foundation-5.0.2/css/normalize.css">
+    <link rel="stylesheet" href="/static/foundation-5.0.2/css/foundation.css">
+    <link href="/static/style.css" rel="stylesheet">
+    <script src="/static/foundation-5.0.2/js/vendor/custom.modernizr.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper" >
+      <div class="fixed nav-custom" >
+        <nav class="top-bar row">
+          <ul class="title-area">
+            <!-- Title Area -->
+            <li class="name">
+              <h1>
+                <a href="#" class="logo">
+                  <i class="icon-magic"></i> Bryan Adams Junior Academy
+                </a>
+              </h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#" onclick="return false;">"><span>Menu</span></a></li>
+          </ul>
+
+          <section class="top-bar-section"  >
+            <!-- Right Nav Section -->
+            <ul class="right" id="top-nav">
+              <li class="divider"></li>
+              <li ><a href="/logout"  id="portfolio-link" class="nav-link">Log Out</a></li>
+              </ul>
+          </section>
+        </nav>
+    </div>
+    <hr>
+    <div class="row" id="home">
+      <ul class="example-orbit" data-orbit>
+        <li>
+          <img src="/static/TeacherA.jpg" style="height:476; width:1190;" alt="slide 1" />
+          <div class="orbit-caption"> “[Kids] don't remember what you try to teach them. They remember what you are.” - Jim Henson </div>
+        </li>
+        <li>
+          <img src="/static/TeacherB.jpg" style="height:476; width:1190;" alt="slide 2" />
+          <div class="orbit-caption"> “The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.” - William Arthur Ward </div>
+        </li>
+        <li>
+          <img src="/static/TeacherC.jpg" style="height:476; width:1190;" alt="slide 3" />
+          <div class="orbit-caption"> “Those who know, do. Those that understand, teach.” - Aristotle </div>
+        </li>
+      </ul>
+      <h1 style="text-align:center;"> Welcome, Student {{student.first}} {{student.last}}!<h1>
+      <section id="features">
+        {% for student in students %}
+          {% if (loop.index + 3) is divisibleby(4) %}
+            <div class="row">
+            <br>
+            <div class="small-6 large-3 columns text-center features-box">
+              <div class="features-img text-center">
+                <i class="icon-check-sign icon-circled icon-64"></i>
+              </div>
+              <div class="features-details">
+                <h4><a href="/teachers/{{teacher[0]}}">Grade: {{student[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
+                margin:0px;
+                padding:0px;
+                ">Teacher: {{student[2]}</a><h2>
+              </div>
+            </div>
+          {% elif loop.index is divisibleby(4) %}
+            <div class="small-6 large-3 columns text-center features-box">
+              <div class="features-img text-center">
+                <i class="icon-check-sign icon-circled icon-64"></i>
+              </div>
+              <div class="features-details">
+                <h4><a href="/teachers/{{teacher[0]}}">Grade: {{student[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
+                margin:0px;
+                padding:0px;
+                ">Teacher: {{student[2]}}</a><h2>
+              </div>
+            </div>
+          </div>
+          {% else %}
+            <div class="small-6 large-3 columns text-center features-box">
+              <div class="features-img text-center">
+                <i class="icon-check-sign icon-circled icon-64"></i>
+              </div>
+              <div class="features-details">
+                <h4><a href="/teachers/{{teacher[0]}}">Grade: {{student[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
+                margin:0px;
+                padding:0px;
+                ">Grade: {{student[2]}}</a><h2>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </section>
+
+        <script src="/static/foundation-5.0.2/js/jQuery.js"></script>
+        <script src="/static/foundation-5.0.2/js/foundation.min.js"></script>
+        <script type="text/javascript" src="jQuery.js"></script>
+    <script>
+      $(document).foundation({
+        orbit: {
+          animation: 'slide', // Sets the type of animation used for transitioning between slides, can also be 'fade'
+          timer_speed: 10000, // Sets the amount of time in milliseconds before transitioning a slide
+          pause_on_hover: true, // Pauses on the current slide while hovering
+          resume_on_mouseout: false, // If pause on hover is set to true, this setting resumes playback after mousing out of slide
+          animation_speed: 500, // Sets the amount of time in milliseconds the transition between slides will last
+          stack_on_small: false,
+          navigation_arrows: true,
+          slide_number: true,
+          slide_number_text: 'of',
+          container_class: 'orbit-container',
+          stack_on_small_class: 'orbit-stack-on-small',
+          next_class: 'orbit-next', // Class name given to the next button
+          prev_class: 'orbit-prev', // Class name given to the previous button
+          timer_container_class: 'orbit-timer', // Class name given to the timer
+          timer_paused_class: 'paused', // Class name given to the paused button
+          timer_progress_class: 'orbit-progress', // Class name given to the progress bar
+          slides_container_class: 'orbit-slides-container', // Class name given to the slides container
+          slide_selector: 'li', // Default is "*" which selects all chilren under the container
+          bullets_container_class: 'orbit-bullets',
+          bullets_active_class: 'active', // Class name given to the active bullet
+          slide_number_class: 'orbit-slide-number', // Class name given to the slide number
+          caption_class: 'orbit-caption', // Class name given to the caption
+          active_slide_class: 'active', // Class name given to the active slide
+          orbit_transition_class: 'orbit-transitioning',
+          bullets: true, // Does the slider have bullets visible?
+          circular: true, // Does the slider should go to the first slide after showing the last?
+          timer: true, // Does the slider have a timer visible?
+          variable_height: false, // Does the slider have variable height content?
+          swipe: true,
+      }
+    });
+
+    </script>
+    <br>
+<!--     <ul class="pagination" style="float:right;">
+      <li class="arrow unavailable"><a href="">&laquo;</a></li>
+      <li><a href="TeachersPage.html">1</a></li>
+      <li><a href="Students-SoftDev-1.html">2</a></li>
+      <li><a href="Students-SoftDev-2.html">3</a></li>
+      <li class="current"><a href="">4</a></li>
+      <li class="arrow"><a href="">&raquo;</a></li>
+    </ul>
+ -->    <hr>
+</body>
+</html>
