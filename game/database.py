@@ -119,7 +119,7 @@ class Database(object):
                    FROM qmail_users WHERE qmu_address = ?"""
         result = self._execute(query, address)
         if result:
-            uid, pwsalt, pwhash = result[0]
+            uid, pwhash, pwsalt = result[0]
             if hashlib.sha256(password + pwsalt).hexdigest() == pwhash:
                 return uid
 
