@@ -323,7 +323,18 @@ class Database(object):
                    ORDER BY s_name ASC"""
         return self._execute(query, teacher_id)
 
-    def get_student(self, student_name):
+    def get_student(self, student_id):
+        """Return a tuple of (id, name, password)."""
+        query = "SELECT * FROM students WHERE s_id = ?"
+        return self._execute(query, student_id)[0]
+
+    def get_student_by_name(self, student_name):
         """Return a tuple of (id, name, password)."""
         query = "SELECT * FROM students WHERE s_name = ?"
         return self._execute(query, student_name)[0]
+
+    def get_grades(self, student_id):
+        """Return a list of tuples of (subject, teacher_name, grade)."""
+        query = """SELECT t_subject, t_name, g_grade FROM grades
+                   JOIN teachers ON g_teacher = t_id WHERE g_student = ?"""
+        return self._execute(query, student_id)

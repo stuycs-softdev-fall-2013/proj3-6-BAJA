@@ -11,25 +11,29 @@ db = Database("database.db")
 def index():
     return render_template("BAJASchool.html")
 
-@app.route("/students")
+@app.route("/students", methods=["GET", "POST"])
 def student():
     if request.method == "POST":
         student_name = request.form.get("student")
         password = request.form.get("password")
         try:
-            student = db.get_student(student_name)
+            student = db.get_student_by_name(student_name)
         except IndexError:
             return render_template("StudentLogin.html", error="Incorrect login.")
         if student[2] == password:
             session["student"] = student[0]
-            return redirect("/student/grades")
+            return redirect("/students/grades")
+        else:
+            return render_template("StudentLogin.html", error="Incorrect login.")
     return render_template("StudentLogin.html")
 
 @app.route("/students/grades")
 def grades():
     if "student" not in session:
         return redirect("/students")
-    return render_template("StudentGrades", student=db.get_student(session["student"]))
+    student = db.get_student(session["student"])
+    return render_template("StudentGrades.html", student=student,
+                           grades=db.get_grades(student[0]))
 
 @app.route("/teachers", methods=["GET", "POST"])
 def teacher():
@@ -64,7 +68,8 @@ def teacher_class(tid):
             pass
         else:
             db.grade_student(student_id, tid, grade)
-    return render_template("TeacherClass.html", teacher=db.get_teacher(tid), students=db.get_students(tid))
+    return render_template("TeacherClass.html", teacher=db.get_teacher(tid),
+                           students=db.get_students(tid))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=get_port("school"), debug=True)

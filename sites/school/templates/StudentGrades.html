@@ -53,9 +53,9 @@
           <div class="orbit-caption"> “Those who know, do. Those that understand, teach.” - Aristotle </div>
         </li>
       </ul>
-      <h1 style="text-align:center;"> Welcome, Student {{student.first}} {{student.last}}!<h1>
+      <h1 style="text-align:center;"> Welcome, Student {{student[1]}}!<h1>
       <section id="features">
-        {% for student in students %}
+        {% for grade in grades %}
           {% if (loop.index + 3) is divisibleby(4) %}
             <div class="row">
             <br>
@@ -64,12 +64,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>Grade: {{student[loop.index]}}</h4>
+                <h4>Subject: {{grade[0]}}</h4>
                 <h2><span style="
                 font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Teacher: {{student[loop.index + 1]}</span><h2>
+                ">Teacher: {{grade[1]}}<br>Grade: {{grade[2]}}</span><h2>
               </div>
             </div>
           {% elif loop.index is divisibleby(4) %}
@@ -78,12 +78,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>Grade: {{student[loop.index]}}</h4>
+                <h4>Subject: {{grade[0]}}</h4>
                 <h2><span style="
                 font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Teacher: {{student[loop.index + 1]}}</span><h2>
+                ">Teacher: {{grade[1]}}<br>Grade: {{grade[2]}}</span><h2>
               </div>
             </div>
           </div>
@@ -93,12 +93,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>Grade: {{student[loop.index]}}</h4>
+                <h4>Subject: {{grade[0]}}</h4>
                 <h2><span style="
                 font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Grade: {{student[loop.index + 1]}}</span><h2>
+                ">Teacher: {{grade[1]}}<br>Grade: {{grade[2]}}</span><h2>
               </div>
             </div>
           {% endif %}
