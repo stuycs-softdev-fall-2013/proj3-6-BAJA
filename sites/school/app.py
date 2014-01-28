@@ -11,21 +11,24 @@ db = Database("database.db")
 def index():
     return render_template("BAJASchool.html")
 
-@app.route("/student")
+@app.route("/students")
 def student():
     return render_template("StudentLogin.html")
 
-@app.route("/teacher")
+@app.route("/teachers")
 def teacher():
     return render_template("TeacherLogin.html")
 
-@app.route("/teachers")
+# /logout
+
+@app.route("/teachers/list")
 def teachers():
     return render_template("ListOfTeachers.html", teachers=db.get_teachers())
 
-@app.route("/teacher/<tid>")
+@app.route("/teachers/<tid>")
 def teacher_class(tid):
-    return render_template("TeacherClass.html", students=db.get_students(tid))
+    return render_template("TeacherClass.html", subject=db.get_teacher(tid),
+                           students=db.get_students(tid))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=get_port("school"), debug=True)

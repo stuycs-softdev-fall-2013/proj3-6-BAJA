@@ -309,7 +309,12 @@ class Database(object):
 
     def get_teachers(self):
         """Return a list of tuples of (id, name, subject)."""
-        return self._execute("SELECT * FROM teachers")
+        return self._execute("SELECT * FROM teachers ORDER BY t_name ASC")
+
+    def get_teacher(self, teacher_id):
+        """Return a tuple of (id, name, subject)."""
+        query = "SELECT * FROM teachers WHERE t_id = ?"
+        return self._execute(query, teacher_id)[0]
 
     def get_students(self, teacher_id):
         """Return a list of tuples of (id, name, grade)."""

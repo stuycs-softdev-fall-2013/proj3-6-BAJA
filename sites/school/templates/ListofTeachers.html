@@ -32,7 +32,7 @@
             <!-- Right Nav Section -->
             <ul class="right" id="top-nav">
               <li class="divider"></li>
-              <li ><a href="/teacher"  id="portfolio-link" class="nav-link">Log Out</a></li>
+              <li ><a href="/logout"  id="portfolio-link" class="nav-link">Log Out</a></li>
               </ul>
           </section>
         </nav>
@@ -64,12 +64,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>{{teacher[1]}}</h4>
-                <h2><a href="/teacher/{{teacher[0]}}" style="
-                font-size:20px;
+                <h4><a href="/teachers/{{teacher[0]}}">{{teacher[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Students</a><h2>
+                ">{{teacher[2]}}</a><h2>
               </div>
             </div>
           {% elif loop.index is divisibleby(4) %}
@@ -78,12 +78,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>{{teacher[1]}}</h4>
-                <h2><a href="/teacher/{{teacher[0]}}" style="
-                font-size:20px;
+                <h4><a href="/teachers/{{teacher[0]}}">{{teacher[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Students</a><h2>
+                ">{{teacher[2]}}</a><h2>
               </div>
             </div>
           </div>
@@ -93,12 +93,12 @@
                 <i class="icon-check-sign icon-circled icon-64"></i>
               </div>
               <div class="features-details">
-                <h4>{{teacher[1]}}</h4>
-                <h2><a href="/teacher/{{teacher[0]}}" style="
-                font-size:20px;
+                <h4><a href="/teachers/{{teacher[0]}}">{{teacher[1]}}</a></h4>
+                <h2><span style="
+                font-size:16px;
                 margin:0px;
                 padding:0px;
-                ">Students</a><h2>
+                ">{{teacher[2]}}</a><h2>
               </div>
             </div>
           {% endif %}
