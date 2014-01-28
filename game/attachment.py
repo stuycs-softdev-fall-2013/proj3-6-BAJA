@@ -1,6 +1,12 @@
 __all__ = ["Attachment"]
 
 class Attachment(object):
+    """
+    self.id: attachment database ID ref
+    self.filename: download target file name string
+    self.content: content string
+    """
+
     def __init__(self, aid, filename, content):
         self.id = aid
         self.filename = filename
