@@ -100,6 +100,10 @@ strong {
     font-size: 18px;
     direction: ltr;
 }
+.email-domain {
+    font-size: 18px;
+    margin: 0;
+}
 .control-group .controls .input-append .btn {
     border-color: rgb(192, 192, 192) rgb(217, 217, 217) rgb(217, 217, 217);
     background-color: #009999;
