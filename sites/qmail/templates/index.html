@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qmail</title>
-    <link rel="stylesheet" href="/static/foundation-5.0.2/css/foundation.css" />
-    <script src="/static/foundation-5.0.2/js/modernizr.js"></script>
+    <link rel="stylesheet" href="../static/foundation-5.0.2/css/foundation.css" />
+    <script src="../static/foundation-5.0.2/js/modernizr.js"></script>
   </head>
   <body>
     <nav class="top-bar" data-topbar>
@@ -80,6 +80,17 @@
               <ul class="button-group [radius round]">
                 <li><a href="#" style="float:left;" class="button [secondary alert success]">Send</a></li>
               </ul>
+              <form>
+                  <h5> To: </h5>
+                  <input type="text" name="subject">
+                  <h5> Subject: </h5>
+                  <input type="text" name="to">
+                  <h5> Body </h5>
+                  <textarea cols="50" rows="30" name="body"></textarea>
+                  <ul class="button-group [radius round]">
+                      <li><a href="#" style="float:left;" id="send_email" class="button [secondary alert success]">Send</a></li>
+                  </ul>
+              </form>
             </div>
           </div>
         </section>

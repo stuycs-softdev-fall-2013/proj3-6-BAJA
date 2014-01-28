@@ -35,3 +35,5 @@ var send_email = function() {
     })
 }
 load_emails();
+
+document.getElementById("send_email").onclick = send_email;
