@@ -56,6 +56,16 @@ def register():
     return render_template("register.html", error=data)
 
 # API routes
+@app.route("/get")
+def get():
+    if not session.get("user"):
+        return redirect("/login")
+
+    emails = db.get_emails(session["user"])
+    resp = make_response(dumps(emails.serialize()))
+    resp.mimetype = "application/json"
+    return resp
+
 
 @app.route("/get/{eid}.json")
 def email(eid):
