@@ -47,12 +47,15 @@ def register():
     if request.method == "GET":
         return render_template("register.html")
 
-    address = request.form.get("address")
+    address = request.form.get("email")
     first = request.form.get("first")
     last = request.form.get("last")
     password = request.form.get("password")
+    confirm = request.form.get("confirm")
     if not address or not first or not last or not password:
         return render_template("register.html", error="All fields are required.")
+    if password != confirm:
+        return render_template("register.html", error="Passwords must match.")
 
     result, data = db.register(address + DOMAIN, first, last, password)
     if result:

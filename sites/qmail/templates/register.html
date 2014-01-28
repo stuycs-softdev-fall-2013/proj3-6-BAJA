@@ -34,16 +34,27 @@
     {% endif %}
     <form action="" method="post">
       <div class="email-div">
-        <label for="Email"><strong class="email-label">Choose your Email</strong></label>
-        <input spellcheck="false" name="Email" id="Email" value="" type="email">
+        <label for="email"><strong class="email-label">Choose your Email</strong></label>
+        <input spellcheck="false" name="email" id="email" type="text">
+      </div>
+      <div class="name-div">
+        <table>
+        <tr>
+        <td>
+        <label for="first"><strong class="first-label">First Name</strong></label>
+        <input spellcheck="false" name="first" id="first" type="text">
+        </td><td>
+        <label for="last"><strong class="last-label">Last Name</strong></label>
+        <input spellcheck="false" name="last" id="last" type="text">
+        </td></tr></table>
       </div>
       <div class="passwd-div">
-        <label for="Passwd"><strong class="passwd-label">Create a Password</strong></label>
-        <input name="Passwd" id="Passwd" type="password">
+        <label for="password"><strong class="passwd-label">Create a Password</strong></label>
+        <input name="password" id="password" type="password">
     </div>
       <div class="passwd-div">
-          <label for="Passwd"><strong class="passwd-label">Confirm Password</strong></label>
-          <input name="Passwd" id="Passwd" type="password">
+          <label for="confirm"><strong class="passwd-label">Confirm Password</strong></label>
+          <input name="confirm" id="confirm" type="password">
       </div>
 
 <!-- Commenting out recaptcha stuff because I don't really understand what's going on here. -Ben -->
@@ -104,7 +115,7 @@
         <input  value="yes" checked="checked" type="checkbox">
         <strong class="remember-label">I agree to the Qmail Terms of Service and Privacy Policy</strong> </label>
     </form>
-    <p>Have an account? <a href="/login/html">Login Here!</a></p>
+    <p>Have an account? <a href="/login">Login Here!</a></p>
     </div>
 
   </body>

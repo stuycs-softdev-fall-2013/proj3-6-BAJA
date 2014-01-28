@@ -129,27 +129,31 @@ class Database(object):
         Returns a 2-tuple: a boolean indicating success or failure, and either
         the created user's ID upon success or an error string on failure.
         """
-        with self._co/nect() as conn:
-            conn.execute("BEGIN EXCLUSIVE TRANSACTION")
+        if not re.match(r"[^@]+@[^@]+\.[^@]+$", address):
+            return (False, "Address is invalid.")
 
-            if not re.match(r"[^@]+@[^@]+\.[^@]+$", address):
-                return (False, "Address is invalid.")
+        conn = self._connect()
+        conn.isolation_level = "EXCLUSIVE"
+        conn.execute("BEGIN EXCLUSIVE")
 
-            query = "SELECT 1 FROM qmail_users WHERE qmu_address = ?"
-            res = conn.execute(query)
-            if res.fetchall():
-                return (False, "Address taken.")
+        query = "SELECT 1 FROM qmail_users WHERE qmu_address = ?"
+        res = conn.execute(query, (address,))
+        if res.fetchall():
+            conn.commit()
+            conn.close()
+            return (False, "Address taken.")
 
-            res = conn.execute("SELECT MAX(qmu_id) FROM qmail_users")
-            maxid = res.fetchone()[0]
-            uid = maxid + 1 if maxid else 1
-            pwsalt = utils.gen_password(64, utils.PW_ALPHANUM)
-            pwhash = hashlib.sha256(password + pwsalt).hexdigest()
+        res = conn.execute("SELECT MAX(qmu_id) FROM qmail_users")
+        maxid = res.fetchone()[0]
+        uid = maxid + 1 if maxid else 1
+        pwsalt = utils.gen_password(64, utils.PW_ALPHANUM)
+        pwhash = hashlib.sha256(password + pwsalt).hexdigest()
 
-            query = "INSERT INTO qmail_users VALUES (?, ?, ?, ?, ?)"
-            conn.execute(query, (uid, address, first, last, pwhash, pwsalt))
-            conn.execute("END TRANSACTION")
-            return (True, uid)
+        query = "INSERT INTO qmail_users VALUES (?, ?, ?, ?, ?, ?)"
+        conn.execute(query, (uid, address, first, last, pwhash, pwsalt))
+        conn.commit()
+        conn.close()
+        return (True, uid)
 
     def get_inbox(self, user_id):
         """Get a list of all emails in the inbox of a user ID."""
@@ -178,43 +182,45 @@ class Database(object):
 
         Return an Email object on success or raise an exception on failure.
         """
-        with self._co/nect() as conn:
-            conn.execute("BEGIN EXCLUSIVE TRANSACTION")
+        conn = self._connect()
+        conn.isolation_level = "EXCLUSIVE"
+        conn.execute("BEGIN EXCLUSIVE")
 
-            res = conn.execute("SELECT MAX(qme_id) FROM qmail_emails")
-            maxid = res.fetchone()[0]
-            eid = maxid + 1 if maxid else 1
-            res = conn.execute("SELECT MAX(qmm_id) FROM qmail_email_members")
-            maxid = res.fetchone()[0]
-            mid = maxid + 1 if maxid else 1
-            res = conn.execute("SELECT MAX(qma_id) FROM qmail_attachments")
-            maxid = res.fetchone()[0]
-            aid = maxid + 1 if maxid else 1
-            stime = time.mktime(time.localtime())
+        res = conn.execute("SELECT MAX(qme_id) FROM qmail_emails")
+        maxid = res.fetchone()[0]
+        eid = maxid + 1 if maxid else 1
+        res = conn.execute("SELECT MAX(qmm_id) FROM qmail_email_members")
+        maxid = res.fetchone()[0]
+        mid = maxid + 1 if maxid else 1
+        res = conn.execute("SELECT MAX(qma_id) FROM qmail_attachments")
+        maxid = res.fetchone()[0]
+        aid = maxid + 1 if maxid else 1
+        stime = time.mktime(time.localtime())
 
-            query1 = "INSERT INTO qmail_emails VALUES (?, ?, ?, ?)"
-            query2 = "INSERT INTO qmail_email_members VALUES (?, ?, ?, ?, ?)"
-            query3 = "INSERT INTO qmail_attachments VALUES (?, ?, ?, ?)"
-            conn.execute(query1, (eid, subject, body, stime))
-            conn.execute(query2, (mid, eid, EMAIL_SENDER, sender[0], sender[1]))
+        query1 = "INSERT INTO qmail_emails VALUES (?, ?, ?, ?)"
+        query2 = "INSERT INTO qmail_email_members VALUES (?, ?, ?, ?, ?)"
+        query3 = "INSERT INTO qmail_attachments VALUES (?, ?, ?, ?)"
+        conn.execute(query1, (eid, subject, body, stime))
+        conn.execute(query2, (mid, eid, EMAIL_SENDER, sender[0], sender[1]))
+        mid += 1
+        for addr, name in to:
+            conn.execute(query2, (mid, eid, EMAIL_TO, addr, name))
             mid += 1
-            for addr, name in to:
-                conn.execute(query2, (mid, eid, EMAIL_TO, addr, name))
+        if cc:
+            for addr, name in cc:
+                conn.execute(query2, (mid, eid, EMAIL_CC, addr, name))
                 mid += 1
-            if cc:
-                for addr, name in cc:
-                    conn.execute(query2, (mid, eid, EMAIL_CC, addr, name))
-                    mid += 1
-            if bcc:
-                for addr, name in bcc:
-                    conn.execute(query2, (mid, eid, EMAIL_BCC, addr, name))
-                    mid += 1
-            if attachments:
-                for att in attachments:
-                    conn.execute(query3, (aid, eid, att.filename, att.content))
-                    aid += 1
-            conn.execute("END TRANSACTION")
+        if bcc:
+            for addr, name in bcc:
+                conn.execute(query2, (mid, eid, EMAIL_BCC, addr, name))
+                mid += 1
+        if attachments:
+            for att in attachments:
+                conn.execute(query3, (aid, eid, att.filename, att.content))
+                aid += 1
 
+        conn.commit()
+        conn.close()
         return Email(eid, sender, subject, body, to, cc, bcc, attachments)
 
     # Missions
