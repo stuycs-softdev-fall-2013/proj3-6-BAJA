@@ -1,0 +1,159 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="../static/home.css">
+	<link rel="stylesheet" href="../static/foundation-5.0.2/css/foundation.css" />
+    <script src="../static/foundation-5.0.2/js/modernizr.js"></script>
+</head>
+
+<body>
+	<nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="Login.html">Login Here</a></h1>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="active"><a href="Register.html">Register</a></li>
+        </ul>
+      </section>
+    </nav>
+    <h1 style="text-align:center">We Encrypt Passwords</h1>
+	<div id="lock">
+		<div id="lock_inset">
+			<div id="lines"></div>
+			<div id="number_wrapper">
+				<div class="number">
+					<div class="number_select" onSelectStart="return false">
+						<span class="top_number" id="lock_number">9</span>
+						<span class="">0</span>
+						<span class="bottom_number">1</span>
+						<span class="bottom_number">2</span>
+						<span class="">3</span>
+						<span class="">4</span>
+						<span class="">5</span>
+						<span class="">6</span>
+						<span class="">7</span>
+						<span class="">8</span>
+						<span class="">9</span>
+						<span class="">0</span>
+					</div>
+				</div>
+				<div class="number">
+					<div class="number_select" onSelectStart="return false">
+						<span class="top_number">9</span>
+						<span class="">0</span>
+						<span class="bottom_number">1</span>
+						<span class="bottom_number">2</span>
+						<span class="">3</span>
+						<span class="">4</span>
+						<span class="">5</span>
+						<span class="">6</span>
+						<span class="">7</span>
+						<span class="">8</span>
+						<span class="">9</span>
+						<span class="">0</span>
+					</div>
+				</div>
+				<div class="number">
+					<div class="number_select" onSelectStart="return false">
+						<span class="top_number">9</span>
+						<span class="">0</span>
+						<span class="bottom_number">1</span>
+						<span class="bottom_number">2</span>
+						<span class="">3</span>
+						<span class="">4</span>
+						<span class="">5</span>
+						<span class="">6</span>
+						<span class="">7</span>
+						<span class="">8</span>
+						<span class="">9</span>
+						<span class="">0</span>
+					</div>
+				</div>
+				<div class="number">
+					<div class="number_select" onSelectStart="return false">
+						<span class="top_number">9</span>
+						<span class="">0</span>
+						<span class="bottom_number">1</span>
+						<span class="bottom_number">2</span>
+						<span class="">3</span>
+						<span class="">4</span>
+						<span class="">5</span>
+						<span class="">6</span>
+						<span class="">7</span>
+						<span class="">8</span>
+						<span class="">9</span>
+						<span class="">0</span>
+					</div>
+				</div>
+				<div class="number">
+					<div class="number_select" onSelectStart="return false">
+						<span class="top_number">9</span>
+						<span class="">0</span>
+						<span class="bottom_number">1</span>
+						<span class="bottom_number">2</span>
+						<span class="">3</span>
+						<span class="">4</span>
+						<span class="">5</span>
+						<span class="">6</span>
+						<span class="">7</span>
+						<span class="">8</span>
+						<span class="">9</span>
+						<span class="">0</span>
+					</div>
+				</div>            
+				<div id="shadow"></div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+	var number = document.getElementsByClassName("number"),
+	numberSelect = document.getElementsByClassName("number_select");
+
+	for(i = 0; i < number.length; i++) {
+		numberSelect[i].addEventListener("click", fnRotateNum, false);
+		numberSelect[i].style.marginTop = "0px";
+		console.log(numberSelect[i]);
+	}
+
+	function fnRotateNum() {
+		spans = this.getElementsByTagName("span");
+		if(parseInt(this.style.marginTop, 10) <= -612 + 153) {
+			this.style.marginTop = "0px";
+			for(i = 0; i < spans.length; i++) {
+				if(spans[i].classList.contains("top_number")) {
+					spans[i].classList.remove("top_number");
+				}
+				if(spans[i].classList.contains("bottom_number")) {
+					spans[i].classList.remove("bottom_number");;
+				}
+			}
+			spans[0].classList.add("top_number");
+			spans[2].classList.add("bottom_number");
+		}
+		else {
+			this.style.marginTop = parseInt(this.style.marginTop, 10) - 51 + "px";
+			for(i = 0; i < spans.length; i++) {
+				if(spans[i].classList.contains("top_number")) {
+					spans[i].classList.remove("top_number");
+					console.log(spans[i+2]);
+					spans[i+1].classList.add("top_number");
+					i++;
+				}
+				if(spans[i].classList.contains("bottom_number")) {
+					spans[i].classList.remove("bottom_number");
+					spans[i+1].classList.add("bottom_number");
+					i += 1;
+				}
+			}
+		}
+		console.log(this.getElementsByTagName("div"));
+	}
+
+	</script>
+</body>
+
+</head>
