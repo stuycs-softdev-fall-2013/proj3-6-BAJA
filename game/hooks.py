@@ -85,3 +85,5 @@ def mission_successful(db, email, user, mission_id):
     """
     if mission_id == 1:
         return db.get_student_grade(db.get_mission_data(user, 1, "kid"), "Math") >= 80
+    else if mission_id == 2:
+        if( email.body.contains

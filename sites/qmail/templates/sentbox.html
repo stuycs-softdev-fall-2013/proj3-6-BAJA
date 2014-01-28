@@ -1,0 +1,95 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qmail</title>
+    <link rel="stylesheet" href="/static/foundation-5.0.2/css/foundation.css" />
+    <script src="/static/foundation-5.0.2/js/modernizr.js"></script>
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">Qmail</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="left">
+          <li><a href="http://www.stuycs.org/">StuyCS</a></li>
+        </ul>
+        <ul class="right">
+          <li class="active"><a href="/logout">{{user.address}} {{user.first}} &nbsp &nbsp &nbsp Log Out</a></li>
+        </ul>
+      </section>
+    </nav>
+
+    <div class = "large-2 medium-4 columns">
+    
+    </div>
+
+    <div class = "large-10 medium-4 columns">
+
+      <div class="off-canvas-wrap docs-wrap">
+      <div class="inner-wrap">
+
+        <nav class="tab-bar">
+          <section class="left tab-bar-section">
+            <h1 class="title">Check Sent Mail</h1>
+          </section>
+          <section class="right-small">
+            <a class="right-off-canvas-toggle menu-icon"><span></span></a>
+          </section>
+        </nav>
+
+        <aside class="right-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label>Emails</label></li>
+            <li><a href="#">Hari Seldon</a></li>
+            <li><a href="#">R. Giskard Reventlov</a></li>
+            <li><a href="#">R. Daneel Olivaw</a></li>
+            <li><a href="#">The Mule</a></li>
+            <li><a href="#">Dors Venabili</a></li>
+            <li><a href="#">Yugo Amaryl</a></li>
+            <li><a href="#">The Mule</a></li>
+            <li><a href="#">Emperor Cleon I</a></li>
+            <li><a href="#">Gaal Dornick</a></li>
+            <li><a href="#">Bel Riose</a></li>
+            <li><a href="#">Salvor Hardin</a></li>
+            <li><a href="#">Bel Riose</a></li>
+          </ul>
+        </aside>
+
+        <section class="main-section">
+          <div class="row">
+            <div class="large-12 columns">
+              <br>
+
+              <h5> To: {{user.first}} {{user.last}} </h5>
+              <br> 
+              <p>INPUT TEXT</p>
+
+              <p>INPUT TEXT</p>
+              <h5> From: John Connolley </h5> 
+              <hr>
+              <div class="large-10 columns">
+                  <textarea id="description" class="textarea" name="description" cols="70" rows="50"></textarea>
+              </div>
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+              <ul class="button-group [radius round]">
+                <li><a href="#" style="float:left;" class="button [secondary alert success]">Send</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <a class="exit-off-canvas"></a>
+
+      </div>
+    </div>
+
+    <script src="/static/foundation-5.0.2/js/jquery.js"></script>
+    <script src="/static/foundation-5.0.2/js/foundation.min.js"></script>
+    <script source="/static/sentbox_script.js"></script>
+  </body>
+</html>

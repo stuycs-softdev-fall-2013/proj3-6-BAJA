@@ -14,8 +14,8 @@ var display_email = function(email) {
 //Assumes the ajax response is sorted by eid, going upward
 
 var load_emails = function() {
-    $.ajax({'inbox.json', 
-            function(r) {
+    $.ajax({url:'/sentbox.json',
+            success: function(r) {
                 for(int i = 0; i < r['emails'].length; i++) {
                     if(most_recent_email < r['emails'][i]['eid']) {
                         display_email(r['emails'][i]);
@@ -27,11 +27,4 @@ var load_emails = function() {
     setTimeout(load_emails, 5000);
 }
 
-var send_email = function() {
-    $.ajax({'send.json',  $.( "#send_data" ).serialize()
-            function(r) {
-                return;
-            }
-    })
-}
 load_emails();
