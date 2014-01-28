@@ -1,4 +1,12 @@
-var most_recent_email = 0;
+var most_recent_email = ;
+var uid;
+var get_uid = function() {
+    $.ajax({url:'uid',
+            success: function(r) {
+                uid = r['uid'];
+            }
+    });
+}
 var display_email = function(email) {
      var emails = document.getElementById('emails');
      var e_block = document.createElement('div');
@@ -11,7 +19,7 @@ var display_email = function(email) {
 }
 
 //Assumes the ajax response is sorted by eid, going upward
-var load_emails = function(uid) {
+var load_emails = function() {
     $.ajax({url:'get',
             success: function(r) {
                 for(int i = 0; i < r['emails'].length; i++) {
@@ -24,3 +32,6 @@ var load_emails = function(uid) {
     })
     setTimeout(load_emails, 5000);
 }
+
+get_uid();
+load_emails();

@@ -56,7 +56,7 @@ def register():
     return render_template("register.html", error=data)
 
 # API routes
-@app.route("/get")
+@app.route("/get.json", methods=["POST"])
 def get():
     if not session.get("user"):
         return redirect("/login")
@@ -74,6 +74,16 @@ def email(eid):
 
     email = db.get_email(eid, session["user"])
     resp = make_response(dumps(email.serialize()))
+    resp.mimetype = "application/json"
+    return resp
+
+@app.route("/uid.json", methods=["POST"])
+def uid():
+    if not session.get("user"):
+        return redirect("/login")
+    resp = {}
+    r['uid' = session.get("user")
+    resp = make_response(dumps(r))
     resp.mimetype = "application/json"
     return resp
 
