@@ -17,32 +17,16 @@
       </ul>
       <section class="top-bar-section">
         <ul class="left">
-          <li><a href="#">StuyCS</a></li>
+          <li><a href="http://www.stuycs.org/">StuyCS</a></li>
         </ul>
         <ul class="right">
-          <li class="active"><a href="/logout">Log Out</a></li>
+          <li class="active"><a href="/logout">{{user.address}} {{user.first}} &nbsp &nbsp &nbsp Log Out</a></li>
         </ul>
       </section>
     </nav>
 
     <div class = "large-2 medium-4 columns">
-      <img src="/static/img/logo.jpg">
-      <p> Qmail, the future Gmail could never hold onto. Interactive scrolling through emails with the triple bar icon.
-      It even features a cooler logo. Go penguins. </p>
-      <a href="#" class="button split">Service <span data-dropdown="drop"></span></a><br>
-      <ul id="drop" class="f-dropdown" data-dropdown-content>
-        <li><a href="#">Compose</a></li>
-        <li><a href="#">Drafts</a></li>
-        <li><a href="#">Trashbin</a></li>
-      </ul>
-      <div class="large-12 columns">
-        <input style="height:2.3125rem" type="text" placeholder="Search People...">
-      </div>
-      <p> So switch today from Gmail to Qmail! </p>
-      <div class="footer">
-        <p style="margin:0 0 0 0px;">One Qmail Account for everything Qoogle</p>
-        <img src="/static/img/logostrip.jpeg" width="210" height="25" alt="">
-      </div>
+    
     </div>
 
     <div class = "large-10 medium-4 columns">
@@ -81,21 +65,20 @@
           <div class="row">
             <div class="large-12 columns">
               <br>
-              <img src = "/static/img/AnonymousIcon.jpg" width="75" height="75">
 
-              <h4>&nbsp &nbsp The Psychohistorians</h4>
-              <h5> ____________________________________________ 00/00/00 00:00:00 PM </h5>
-              <br> <br> <br> <br>
-              <p>Set in the year 0 F.E. ("Foundation Era"), The Psychohistorians opens on Trantor, the capital of the 12,000-year-old Galactic Empire. Though the empire appears stable and powerful, it is slowly decaying in ways that parallel the decline of the Western Roman Empire. Hari Seldon, a mathematician and psychologist, has developed psychohistory, a new field of science and psychology that equates all possibilities in large societies to mathematics, allowing for the prediction of future events.</p>
+              <h5> To: {{user.first}} {{user.last}} </h5>
+              <br> 
+              <p>INPUT TEXT</p>
 
-              <p>Using psychohistory, Seldon has discovered the declining nature of the Empire, angering the aristocratic members of the Committee of Public Safety, the de facto rulers of the Empire. The Committee considers Seldon's views and statements treasonous, and he is arrested along with young mathematician Gaal Dornick, who has arrived on Trantor to meet Seldon. Seldon is tried by the Committee and defends his beliefs, explaining his theories and predictions, including his belief that the Empire will collapse in 500 years and enter a 30,000-year dark age, to the Committee's members.</p>
-
-              <img src = "/static/img/UserIcon.png" width="75" height="75">
+              <p>INPUT TEXT</p>
+              <h5> From: John Connolley </h5> 
+              <hr>
               <div class="large-10 columns">
                   <textarea id="description" class="textarea" name="description" cols="70" rows="50"></textarea>
               </div>
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
               <ul class="button-group [radius round]">
-                <li><a href="#" style="float:left; left:9.4%;" class="button [secondary alert success]">Send</a></li>
+                <li><a href="#" style="float:left;" class="button [secondary alert success]">Send</a></li>
               </ul>
             </div>
           </div>
@@ -107,9 +90,6 @@
 
     <script src="/static/foundation-5.0.2/js/jquery.js"></script>
     <script src="/static/foundation-5.0.2/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
     <script source="/static/script.js"></script>
   </body>
 </html>
