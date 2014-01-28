@@ -74,13 +74,15 @@ def logout():
 def inbox():
     if not session.get("user"):
         return do_api_reply({"error": "You are not logged in."})
-    return do_api_reply(db.get_inbox(session["user"]))
+    gen = db.get_inbox(session["user"])
+    return do_api_reply([email.serialize() for email in gen])
 
 @app.route("/sentbox.json")
 def sentbox():
     if not session.get("user"):
         return do_api_reply({"error": "You are not logged in."})
-    return do_api_reply(db.get_sentbox(session["user"]))
+    gen = db.get_sentbox(session["user"])
+    return do_api_reply([email.serialize() for email in gen])
 
 @app.route("/send.json", methods=["POST"])
 def send():
@@ -107,7 +109,7 @@ def send():
         return do_api_reply({"error": "Missing required field(s)."})
 
     email = db.send_email(sender.tuple(), subject, body, to, cc, bcc, attachments)
-    return do_api_reply(email)
+    return do_api_reply(email.serialize())
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=get_port("qmail"), debug=True)

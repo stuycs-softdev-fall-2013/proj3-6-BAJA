@@ -30,7 +30,7 @@
  <div class="button-bar">
   <ul class="button-group [radius round]">
     <li><a href="#subject" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#subject').focus()" style="background:#00AA55;">Compose</a></li>
-    <li><a href="/inbox" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00AA66;">Inbox</a></li>
+    <li><a href="/" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00AA66;">Inbox</a></li>
     <li><a href="/sent" style="background:#00AA77;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
   </ul>
 </div>
@@ -62,7 +62,7 @@
 
               <hr>
 
-              <form>
+              <form id="send-form">
                   <h5> To </h5>
                   <input type="text" id="subject" name="to" style="height:2.125rem; width:25rem;">
                   <h5> CC </h5>

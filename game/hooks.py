@@ -1,5 +1,5 @@
 from math import ceil
-from random import randint, shuffle
+from random import choice, randint, shuffle
 from threading import Timer
 from urlparse import urlparse
 
@@ -13,6 +13,7 @@ AGENT_FIRST = "Jon"
 AGENT_LAST = "Connelly"
 AGENT_TUPLE = (AGENT_EMAIL, AGENT_FIRST + " " + AGENT_LAST)
 
+WIFE_ID = 2
 WIFE_EMAIL = "lcat64@qmail.com"
 WIFE_FIRST = "Lola"
 WIFE_LAST = "Connelly"
@@ -33,6 +34,8 @@ SUBJECTS = [
 ]
 WIFE_CODE = "AS1F5sg2af619"
 
+messages.load_messages()
+
 def post_create(db):
     """Called after the database is created."""
     password = utils.gen_password(64, utils.PW_ALPHANUM + utils.PW_SYMBOLS)
@@ -40,7 +43,7 @@ def post_create(db):
 
     password = utils.gen_password(64, utils.PW_ALPHANUM + utils.PW_SYMBOLS)
     db.register(WIFE_EMAIL, WIFE_FIRST, WIFE_LAST, password)
-    db.send_email("BillDonovan@mail.gov", "Data", WIFE_CODE, WIFE_EMAIL)
+    db.send_email(("BillDonovan@mail.gov", "Bill Donovan"), "Data", WIFE_CODE, [WIFE_TUPLE])
 
     students = []
     for i in xrange(randint(1200, 3600)):
@@ -50,35 +53,37 @@ def post_create(db):
         temp = students[:]
         shuffle(temp)
         glen = int(ceil(float(len(students)) / len(group)))
-        group_students = [temp[i:i+glen] for i in range(0, len(temp), glen)]
+        group_students = [temp[i * glen:(i + 1) * glen] for i in xrange(glen)]
         for i, subject in enumerate(group):
             subject_students = group_students[i]
-            for i in xrange(len(subject_students) / randint(75, 150)):
+            tlen = randint(75, 150)
+            for j in xrange(len(subject_students) / tlen):
                 teacher = db.add_teacher(utils.gen_name(), subject)
-                db.enroll_student(student, teacher, subject, utils.gen_grade())
+                for student in subject_students[j * tlen:(j + 1) * tlen]:
+                    db.enroll_student(student, teacher, utils.gen_grade())
 
 def post_register(db, user):
     """Called by the database after a user registers."""
+    link = "http://{0}:{1}/".format(urlparse(request.url).netloc, utils.get_port("school"))
     def send_email():
         """Sends the initial email to the user from the agent."""
         kid_name = utils.gen_name(last="Connelly")
         password = utils.gen_password(12, utils.PW_ALPHA)
         k_id = db.add_student(kid_name, password)
         for group in SUBJECTS:
-            subject = random.choice(group)
-            teacher = random.choice([t[0] for t in db.get_teachers() if t[2] == subject_students])
-            db.enroll_student(k_id, teacher, subject, utils.gen_grade(max=75))
+            subject = choice(group)
+            teacher = choice([t[0] for t in db.get_teachers() if t[2] == subject])
+            db.enroll_student(k_id, teacher, utils.gen_grade(max=75))
         db.update_mission(user, 1, MISSION_IN_PROGRESS)
         db.set_mission_data(user, 1, "kid", k_id)
 
         mission_message = messages.get_mission(1)
-        link = "http://{0}:{1}/".format(urlparse(request.url).netloc, utils.get_port("school"))
         subject = mission_message['brief']['subject']
         body = mission_message['brief']['body'].format(name=user.first, kid_name=kid_name, link=link, password=password)
         sender = db.get_user(AGENT_ID).tuple()
         db.send_email(sender, subject, body, [user.tuple()])
 
-    if user.id != AGENT_ID:
+    if user.id not in (AGENT_ID, WIFE_ID):
         Timer(5, send_email).start()
 
 def post_send(db, email):

@@ -1,6 +1,6 @@
-mid: 2
+id: 2
 next_id: 3
-subreply: Re: Nice Job
+subreply: "Re: Nice Job"
 brief:
     subject: Nice Job
     body: |
@@ -12,7 +12,7 @@ brief:
         Jon
 
 reply_failed:
-    subject: Re: Nice Job
+    subject: "Re: Nice Job"
     body: |
         {name},
 

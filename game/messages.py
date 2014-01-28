@@ -11,13 +11,13 @@ def load_messages():
 
 def mission_number(subject):
     for m in messages:
-        if( m['subreply'] == subject ):
+        if( m.get('subreply') == subject ):
             return m['id']
     return -1
 
 def get_mission(mid):
     for m in messages:
-        if m['mid'] == mid:
+        if m['id'] == mid:
             return m
     return None
 

@@ -1,6 +1,6 @@
-mid: 1
+id: 1
 next_id: 2
-subreply: Re: Job Offer
+subreply: "Re: Job Offer"
 brief:
     subject: Job Offer
     body: |
@@ -19,7 +19,7 @@ brief:
         Jon Connelly
 
 reply_failed:
-    subject: Re: Job Offer
+    subject: "Re: Job Offer"
     body: |
         {name},
 

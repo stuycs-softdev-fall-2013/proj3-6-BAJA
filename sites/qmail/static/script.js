@@ -11,26 +11,21 @@ var display_email = function(email) {
 //Assumes the ajax response is sorted by eid, going upward
 
 var load_emails = function() {
-    $.ajax({'inbox.json',
-            function(r) {
-                for(int i = 0; i < r['emails'].length; i++) {
-                    if(most_recent_email < r['emails'][i]['id']) {
-                        display_email(r['emails'][i]);
-                        most_recent_email = r['emails'][i]['id'];
-                    }
-                }
+    $.ajax('/inbox.json').done(function(r) {
+        for (var i = 0; i < r.length; i++) {
+            if(most_recent_email < r[i]['id']) {
+                display_email(r[i]);
+                most_recent_email = r[i]['id'];
             }
+        }
+        setTimeout(load_emails, 5000);
     })
-    setTimeout(load_emails, 5000);
 }
 
 var send_email = function() {
-    $.ajax({'send.json',  $( "#send_data" ).serialize()
-            function(r) {
-                return;
-            }
-    })
+    $.ajax('/send.json', {data: $('#send-form').serialize()});
 }
+
 load_emails();
 
 document.getElementById("send_email").onclick = send_email;

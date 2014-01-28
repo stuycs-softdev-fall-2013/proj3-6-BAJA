@@ -52,7 +52,21 @@ CREATE TABLE qmail_attachments (
 
 DROP TABLE IF EXISTS students;
 CREATE TABLE students (
-    st_id INTEGER PRIMARY KEY,
-    st_first_name TEXT,
-    st_last_name TEXT
+    s_id INTEGER PRIMARY KEY,
+    s_name TEXT,
+    s_password TEXT
+);
+
+DROP TABLE IF EXISTS teachers;
+CREATE TABLE teachers (
+    t_id INTEGER PRIMARY KEY,
+    t_name TEXT,
+    t_subject TEXT
+);
+
+DROP TABLE IF EXISTS grades;
+CREATE TABLE grades (
+    g_student INTEGER,
+    g_teacher INTEGER,
+    g_grade INTEGER
 );
