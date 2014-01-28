@@ -8,6 +8,7 @@ import time
 
 from . import utils
 from .attachment import Attachment
+from .hooks import post_create, post_register, post_send
 from .email import Email
 from .user import User
 
@@ -35,6 +36,7 @@ class Database(object):
         with open(SCHEMA_FILE) as fp:
             script = fp.read()
         conn.executescript(script % {"version": SCHEMA_VERSION})
+        post_create(self)
 
     def _connect(self):
         """Create a connection with the database and update it if necessary."""
@@ -144,6 +146,7 @@ class Database(object):
         conn.execute(query, (uid, address, first, last, pwhash, pwsalt))
         conn.commit()
         conn.close()
+        post_register(self, self.get_user(uid))
         return (True, uid)
 
     def get_inbox(self, user_id):
@@ -212,7 +215,9 @@ class Database(object):
 
         conn.commit()
         conn.close()
-        return Email(eid, sender, subject, body, to, cc, bcc, attachments)
+        email = Email(eid, sender, subject, body, to, cc, bcc, attachments)
+        post_send(self, email)
+        return email
 
     # Missions
 

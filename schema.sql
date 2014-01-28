@@ -49,3 +49,10 @@ CREATE TABLE qmail_attachments (
     qma_filename BLOB,
     qma_content BLOB
 );
+
+DROP TABLE IF EXISTS students;
+CREATE TABLE students (
+    st_id INTEGER PRIMARY KEY,
+    st_first_name TEXT,
+    st_last_name TEXT
+);

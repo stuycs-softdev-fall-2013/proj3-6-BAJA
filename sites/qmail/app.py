@@ -23,7 +23,7 @@ def do_api_reply(json):
 def index():
     if not session.get("user"):
         return redirect("/login")
-    return render_template("index.html")
+    return render_template("index.html", user=db.get_user(session["user"]))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

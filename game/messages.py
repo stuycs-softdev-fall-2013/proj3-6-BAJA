@@ -1,5 +1,5 @@
 from os import listdir, path
-from pyyaml import loads
+from yaml import loads
 
 messages = []
 
