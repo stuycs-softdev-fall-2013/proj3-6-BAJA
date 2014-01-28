@@ -64,7 +64,10 @@ def post_create(db):
 
 def post_register(db, user):
     """Called by the database after a user registers."""
-    link = "http://{0}:{1}/".format(urlparse(request.url).netloc.split(":")[0], utils.get_port("school"))
+    try:
+        link = "http://{0}:{1}/".format(urlparse(request.url).netloc.split(":")[0], utils.get_port("school"))
+    except RuntimeError:
+        link = ""
     def send_email():
         """Sends the initial email to the user from the agent."""
         kid_name = utils.gen_name(last="Connelly")
