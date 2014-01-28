@@ -12,6 +12,11 @@ db = Database("database.db")
 
 DOMAIN = "@qmail.com"
 
+def do_api_reply(json):
+    resp = make_response(dumps(json))
+    resp.mimetype = "application/json"
+    return resp
+
 # End-user routes
 
 @app.route("/")
@@ -56,36 +61,24 @@ def register():
     return render_template("register.html", error=data)
 
 # API routes
-@app.route("/get.json", methods=["POST"])
-def get():
+
+@app.route("/inbox.json")
+def inbox():
     if not session.get("user"):
-        return redirect("/login")
+        return do_api_reply({"error": "You are not logged in."})
+    return do_api_reply(db.get_inbox(session["user"]))
 
-    emails = db.get_emails(session["user"])
-    resp = make_response(dumps(emails.serialize()))
-    resp.mimetype = "application/json"
-    return resp
+@app.route("/sentbox.json")
+def sentbox():
+    if not session.get("user"):
+        return do_api_reply({"error": "You are not logged in."})
+    return do_api_reply(db.get_sentbox(session["user"]))
 
-
-@app.route("/get/{eid}.json")
+@app.route("/email/{eid}.json")
 def email(eid):
     if not session.get("user"):
-        return redirect("/login")
-
-    email = db.get_email(eid, session["user"])
-    resp = make_response(dumps(email.serialize()))
-    resp.mimetype = "application/json"
-    return resp
-
-@app.route("/uid.json", methods=["POST"])
-def uid():
-    if not session.get("user"):
-        return redirect("/login")
-    resp = {}
-    r['uid' = session.get("user")
-    resp = make_response(dumps(r))
-    resp.mimetype = "application/json"
-    return resp
+        return do_api_reply({"error": "You are not logged in."})
+    return do_api_reply(db.get_email(eid, session["user"]))
 
 @app.route("/send.json", methods=["POST"])
 def send():
@@ -95,7 +88,7 @@ def send():
         return (address, None)
 
     if not session.get("user"):
-        return redirect("/login")
+        return do_api_reply({"error": "You are not logged in."})
 
     sender = db.get_user(session["user"])
     subject = request.form.get("subject")
@@ -105,16 +98,14 @@ def send():
         cc = [build_user(addr) for addr in request.form.get("cc").split(",")]
         bcc = [build_user(addr) for addr in request.form.get("bcc").split(",")]
     except IndexError:
-        return dumps({"error": "Invalid address(es) given."})
+        return do_api_reply({"error": "Invalid address(es) given."})
     attachments = None
 
     if not subject or not body or not to:
-        return dumps({"error": "Missing required field(s)."})
+        return do_api_reply({"error": "Missing required field(s)."})
 
     email = db.send_email(sender.tuple(), subject, body, to, cc, bcc, attachments)
-    resp = make_response(dumps(email.serialize()))
-    resp.mimetype = "application/json"
-    return resp
+    return do_api_reply(email)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=get_port("qmail"), debug=True)

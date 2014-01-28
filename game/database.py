@@ -151,6 +151,22 @@ class Database(object):
             conn.execute("END TRANSACTION")
             return (True, uid)
 
+    def get_inbox(self, user_id):
+        """Get a list of all emails in the inbox of a user ID."""
+        address = self.get_user(user_id).address
+        query = """SELECT qmm_email FROM qmail_email_members
+                   WHERE qmm_address = ? AND qmm_type IN (?, ?, ?)"""
+        for eid in self._execute(query, (address, EMAIL_TO, EMAIL_CC, EMAIL_BCC)):
+            yield self.get_email(eid, user_id)
+
+    def get_sentbox(self, user_id):
+        """Get a list of all emails in the sent box of a user ID."""
+        address = self.get_user(user_id).address
+        query = """SELECT qmm_email FROM qmail_email_members
+                   WHERE qmm_address = ? AND qmm_type = ?"""
+        for eid in self._execute(query, (address, EMAIL_SENDER)):
+            yield self.get_email(eid, user_id)
+
     def send_email(self, sender, subject, body, to, cc=None, bcc=None,
                    attachments=None):
         """Send an email from a given user with a given subject and body.
