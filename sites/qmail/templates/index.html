@@ -11,13 +11,13 @@
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">Qmail {{user.address}} {{user.first}} {{user.last}}</a></h1>
+          <h1><a href="#">Qmail</a></h1>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       </ul>
       <section class="top-bar-section">
         <ul class="left">
-          <li><a href="http://www.stuycs.org/">StuyCS</a></li>
+          <li><a href="#">{{user.address}} {{user.first}} {{user.last}}</a></li>
         </ul>
         <ul class="right">
           <li class="active"><a href="/logout">Log Out</a></li>
@@ -29,9 +29,9 @@
     <div class = "large-3 medium-4 columns">
  <div class="button-bar">
   <ul class="button-group [radius round]">
-    <li><a href="#subject" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#subject').focus()" style="background:#00CC7A;">Compose</a></li>
-    <li><a href="sentbox.html" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00E68A;">Inbox</a></li>
-    <li><a href="#Inbox" style="background:#00DD99;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
+    <li><a href="#subject" class="[tiny small large] button [alert success secondary] [disabled]" onclick="$('#subject').focus()" style="background:#00CC00;">Compose</a></li>
+    <li><a href="sentbox.html" class="[tiny small large] button [alert success secondary] [disabled]" style="background:#00CC00;">Inbox</a></li>
+    <li><a href="#Inbox" style="background:#00CC00;" class="[tiny small large] button [alert success secondary] [disabled]">Sent</a></li>
   </ul>
 </div>
       <ul class="off-canvas-list">
@@ -47,6 +47,11 @@
         <li><a href="#">Bel Riose</a></li>
         <li><a href="#">Salvor Hardin</a></li>
         <li><a href="#">Bel Riose</a></li>
+        <li><a href="#">Bel Riose</a></li>
+        <li><a href="#">Bel Riose</a></li>
+        <li><a href="#">Bel Riose</a></li>
+        <li><a href="#">Bel Riose</a></li>
+
       </ul>
     </div>
 
@@ -95,9 +100,13 @@
               <hr>
               <form>
                   <h5> To: </h5>
-                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:14.25rem;">
+                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
+                  <h5> CC: </h5>
+                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
+                  <h5> BCC: </h5>
+                  <input type="text" id="subject" name="subject" style="height:2.125rem; width:17.25rem;">
                   <h5> Subject: </h5>
-                  <input type="text" name="to" style="height:2.125rem; width:25.25rem;">
+                  <input type="text" name="to" style="height:2.125rem; width:17.25rem;">
                   <h5> Body </h5>
                   <textarea cols="50" rows="30" name="body" style="height:6rem; width: 45rem; resize:none;"></textarea>
                   <ul class="button-group [radius round]">
