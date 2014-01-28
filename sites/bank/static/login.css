@@ -84,7 +84,7 @@ div.loginpanel a.register:before {
   padding-right: 6px;
 }
 div.loginpanel a.register:hover {
-  color: #00CCCC;
+  color: #3366CC;
   text-shadow: 0 1px #555;
 }
 div.loginpanel a.register:active {
@@ -179,7 +179,7 @@ div.loginpanel input[type="button"] {
 }
 div.loginpanel input[type="button"]:hover,
 div.loginpanel input[type="button"]:focus {
-  background-color: #00CCCC;
+  background-color: #3366CC;
   -webkit-box-shadow: 0 2px #A8A8A8 , inset 0 0 #A8A8A8;
   -moz-box-shadow: 0 2px #A8A8A8 , inset 0 0 #A8A8A8;
   box-shadow: 0 2px #A8A8A8, inset 0 0 #A8A8A8;
