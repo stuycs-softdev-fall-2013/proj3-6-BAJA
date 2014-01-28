@@ -1,6 +1,9 @@
+from datetime import datetime
 import hashlib
 from logging import getLogger
+import re
 import sqlite3
+import time
 
 from . import utils
 from .attachment import Attachment
@@ -86,14 +89,15 @@ class Database(object):
         bcc = [(mem[1], mem[2]) for mem in members if mem[0] == EMAIL_BCC]
 
         query = "SELECT * FROM qmail_emails WHERE qme_id = ?"
-        _, subject, body = self._execute(query, email_id)[0]
+        _, subject, body, stime = self._execute(query, email_id)[0]
 
         attachments = []
         query = "SELECT * FROM qmail_attachments WHERE qma_email = ?"
         for aid, _, filename, content in self._execute(query, email_id):
             attachments.append(Attachment(aid, filename, content))
 
-        return Email(email_id, sender, subject, body, to, cc, bcc, attachments)
+        return Email(email_id, sender, subject, body,
+                     datetime.fromtimestamp(stime), to, cc, bcc, attachments)
 
     # Qmail
 
@@ -118,16 +122,21 @@ class Database(object):
         """
         with self._connect() as conn:
             conn.execute("BEGIN EXCLUSIVE TRANSACTION")
-                                                                                    # First, do an address validity check.
+
+            if not re.match(r"[^@]+@[^@]+\.[^@]+$", address):
+                return (False, "Address is invalid.")
+
             query = "SELECT 1 FROM qmail_users WHERE qmu_address = ?"
             res = conn.execute(query)
             if res.fetchall():
                 return (False, "Address taken.")
+
             res = conn.execute("SELECT MAX(qmu_id) FROM qmail_users")
             maxid = res.fetchone()[0]
             uid = maxid + 1 if maxid else 1
             pwsalt = utils.gen_password(64, utils.PW_ALPHANUM)
             pwhash = hashlib.sha256(password + pwsalt).hexdigest()
+
             query = "INSERT INTO qmail_users VALUES (?, ?, ?, ?, ?)"
             conn.execute(query, (uid, address, first, last, pwhash, pwsalt))
             conn.execute("END TRANSACTION")
@@ -143,7 +152,7 @@ class Database(object):
 
         Return an Email object on success or raise an exception on failure.
         """
-        pass
+        stime = time.mktime(time.localtime())
 
     # Missions
 
