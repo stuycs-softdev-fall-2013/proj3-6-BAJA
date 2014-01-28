@@ -66,7 +66,7 @@ def post_register(db, user):
         k_id = db.add_student(kid_name, password)
         for group in SUBJECTS:
             subject = random.choice(group)
-            teacher = random.choice([t[0] for t in db.get_teachers() where t[2] == subject_students])
+            teacher = random.choice([t[0] for t in db.get_teachers() if t[2] == subject_students])
             db.enroll_student(k_id, teacher, subject, utils.gen_grade(max=75))
         db.update_mission(user, 1, MISSION_IN_PROGRESS)
         db.set_mission_data(user, 1, "kid", k_id)
